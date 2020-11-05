@@ -7,8 +7,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
 
 import javax.swing.JFrame;
 /**
@@ -48,10 +46,9 @@ public class Game extends Canvas implements Runnable {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
 		frame.add(this, BorderLayout.CENTER);
-		frame.setUndecorated(true);
 		frame.pack();
 		frame.setResizable(false);
-		frame.setLocation(0,0);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
 		requestFocus();
@@ -122,9 +119,7 @@ public class Game extends Canvas implements Runnable {
 	public void update() {
 		//TODO: Update
 	}
-	/**
-	 * Ruft Rendermethode im GameManager auf und skaliert das Spiel
-	 */
+
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
 
@@ -139,8 +134,6 @@ public class Game extends Canvas implements Runnable {
 		g2d.setTransform(AffineTransform.getScaleInstance(scaleFactor, scaleFactor));
 
 		g.clearRect(0, 0, getWidth(), getHeight());
-
-		g.drawString("Hello World",30,30);
 		//TODO: RENDER
 		g.dispose();
 		bs.show();
