@@ -1,5 +1,7 @@
 package de.se2projekt.main;
 
+import de.se2projekt.gfx.Screen;
+
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -31,6 +33,8 @@ public class Game extends Canvas implements Runnable {
 	private boolean running;
 	private int scaleFactor;
 	private JFrame frame;
+	private GameManager gameManager;
+	private Screen screen;
 
 	/**
 	 * [Konstruktor] Initialisiert den Scale Faktor und die Anzahl der Spieler.
@@ -134,7 +138,7 @@ public class Game extends Canvas implements Runnable {
 		g2d.setTransform(AffineTransform.getScaleInstance(scaleFactor, scaleFactor));
 
 		g.clearRect(0, 0, getWidth(), getHeight());
-		//TODO: RENDER
+		gameManager.render(g,screen);
 		g.dispose();
 		bs.show();
 	}
@@ -143,7 +147,8 @@ public class Game extends Canvas implements Runnable {
 	 * Initialisiert den Screen, GameManager und die Audio
 	 */
 	private void init() {
-		//TODO: INIT
+		screen = new Screen();
+		gameManager = new GameManager();
 	}
 }
 

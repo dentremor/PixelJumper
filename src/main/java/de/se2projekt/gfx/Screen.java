@@ -16,7 +16,7 @@ public class Screen {
     }
 
     public void render(Graphics g, int xPos, int yPos, int tileId, int xOffset) {
-        //g.drawImage(SpriteSheet.getInstance().getSprite(tileId), (xPos + xOffset), yPos, null);
+        g.drawImage(SpriteSheet.getInstance().getSprite(tileId), (xPos + xOffset), yPos, null);
     }
 
     public void render(Graphics g, int xPos, int yPos, BufferedImage image, int xOffset) {

@@ -19,8 +19,8 @@ public class SpriteSheet {
 
     /* Ids aller Sprites*/
 
-    //BLOCK
     public static final int GROUND = 0;
+    public static final int TREE = 1;
 
 
 
@@ -30,7 +30,8 @@ public class SpriteSheet {
     private SpriteSheet() {
         BufferedImage spriteSheet = ImageUtil.loadImage(PATH);
 
-        sprites.put(GROUND, spriteSheet.getSubimage(0, 0, 16, 16));
+        sprites.put(GROUND, spriteSheet.getSubimage(32, 64, 16, 16));
+        sprites.put(TREE, spriteSheet.getSubimage(64, 0, 32, 48));
     }
 
     /**
@@ -47,6 +48,7 @@ public class SpriteSheet {
         return sprites.get(index);
     }
 
-
-
+    public int[] getBuildableBlocks() {
+        return new int[]{0,1};
+    }
 }

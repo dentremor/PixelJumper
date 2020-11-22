@@ -1,5 +1,6 @@
 package de.se2projekt.level;
 
+import de.se2projekt.gfx.Screen;
 import de.se2projekt.level.tiles.Tile;
 
 import java.util.ArrayList;
@@ -18,13 +19,10 @@ public class Level {
     /*
      * Rendert alle Tiles die sich im Fester befinden
      */
-    public void render() {
+    public void render(Screen screen) {
 
     }
 
-    /*
-     * Generiert das Level mit dem JsonArray
-     */
     private List<Tile> generateLevel() {
         List<Tile> tiles = new ArrayList<>();
 
