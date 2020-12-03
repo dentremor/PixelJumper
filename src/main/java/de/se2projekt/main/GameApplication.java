@@ -1,5 +1,6 @@
 package de.se2projekt.main;
 
+import de.se2projekt.gfx.Screen;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -9,21 +10,34 @@ import javafx.stage.Stage;
 import javafx.application.Application;
 
 public class GameApplication extends Application {
-    
+
+    public static final int WIDTH = 1280;
+    public static final int HEIGHT = 720;
+    public static final int BLOCK_SIZE = 16;
+
+    private final int UPS = 120;
+
+    private GameManager gameManager;
+    private Screen screen;
+
     @Override
     public void start(Stage stage) throws Exception {
+
+
+        gameManager = new GameManager();
+        screen = new Screen();
+
+
         stage.setTitle("Hello World");
 
         Group root = new Group();
         Scene scene = new Scene(root);
         stage.setScene(scene);
 
-        Canvas canvas = new Canvas(1280,720);
+        Canvas canvas = new Canvas(WIDTH,HEIGHT);
         root.getChildren().add(canvas);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        gc.fillText("TEST",200,200);
 
         startGameLoop(gc, stage);
     }
@@ -32,7 +46,7 @@ public class GameApplication extends Application {
         new AnimationTimer(){
 
             long lastTime = System.nanoTime();
-            double nsPerUpdate = 1000000000D / 120;
+            double nsPerUpdate = 1000000000D / UPS;
 
             int updates = 0;
             int frames = 0;
@@ -73,6 +87,7 @@ public class GameApplication extends Application {
     }
 
     private void render(GraphicsContext gc) {
+        gameManager.render(gc,screen);
     }
 
     private void update() {

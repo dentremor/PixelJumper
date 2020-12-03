@@ -1,9 +1,11 @@
 package de.se2projekt.util;
 
+import javafx.scene.image.Image;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
 
 public class ImageUtil {
 
@@ -19,5 +21,10 @@ public class ImageUtil {
             return null;
         }
     }
+
+
+
+
+
 
 }

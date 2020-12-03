@@ -138,7 +138,7 @@ public class Game extends Canvas implements Runnable {
 		g2d.setTransform(AffineTransform.getScaleInstance(scaleFactor, scaleFactor));
 
 		g.clearRect(0, 0, getWidth(), getHeight());
-		gameManager.render(g,screen);
+		//gameManager.render(g,screen);
 		g.dispose();
 		bs.show();
 	}
@@ -150,6 +150,7 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen();
 		gameManager = new GameManager();
 	}
+
 }
 
 
