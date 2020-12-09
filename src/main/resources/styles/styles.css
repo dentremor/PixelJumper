@@ -2,7 +2,7 @@
 
 @font-face {
     font-family:VT323;
-    src: url("../../../res/fonts/VT323-Regular.ttf");
+    src: url("../fonts/VT323-Regular.ttf");
 }
 
 /* Application wide styles */
@@ -21,7 +21,7 @@
     -fx-font-family: "Arial Narrow";
     -fx-font-weight: bold;
     -fx-background-color: linear-gradient(#61a2b1, #2A5058);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
 }
 
 /* standard button hovering color */
@@ -33,12 +33,12 @@
 
 /* main panel background */
 .main-panel {
-    -fx-background-image: url("../images/background.jpg");
+    -fx-background-image: url("../images/background1600x900.png");
 }
 
 /* menu background image properties */
 .main-screen {
-    -fx-background-image: url("../../../res/gfx/background1600x900.png");
+    -fx-background-image: url("../images/background1600x900.png");
     -fx-background-repeat: stretch;
     -fx-background-position: center;
     -fx-background-size: cover;
@@ -48,24 +48,17 @@
 .button-list {
     -fx-spacing: 10px;
     -fx-alignment: center;
-    -fx-padding: 15;
+    -fx-padding: 10;
 }
 
 .menu-button{
-    -fx-font-size: 32px;
-    -fx-font-weight: bold;
     -fx-padding: 0;
     -fx-cursor: hand;
-    -fx-background-color: transparent;
+    -fx-background-color: #7bba9f;
     -fx-graphic-text-gap: 30px;
-    -fx-border-color: white;
-    -fx-border-width: 4px;
-    -fx-pref-width: 250px;
-    -fx-pref-height: 40px;
-    -fx-font-family: 'VT323';
 }
 
 .menu-button:hover{
-    -fx-background-color: #5a7996;
+    -fx-background-color: #537e6c;
 }
 

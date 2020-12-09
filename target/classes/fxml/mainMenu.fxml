@@ -8,6 +8,8 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
@@ -19,19 +21,49 @@
     <VBox styleClass="main-screen" prefHeight="900" prefWidth="1600" alignment="CENTER">
             <VBox alignment="CENTER" styleClass="button-list">
                 <Button styleClass="menu-button" fx:id="startButton" onMouseClicked="#handleStartButtonClick">
-                    Start
+                    <graphic>
+                        <ImageView fitWidth="250.0" fitHeight="50.0">
+                            <image>
+                                <Image url="@../images/startButton.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="levelSelectButton" onMouseClicked="#handleLevelSelectButtonClick">
-                    Select Level
+                    <graphic>
+                        <ImageView fitWidth="250.0" fitHeight="50.0">
+                            <image>
+                                <Image url="@../images/levelSelectButton.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="levelEditorButton" onMouseClicked="#handleLevelEditorButtonClicked">
-                    Level Editor
+                    <graphic>
+                        <ImageView fitWidth="250.0" fitHeight="50.0">
+                            <image>
+                                <Image url="@../images/levelEditorButton.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="optionsButton" onMouseClicked="#handleOptionsButtonClicked">
-                    Options
+                    <graphic>
+                        <ImageView fitWidth="250.0" fitHeight="50.0">
+                            <image>
+                                <Image url="@../images/optionsButton.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="exitButton" onMouseClicked="#handleExitButtonClicked">
-                    Exit
+                    <graphic>
+                        <ImageView fitWidth="250.0" fitHeight="50.0">
+                            <image>
+                                <Image url="@../images/exitButton.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
                 </Button>
             </VBox>
     </VBox>
