@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<?import javafx.scene.text.Text?>
+<AnchorPane
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="de.se2projekt.gui.MainMenuController"
+        styleClass="menu-screen">
+    <stylesheets>
+        <URL value="@../styles/styles.css"/>
+    </stylesheets>
+    <VBox styleClass="main-screen" prefHeight="900" prefWidth="1600" alignment="CENTER">
+        <HBox styleClass="header">
+            <Text>Jump n Run</Text>
+        </HBox>
+            <VBox alignment="CENTER" styleClass="button-list">
+                <Button styleClass="menu-button" fx:id="startButton" onMouseClicked="#handleStartButtonClick">
+                    Start
+                </Button>
+                <Button styleClass="menu-button" fx:id="levelSelectButton" onMouseClicked="#handleLevelSelectButtonClick">
+                    Select Level
+                </Button>
+                <Button styleClass="menu-button" fx:id="levelEditorButton" onMouseClicked="#handleLevelEditorButtonClicked">
+                    Level Editor
+                </Button>
+                <Button styleClass="menu-button" fx:id="optionsButton" onMouseClicked="#handleOptionsButtonClicked">
+                    Options
+                </Button>
+                <Button styleClass="menu-button" fx:id="exitButton" onMouseClicked="#handleExitButtonClicked">
+                    Exit
+                </Button>
+            </VBox>
+    </VBox>
+
+</AnchorPane>
