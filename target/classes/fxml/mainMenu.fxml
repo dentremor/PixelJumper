@@ -17,9 +17,6 @@
         <URL value="@../styles/styles.css"/>
     </stylesheets>
     <VBox styleClass="main-screen" prefHeight="900" prefWidth="1600" alignment="CENTER">
-        <HBox styleClass="header">
-            <Text>Jump n Run</Text>
-        </HBox>
             <VBox alignment="CENTER" styleClass="button-list">
                 <Button styleClass="menu-button" fx:id="startButton" onMouseClicked="#handleStartButtonClick">
                     Start

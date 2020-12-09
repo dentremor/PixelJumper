@@ -1,5 +1,13 @@
+/* Font Faces */
+
+@font-face {
+    font-family:VT323;
+    src: url("../../../res/fonts/VT323-Regular.ttf");
+}
+
 /* Application wide styles */
 
+/* standard label coloring */
 .label {
     -fx-font-size: 12px;
     -fx-font-weight: bold;
@@ -7,6 +15,7 @@
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 
+/* Standard Button coloring */
 .button {
     -fx-text-fill: white;
     -fx-font-family: "Arial Narrow";
@@ -15,23 +24,19 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
+/* standard button hovering color */
 .button:hover{
 	 -fx-background-color: #395bae;
 }
 
 /* Component specific styles */
 
-
+/* main panel background */
 .main-panel {
     -fx-background-image: url("../images/background.jpg");
 }
 
-.hello-message {
-    -fx-text-fill: #AA0000;
-    -fx-font-weight: bold;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-}
-
+/* menu background image properties */
 .main-screen {
     -fx-background-image: url("../../../res/gfx/background1600x900.png");
     -fx-background-repeat: stretch;
@@ -39,10 +44,11 @@
     -fx-background-size: cover;
 }
 
+/* menu button styling */
 .button-list {
     -fx-spacing: 10px;
     -fx-alignment: center;
-    -fx-padding: 10;
+    -fx-padding: 15;
 }
 
 .menu-button{
@@ -52,5 +58,14 @@
     -fx-cursor: hand;
     -fx-background-color: transparent;
     -fx-graphic-text-gap: 30px;
+    -fx-border-color: white;
+    -fx-border-width: 4px;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 40px;
+    -fx-font-family: 'VT323';
+}
+
+.menu-button:hover{
+    -fx-background-color: #5a7996;
 }
 
