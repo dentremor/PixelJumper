@@ -1,0 +1,49 @@
+/* Application wide styles */
+
+/*  layout  */
+.header {
+    -fx-background-color: green;
+}
+
+.level-editor {
+    /*  background  */
+    -fx-background-image: url("/images/background900x900_loopable.png");
+    -fx-background-repeat: repeat;
+    -fx-background-size: 640;
+    -fx-background-position: left center;
+
+    /*  dummy  */
+}
+
+.item-selection {
+    -fx-background-color: red;
+}
+
+.item-box {
+    -fx-max-width: 600;
+    -fx-background-color: purple;
+    -fx-spacing: 20px;
+    -fx-padding: 10;
+}
+/*  buttons  */
+.scroll-button {
+    -fx-padding: 0;
+    -fx-cursor: hand;
+    -fx-background-color: #7bba9f;
+    -fx-graphic-text-gap: 30px;
+}
+
+.scroll-button:hover {
+    -fx-background-color: #537e6c;
+}
+
+.export-button {
+    -fx-padding: 0;
+    -fx-cursor: hand;
+    -fx-background-color: #7bba9f;
+    -fx-graphic-text-gap: 30px;
+}
+
+.export-button:hover{
+    -fx-background-color: #537e6c;
+}

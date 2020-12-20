@@ -18,11 +18,14 @@ public abstract class Tile implements Cloneable{
     private int width;
     /* Hoehe des Tiles*/
     private int height;
+    /* Pfad der Imagedatei*/
+    private String imagePath;
+
 
     /**
      * [Konstruktor] Initialisiert das Tile mit den Werten
      */
-    public Tile(boolean isSolid, boolean isDeadly, int tileId, int x, int y, int width, int height) {
+    public Tile(boolean isSolid, boolean isDeadly, int tileId, int x, int y, int width, int height, String imagePath) {
         this.isSolid = isSolid;
         this.isDeadly = isDeadly;
         this.tileId = tileId;
@@ -30,6 +33,7 @@ public abstract class Tile implements Cloneable{
         this.y = y;
         this.width = width;
         this.height = height;
+        this.imagePath = imagePath;
     }
 
     /*
@@ -97,5 +101,9 @@ public abstract class Tile implements Cloneable{
 
     public int getY() {
         return y;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 }

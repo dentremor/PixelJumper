@@ -12,8 +12,8 @@ public class TileMap {
     private static final HashMap<Integer, Tile> TILE_MAP = new HashMap<>();
 
     /* Zuweisung aller Tiles*/
-    private static final BasicSolidTile GROUND = new BasicSolidTile(SpriteSheet.GROUND, 0, 0, 16, 16);
-    private static final BasicSolidTile TREE = new BasicSolidTile(SpriteSheet.GROUND, 0, 0, 32, 48);
+    private static final BasicSolidTile GROUND = new BasicSolidTile(SpriteSheet.GROUND, 0, 0, 16, 16, "@../images/tiles/tree.png");
+    private static final BasicSolidTile TREE = new BasicSolidTile(SpriteSheet.GROUND, 0, 0, 32, 48, "@../images/tiles/tree.png");
 
     /*
      * Gibt das Tile mit der id "index" zurueck

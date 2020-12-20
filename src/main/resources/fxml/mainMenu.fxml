@@ -23,45 +23,35 @@
                 <Button styleClass="menu-button" fx:id="startButton" onMouseClicked="#handleStartButtonClick">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <image>
-                                <Image url="@../images/startButton.png"/>
-                            </image>
+                            <Image url="@../images/startButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="levelSelectButton" onMouseClicked="#handleLevelSelectButtonClick">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <image>
-                                <Image url="@../images/levelSelectButton.png"/>
-                            </image>
+                            <Image url="@../images/levelSelectButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="levelEditorButton" onMouseClicked="#handleLevelEditorButtonClicked">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <image>
-                                <Image url="@../images/levelEditorButton.png"/>
-                            </image>
+                            <Image url="@../images/levelEditorButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="optionsButton" onMouseClicked="#handleOptionsButtonClicked">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <image>
-                                <Image url="@../images/optionsButton.png"/>
-                            </image>
+                            <Image url="@../images/optionsButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="exitButton" onMouseClicked="#handleExitButtonClicked">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <image>
-                                <Image url="@../images/exitButton.png"/>
-                            </image>
+                            <Image url="@../images/exitButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>

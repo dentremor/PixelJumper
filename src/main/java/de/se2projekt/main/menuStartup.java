@@ -40,6 +40,8 @@ public class menuStartup extends Application {
             log.info("Setting stage properties");
             primaryStage.setTitle("Menu");
             primaryStage.setScene(scene);
+            primaryStage.setWidth(1600);
+            primaryStage.setHeight(900);
 
             log.info("Showing stage");
             primaryStage.show();
