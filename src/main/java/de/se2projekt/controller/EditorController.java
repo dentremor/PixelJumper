@@ -1,11 +1,14 @@
 package de.se2projekt.controller;
 
 import com.sun.javafx.fxml.FXMLLoaderHelper;
+import de.se2projekt.level.tiles.BasicClimbableTile;
+import de.se2projekt.level.tiles.BasicSolidTile;
 import de.se2projekt.level.tiles.BasicTile;
 import de.se2projekt.level.tiles.Tile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -13,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.apache.logging.log4j.LogManager;
@@ -36,31 +40,46 @@ public class EditorController {
     public Button scrollRightButtonItems;
 
 
-    private Boolean errorMessageIsVisible = false;
+    private final Boolean errorMessageIsVisible = false;
     private Text errorMessage;
 
     //dummyTiles
-    private List<Tile> dummyTiles = new ArrayList<Tile>();
+    private final List<Tile> items = new ArrayList<Tile>();
 
     BasicTile tree = new BasicTile(1, -1,-1,200,300, "/images/tiles/tree.png");
+    BasicSolidTile tileOne = new BasicSolidTile(2,-1,-1,300,300,"/images/tiles/tile_1.png");
+    BasicSolidTile tileTwo = new BasicSolidTile(3, -1,-1,500,300,"/images/tiles/tile_2.png");
+    BasicSolidTile tileThree = new BasicSolidTile(4,-1,-1,500,300,"/images/tiles/tile_3.png");
+    BasicClimbableTile liana = new BasicClimbableTile(5,-1,-1,100,200,"/images/tiles/liana_1.png");
 
     @FXML
     public void initialize(){
         // Fill list with items
-        for (int i = 0; i < 12; i++){
-            dummyTiles.add(tree);
-        }
+        items.add(tree);
+        items.add(tileOne);
+        items.add(tileTwo);
+        items.add(tileThree);
+        items.add(liana);
+
         displayItems();
     }
 
     @FXML
     public void displayItems() {
-        // instance one image from the itemList above
-        final Image image = new Image(EditorController.class.getResource(dummyTiles.get(0).getImagePath()).toString());
-        final ImageView imv = new ImageView(image);
 
-        // Add the image to the itemBox
-        itemBox.getChildren().add(imv);
+        ListView<ImageView> imageList = new ListView<ImageView>();
+
+        for (Tile tile : items) {
+            // Instance all images from the dummyList above
+            final Image image = new Image(EditorController.class.getResource(tile.getImagePath()).toString());
+            final ImageView imv = new ImageView(image);
+
+            // Add the Images from above into a list
+            imageList.getItems().add(imv);
+        }
+
+        // Add the list with images to the itemBox
+        itemBox.getChildren().add(imageList);
     }
 
     @FXML

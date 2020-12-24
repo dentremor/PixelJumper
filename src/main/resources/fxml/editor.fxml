@@ -5,11 +5,13 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
+<!--   root   -->
 <AnchorPane fx:id="rootPane" styleClass="editor-screen" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.se2projekt.controller.EditorController">
    <stylesheets>
       <URL value="@../styles/editor.css" />
    </stylesheets>
    <VBox fx:id="rootVBox" prefHeight="900" prefWidth="1600" styleClass="content">
+
       <!--   levelEditor   -->
       <AnchorPane fx:id="rootEditorPane" layoutY="20.0" prefHeight="640.0" prefWidth="1081.0" styleClass="level-editor">
          <Button fx:id="exportButtonEditor" layoutX="1360" onMouseClicked="#handleExportButtonEditor" styleClass="export-button">
@@ -34,6 +36,7 @@
             </graphic>
          </Button>
       </AnchorPane>
+
       <!--   itemSelection   -->
       <AnchorPane fx:id="rootItemPane" layoutY="506.0" prefHeight="235.0" prefWidth="1081.0" styleClass="item-selection">
          <Button fx:id="scrollLeftButtonItems" layoutY="87.5" onMouseClicked="#handleScrollLefButtonItems" styleClass="scroll-button">
@@ -53,5 +56,6 @@
             </graphic>
          </Button>
       </AnchorPane>
+
    </VBox>
 </AnchorPane>
