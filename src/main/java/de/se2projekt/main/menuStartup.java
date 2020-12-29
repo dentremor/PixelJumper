@@ -1,6 +1,8 @@
 package de.se2projekt.main;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -40,13 +42,22 @@ public class menuStartup extends Application {
             log.info("Setting stage properties");
             primaryStage.setTitle("Menu");
             primaryStage.setScene(scene);
-            primaryStage.setWidth(1600);
-            primaryStage.setHeight(900);
+
+            // Log the width and height of the different scenes
+            scene.widthProperty().addListener(new ChangeListener<Number>() {
+                @Override
+                public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
+                    log.info("The width of the scene was changed from " + oldSceneWidth + " to " + newSceneWidth);
+                }});
+            scene.heightProperty().addListener(new ChangeListener<Number>() {
+                @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
+                    log.info("The width of the scene was changed from " + oldSceneHeight + " to " + newSceneHeight);
+                }});
 
             log.info("Showing stage");
             primaryStage.show();
         } catch (IOException e){
-            log.error("An Error occured while trying to create menu stage", e);
+            log.error("An Error occurred while trying to create menu stage", e);
         }
     }
 

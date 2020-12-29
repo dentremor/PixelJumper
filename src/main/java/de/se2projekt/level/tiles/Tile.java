@@ -27,15 +27,15 @@ public abstract class Tile implements Cloneable{
     /**
      * [Konstruktor] Initialisiert das Tile mit den Werten
      */
-    public Tile(boolean isSolid, boolean isDeadly, boolean isClimbable, int tileId, int x, int y, int width, int height, String imagePath) {
+    public Tile(boolean isSolid, boolean isDeadly, boolean isClimbable, int tileId, int x, int y, String imagePath) {
         this.isSolid = isSolid;
         this.isDeadly = isDeadly;
         this.isClimbable = isClimbable;
         this.tileId = tileId;
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
+        this.width = 50;
+        this.height = 50;
         this.imagePath = imagePath;
     }
 

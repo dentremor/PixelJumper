@@ -6,56 +6,27 @@
 <?import javafx.scene.layout.*?>
 
 <!--   root   -->
-<AnchorPane fx:id="rootPane" styleClass="editor-screen" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.se2projekt.controller.EditorController">
+
+<AnchorPane fx:id="rootPane" styleClass="editor-screen"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="de.se2projekt.controller.EditorController">
    <stylesheets>
       <URL value="@../styles/editor.css" />
    </stylesheets>
-   <VBox fx:id="rootVBox" prefHeight="900" prefWidth="1600" styleClass="content">
+   <HBox fx:id="rootHBox" prefHeight="900" prefWidth="1900" styleClass="content">
 
       <!--   levelEditor   -->
-      <AnchorPane fx:id="rootEditorPane" layoutY="20.0" prefHeight="640.0" prefWidth="1081.0" styleClass="level-editor">
-         <Button fx:id="exportButtonEditor" layoutX="1360" onMouseClicked="#handleExportButtonEditor" styleClass="export-button">
-            <graphic>
-               <ImageView fitHeight="40" fitWidth="240">
-                  <Image url="@../images/exportButton.png" />
-               </ImageView>
-            </graphic>
-         </Button>
-         <Button fx:id="scrollLeftButtonEditor" layoutY="290.0" onMouseClicked="#handleScrollLefButtonEditor" styleClass="scroll-button">
-            <graphic>
-               <ImageView fitHeight="60" fitWidth="60">
-                  <Image url="@../images/arrowLeftButton.png" />
-               </ImageView>
-            </graphic>
-         </Button>
-         <Button fx:id="scrollRightButtonEditor" layoutX="1540" layoutY="290.0" onMouseClicked="#handleScrollRightButtonEditor" styleClass="scroll-button">
-            <graphic>
-               <ImageView fitHeight="60" fitWidth="60">
-                  <Image url="@../images/arrowRightButton.png" />
-               </ImageView>
-            </graphic>
-         </Button>
+      <AnchorPane  prefHeight="900" prefWidth="1600" styleClass="level-editor">
+         <GridPane fx:id="rootEditorPane" styleClass="root-editor-pane">
+         </GridPane>
       </AnchorPane>
 
       <!--   itemSelection   -->
-      <AnchorPane fx:id="rootItemPane" layoutY="506.0" prefHeight="235.0" prefWidth="1081.0" styleClass="item-selection">
-         <Button fx:id="scrollLeftButtonItems" layoutY="87.5" onMouseClicked="#handleScrollLefButtonItems" styleClass="scroll-button">
-            <graphic>
-               <ImageView fitHeight="60" fitWidth="60">
-                  <Image url="@../images/arrowLeftButton.png" />
-               </ImageView>
-            </graphic>
-         </Button>
-         <HBox fx:id="itemBox" accessibleRole="SCROLL_BAR" layoutX="60" minWidth="1480.0" styleClass="item-box">
-         </HBox>
-         <Button fx:id="scrollRightButtonItems" layoutX="1540.0" layoutY="87.5" onMouseClicked="#handleScrollRightButtonItems" styleClass="scroll-button">
-            <graphic>
-               <ImageView fitHeight="60" fitWidth="60">
-                  <Image url="@../images/arrowRightButton.png" />
-               </ImageView>
-            </graphic>
-         </Button>
+      <AnchorPane fx:id="rootItemPane" layoutX="1600" prefHeight="900" prefWidth="300" styleClass="item-selection">
+         <GridPane fx:id="itemBox" accessibleRole="SCROLL_BAR" styleClass="item-box">
+         </GridPane>
       </AnchorPane>
 
-   </VBox>
+   </HBox>
 </AnchorPane>

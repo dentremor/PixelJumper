@@ -5,11 +5,17 @@
     -fx-background-color: green;
 }
 
+.root-editor-pane {
+    -fx-padding: 1;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+}
+
 .level-editor {
     /*  background  */
     -fx-background-image: url("/images/background900x900_loopable.png");
     -fx-background-repeat: repeat;
-    -fx-background-size: 640;
+    -fx-background-size: 900;
     -fx-background-position: left center;
 
     /*  dummy  */
@@ -22,9 +28,15 @@
 .item-box {
     -fx-max-width: 600;
     -fx-background-color: purple;
-    -fx-spacing: 20px;
-    -fx-padding: 10;
 }
+
+.item-box .image-view{
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+}
+
+
 /*  buttons  */
 .scroll-button {
     -fx-padding: 0;
