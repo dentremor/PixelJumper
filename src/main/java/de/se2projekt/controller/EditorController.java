@@ -1,16 +1,9 @@
 package de.se2projekt.controller;
 
-import com.sun.javafx.geom.Matrix3f;
-import de.se2projekt.level.tiles.BasicClimbableTile;
-import de.se2projekt.level.tiles.BasicSolidTile;
-import de.se2projekt.level.tiles.BasicTile;
+
 import de.se2projekt.level.tiles.Tile;
 import de.se2projekt.util.TileMap;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,7 +23,7 @@ public class EditorController {
     public GridPane rootEditorPane;
     public GridPane itemBox;
 
-
+    private Tile selectedItem;
     private final Boolean errorMessageIsVisible = false;
 
 
@@ -60,6 +53,11 @@ public class EditorController {
 
             // Stack them in StackPanes, because its not possible to style an ImageView
             StackPane imageView = new StackPane(imv);
+            imageView.setId(String.valueOf(i));
+            imageView.setOnMouseClicked(e -> {
+                selectedItem = tiles.get(Integer.valueOf(imageView.getId()));
+                log.info("Item: " + selectedItem +  " was clicked.");
+            });
             imageView.getStyleClass().add("image-view");
 
             // Scale size
@@ -72,27 +70,5 @@ public class EditorController {
     @FXML
     public void displayEditorPane() {
 
-    }
-
-    @FXML
-    public Button scrollLefButtonItems;
-
-    public void handleScrollLefButtonItems(){
-        //todo
-    }
-
-    public void handleScrollRightButtonItems(MouseEvent mouseEvent) {
-    }
-
-    public void handleScrollLefButtonEditor(MouseEvent mouseEvent) {
-        //todo
-    }
-
-    public void handleScrollRightButtonEditor(MouseEvent mouseEvent) {
-        //todo
-    }
-
-    public void handleExportButtonEditor(MouseEvent mouseEvent) {
-        //todo
     }
 }
