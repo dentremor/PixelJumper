@@ -2,12 +2,17 @@ package de.se2projekt.gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * JavaFX controller for the main menu
@@ -47,7 +52,11 @@ public class MainMenuController {
 
     public void handleLevelEditorButtonClicked() throws IOException{
         log.info("level editor button clicked");
-            levelEditorButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/editor.fxml")));
+
+        // Get the currently used stage
+        Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        owner.setWidth(1900);
+        levelEditorButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/editor.fxml")));
     }
 
     public void handleOptionsButtonClicked() throws IOException {

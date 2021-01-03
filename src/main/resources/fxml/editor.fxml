@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<!--   root   -->
+
+<AnchorPane fx:id="rootPane" styleClass="editor-screen"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="de.se2projekt.controller.EditorController">
+   <stylesheets>
+      <URL value="@../styles/editor.css" />
+   </stylesheets>
+   <HBox fx:id="rootHBox" prefHeight="900" prefWidth="1900" styleClass="content">
+
+      <!--   levelEditor   -->
+      <AnchorPane  prefHeight="900" prefWidth="1600" styleClass="level-editor">
+         <GridPane fx:id="rootEditorPane" styleClass="root-editor-pane">
+         </GridPane>
+      </AnchorPane>
+
+      <!--   itemSelection   -->
+      <AnchorPane fx:id="rootItemPane" layoutX="1600" prefHeight="900" prefWidth="300" styleClass="item-selection">
+         <GridPane fx:id="itemBox" accessibleRole="SCROLL_BAR" styleClass="item-box">
+         </GridPane>
+      </AnchorPane>
+
+   </HBox>
+</AnchorPane>

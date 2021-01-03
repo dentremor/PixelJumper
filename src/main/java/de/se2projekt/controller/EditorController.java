@@ -1,19 +1,21 @@
 package de.se2projekt.controller;
 
-import com.sun.javafx.fxml.FXMLLoaderHelper;
+
+import com.sun.javafx.geom.Matrix3f;
+import de.se2projekt.level.tiles.BasicClimbableTile;
+import de.se2projekt.level.tiles.BasicSolidTile;
 import de.se2projekt.level.tiles.BasicTile;
 import de.se2projekt.level.tiles.Tile;
+import de.se2projekt.util.TileMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,42 +27,52 @@ public class EditorController {
 
     //Variablen aus der GUI
     public AnchorPane rootPane;
-    public VBox rootVBox;
-    public AnchorPane rootEditorPane;
-    public Button exportButtonEditor;
-    public Button scrollLeftButtonEditor;
-    public Button scrollRightButtonEditor;
-    public AnchorPane rootItemPane;
-    public Button scrollLeftButtonItems;
-    public HBox itemBox;
-    public Button scrollRightButtonItems;
+    public HBox rootHBox;
+    public GridPane rootEditorPane;
+    public GridPane itemBox;
 
 
-    private Boolean errorMessageIsVisible = false;
+    private final Boolean errorMessageIsVisible = false;
+
+
+
     private Text errorMessage;
 
     //dummyTiles
-    private List<Tile> dummyTiles = new ArrayList<Tile>();
 
-    BasicTile tree = new BasicTile(1, -1,-1,200,300, "/images/tiles/tree.png");
 
     @FXML
     public void initialize(){
-        // Fill list with items
-        for (int i = 0; i < 12; i++){
-            dummyTiles.add(tree);
-        }
+
         displayItems();
+        displayEditorPane();
     }
 
     @FXML
     public void displayItems() {
-        // instance one image from the itemList above
-        final Image image = new Image(EditorController.class.getResource(dummyTiles.get(0).getImagePath()).toString());
-        final ImageView imv = new ImageView(image);
 
-        // Add the image to the itemBox
-        itemBox.getChildren().add(imv);
+        // Get instance of TileMap
+        TileMap instance = TileMap.getInstance();
+        ArrayList<Tile> tiles = instance.getArray();
+        
+        for (int i = 0; i < tiles.size(); i++) {
+            // Instance all images from tiles above
+            final ImageView imv = new ImageView(new Image(EditorController.class.getResource(tiles.get(i).getImagePath()).toString()));
+
+            // Stack them in StackPanes, because its not possible to style an ImageView
+            StackPane imageView = new StackPane(imv);
+            imageView.getStyleClass().add("image-view");
+
+            // Scale size
+            imv.setFitHeight(46);
+            imv.setFitWidth(46);
+            itemBox.add(imageView,i,i/5);
+        }
+    }
+
+    @FXML
+    public void displayEditorPane() {
+
     }
 
     @FXML
