@@ -1,6 +1,7 @@
 package de.se2projekt.gui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -40,26 +41,19 @@ public class MainMenuController {
 
     public void handleLevelSelectButtonClick() throws IOException {
         log.info("level select button clicked");
+
+        levelSelectButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/levelSelect.fxml")));
     }
 
     public void handleLevelEditorButtonClicked() throws IOException{
         log.info("level editor button clicked");
-        //auskommentiert weil's noch nicht funktioniert
-        /*try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/editor.fxml"));
-
-            Parent root1 = fxmlLoader.load();
-
-            primaryStage.setTitle("LevelEditor");
-            primaryStage.setScene(new Scene(root1));
-            primaryStage.show();
-        }catch(IOException e) {
-            e.printStackTrace();
-        }*/
+            levelEditorButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/editor.fxml")));
     }
 
     public void handleOptionsButtonClicked() throws IOException {
         log.info("options button clicked");
+
+        optionsButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/options.fxml")));
     }
 
     public void handleExitButtonClicked() {

@@ -1,6 +1,7 @@
 package de.se2projekt.level;
 
 import de.se2projekt.gfx.Screen;
+import de.se2projekt.level.tiles.BasicTile;
 import de.se2projekt.level.tiles.Tile;
 
 import java.util.ArrayList;
@@ -37,4 +38,7 @@ public class Level {
     }
 
 
+    public void setTiles(Tile tile){
+        tiles.add(tile);
+    }
 }

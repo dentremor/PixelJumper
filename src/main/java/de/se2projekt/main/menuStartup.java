@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,6 +41,10 @@ public class menuStartup extends Application {
             log.info("Setting stage properties");
             primaryStage.setTitle("Menu");
             primaryStage.setScene(scene);
+            primaryStage.setWidth(1600);
+            primaryStage.setHeight(900);
+            primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+            primaryStage.setFullScreen(true);
 
             log.info("Showing stage");
             primaryStage.show();
