@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <!--   root   -->
@@ -18,7 +16,7 @@
 
       <!--   levelEditor   -->
       <AnchorPane  prefHeight="900" prefWidth="1600" styleClass="level-editor">
-         <GridPane fx:id="rootEditorPane" styleClass="root-editor-pane">
+         <GridPane fx:id="mapEditor" styleClass="map-editor">
          </GridPane>
       </AnchorPane>
 

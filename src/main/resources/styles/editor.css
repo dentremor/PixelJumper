@@ -5,12 +5,6 @@
     -fx-background-color: green;
 }
 
-.root-editor-pane {
-    -fx-padding: 1;
-    -fx-border-style: solid;
-    -fx-border-color: #ffffff;
-}
-
 .level-editor {
     /*  background  */
     -fx-background-image: url("/images/background900x900_loopable.png");
@@ -21,41 +15,31 @@
     /*  dummy  */
 }
 
-.item-selection {
-    -fx-background-color: red;
-}
-
-.item-box {
-    -fx-max-width: 600;
-    -fx-background-color: purple;
-}
-
 .item-box .image-view{
+    /*  Styling of the single elements  */
     -fx-border-style: solid;
     -fx-border-color: white;
     -fx-border-width: 2px;
-}
 
-
-/*  buttons  */
-.scroll-button {
-    -fx-padding: 0;
+    /*  Give the elements "button-behaviour"  */
     -fx-cursor: hand;
+}
+
+.item-box .image-view:hover {
+    -fx-opacity: 0.6;
     -fx-background-color: #7bba9f;
-    -fx-graphic-text-gap: 30px;
 }
 
-.scroll-button:hover {
-    -fx-background-color: #537e6c;
-}
+.map-editor .image-view{
+    /*  Styling of the single elements  */
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
 
-.export-button {
-    -fx-padding: 0;
+    /*  Give the elements "button-behaviour"  */
     -fx-cursor: hand;
-    -fx-background-color: #7bba9f;
-    -fx-graphic-text-gap: 30px;
 }
 
-.export-button:hover{
-    -fx-background-color: #537e6c;
+.map-editor .image-view:hover {
+    -fx-background-color: #ffffff60;
 }
