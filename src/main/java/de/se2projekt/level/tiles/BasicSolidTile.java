@@ -1,6 +1,6 @@
 package de.se2projekt.level.tiles;
 
-public class BasicSolidTile extends BasicTile{
+public class BasicSolidTile extends BasicTile {
 
     /**
      * [Konstruktor] Initialisiert den Block mit den übergebenen Werten

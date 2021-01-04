@@ -1,8 +1,11 @@
 package de.se2projekt.level.tiles;
 
+import de.se2projekt.controller.EditorController;
+import javafx.scene.image.Image;
+
 import java.awt.*;
 
-public abstract class Tile implements Cloneable{
+public abstract class Tile implements Cloneable {
 
     /* Legt fest, ob das Tile solide ist*/
     private boolean isSolid;
@@ -11,23 +14,23 @@ public abstract class Tile implements Cloneable{
     /* Legt fest, ob das Tile erklimmbar ist*/
     private boolean isClimbable;
     /* Id des Tiles*/
-    private int tileId;
+    private final int tileId;
     /* x Koordinate des Tiles*/
     private int x;
     /* y Koordinate des Tiles*/
     private int y;
     /* Breite des Tiles*/
-    private int width;
+    private final int width;
     /* Hoehe des Tiles*/
-    private int height;
+    private final int height;
     /* Pfad der Imagedatei*/
-    private String imagePath;
+    private final Image image;
 
 
     /**
      * [Konstruktor] Initialisiert das Tile mit den Werten
      */
-    public Tile(boolean isSolid, boolean isDeadly, boolean isClimbable, int tileId, int x, int y, String imagePath) {
+    public Tile(final boolean isSolid, final boolean isDeadly, final boolean isClimbable, final int tileId, final int x, final int y, final String imagePath) {
         this.isSolid = isSolid;
         this.isDeadly = isDeadly;
         this.isClimbable = isClimbable;
@@ -36,7 +39,8 @@ public abstract class Tile implements Cloneable{
         this.y = y;
         this.width = 50;
         this.height = 50;
-        this.imagePath = imagePath;
+        final String resource = EditorController.class.getResource(imagePath).toString();
+        this.image = new Image(resource);
     }
 
     /*
@@ -48,12 +52,13 @@ public abstract class Tile implements Cloneable{
      * Gibt die Kollisionbox zurueck
      */
     public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
+        return new Rectangle(this.x, this.y, this.width, this.height);
     }
 
     /*
      * Clont das Tile
      */
+    @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
@@ -63,58 +68,58 @@ public abstract class Tile implements Cloneable{
      * Getter & Setter
      */
     public boolean isSolid() {
-        return isSolid;
+        return this.isSolid;
     }
 
-    public void setSolid(boolean isSolid) {
+    public void setSolid(final boolean isSolid) {
         this.isSolid = isSolid;
     }
 
     public boolean isDeadly() {
-        return isDeadly;
+        return this.isDeadly;
     }
 
-    public void setDeadly(boolean isDeadly) {
+    public void setDeadly(final boolean isDeadly) {
         this.isDeadly = isDeadly;
     }
 
     public boolean isClimbable() {
-        return isClimbable;
+        return this.isClimbable;
     }
 
-    public void setClimbable(boolean climbable) {
+    public void setClimbable(final boolean climbable) {
         this.isClimbable = climbable;
     }
 
     public int getTileId() {
-        return tileId;
+        return this.tileId;
     }
 
     public int getWidth() {
-        return width;
+        return this.width;
     }
 
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
-    public void setX(int x) {
+    public void setX(final int x) {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public void setY(final int y) {
         this.y = y;
     }
 
     public int getX() {
-        return x;
+        return this.x;
     }
 
     public int getY() {
-        return y;
+        return this.y;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public Image getImage() {
+        return this.image;
     }
 }

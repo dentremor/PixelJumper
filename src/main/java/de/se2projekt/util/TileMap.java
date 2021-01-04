@@ -1,46 +1,33 @@
 package de.se2projekt.util;
 
-import de.se2projekt.gfx.SpriteSheet;
-import de.se2projekt.level.tiles.BasicClimbableTile;
 import de.se2projekt.level.tiles.BasicSolidTile;
 import de.se2projekt.level.tiles.Tile;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TileMap {
 
-    /* Eine ArrayMap die alle Tiles beinhaltet*/
+    private final HashMap<Integer, Tile> map = new HashMap<>();
 
-    // Variables
-    private static TileMap instance;
-    private ArrayList<Tile> tileMap;
+    public HashMap<Integer, Tile> getMap() {
 
-    /* Zuweisung aller Tiles*/
-    private static final BasicSolidTile tileOne = new BasicSolidTile(1,-1,-1,"/images/tiles/image16.png");
-    private static final BasicSolidTile tileTwo = new BasicSolidTile(2, -1,-1,"/images/tiles/image17.png");
-    private static final BasicSolidTile tileThree = new BasicSolidTile(3,-1,-1,"/images/tiles/image4.png");
-    private static final BasicClimbableTile lianaOne = new BasicClimbableTile(4,-1,-1,"/images/tiles/image5.png");
-    private static final BasicClimbableTile lianaTwo = new BasicClimbableTile(5,-1,-1,"/images/tiles/image6.png");
+        // Index for all tiles in map
+        int index = 0;
+        int x = 0;
+        int y = 0;
 
-    // Constructor
-    private TileMap() {
-        tileMap = new ArrayList<>();
-        tileMap.add(tileOne);
-        tileMap.add(tileTwo);
-        tileMap.add(tileThree);
-        tileMap.add(lianaOne);
-        tileMap.add(lianaTwo);
-    }
-
-    //
-    public static TileMap getInstance(){
-        if (instance == null) {
-            instance = new TileMap();
+        // First loop ist for the columns, second one for the rows
+        for (int i = 1; i <= 32; i++) {
+            x++;
+            for (int c = 1; c <= 18; c++) {
+                y++;
+                final BasicSolidTile dummyTile = new BasicSolidTile(index, x, y, "/images/tiles/dummy_tile.png");
+                this.map.put(index, dummyTile);
+                index++;
+            }
+            y = 0;
         }
-        return instance;
-    }
-
-    public ArrayList<Tile> getArray() {
-        return this.tileMap;
+        System.out.println("Tile 300 x " + this.map.get(300).getX() + " y " + this.map.get(300).getY());
+        return this.map;
     }
 }
