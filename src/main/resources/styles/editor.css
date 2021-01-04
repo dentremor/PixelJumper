@@ -15,14 +15,6 @@
     /*  dummy  */
 }
 
-.item-selection {
-    -fx-background-color: red;
-}
-
-.item-box {
-    -fx-background-color: purple;
-}
-
 .item-box .image-view{
     /*  Styling of the single elements  */
     -fx-border-style: solid;
@@ -31,9 +23,23 @@
 
     /*  Give the elements "button-behaviour"  */
     -fx-cursor: hand;
-    -fx-background-color: #7bba9f;
 }
 
 .item-box .image-view:hover {
-    -fx-background-color: #537e6c;
+    -fx-opacity: 0.6;
+    -fx-background-color: #7bba9f;
+}
+
+.map-editor .image-view{
+    /*  Styling of the single elements  */
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+
+    /*  Give the elements "button-behaviour"  */
+    -fx-cursor: hand;
+}
+
+.map-editor .image-view:hover {
+    -fx-background-color: #ffffff60;
 }

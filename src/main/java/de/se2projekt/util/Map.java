@@ -8,23 +8,26 @@ import java.util.HashMap;
 public class Map {
 
     private HashMap<Integer, Tile> map = new HashMap<>();
-    private static final BasicSolidTile dummyTile = new BasicSolidTile(-1,-1,-1,"/images/tiles/dummy_tile.png");
 
     public HashMap<Integer, Tile> getMap() {
 
         // Index for all tiles in map
         int index = 0;
+        int x = 0;
+        int y = 0;
 
         // First loop ist for the columns, second one for the rows
-        for (int i = 1; i <= 18; i++) {
-            dummyTile.setX(i);
-            for (int c = 1; c <= 32; c++) {
-                dummyTile.setY(c);
+        for (int i = 1; i <= 32; i++) {
+            x++;
+            for (int c = 1; c <= 18; c++) {
+                y++;
+                BasicSolidTile dummyTile = new BasicSolidTile(index,x,y,"/images/tiles/dummy_tile.png");
                 map.put(index, dummyTile);
-                System.out.println("Tile: " + index +" was added to the list in x " + dummyTile.getX() + " and y " + dummyTile.getY());
                 index++;
             }
+            y = 0;
         }
+        System.out.println("Tile 300 x " + map.get(300).getX() +" y " + map.get(300).getY());
         return map;
     }
 
@@ -40,9 +43,9 @@ public class Map {
         return map.size();
     }
 
-    public void extend(int row) {
-        for (int i = 1; i <= 18 * row; i++) {
-            map.put(i, dummyTile);
-        }
-    }
+//    public void extend(int row) {
+//        for (int i = 1; i <= 18 * row; i++) {
+//            map.put(i, dummyTile);
+//        }
+//    }
 }

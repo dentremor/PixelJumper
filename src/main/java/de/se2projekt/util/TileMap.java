@@ -6,8 +6,6 @@ import de.se2projekt.level.tiles.BasicSolidTile;
 import de.se2projekt.level.tiles.Tile;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class TileMap {
 
