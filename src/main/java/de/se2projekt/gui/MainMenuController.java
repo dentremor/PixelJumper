@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.apache.logging.log4j.LogManager;
@@ -40,8 +41,7 @@ public class MainMenuController {
 
     public void handleStartButtonClick() throws IOException {
         log.info("start button clicked");
-
-        //startButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/game.fxml")));
+        startButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/game.fxml")));
     }
 
     public void handleLevelSelectButtonClick() throws IOException {

@@ -13,6 +13,8 @@ public class GameManager {
 
     }
 
+
+
     public void render(GraphicsContext gc, Screen screen){
 
         gc.fillRect(0,0,400,400);
