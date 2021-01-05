@@ -1,7 +1,6 @@
 package de.se2projekt.entities;
 
 import de.se2projekt.gfx.Screen;
-import de.se2projekt.main.Game;
 import de.se2projekt.util.Vector2d;
 
 import java.awt.*;
@@ -23,8 +22,6 @@ public abstract class Entity {
      * [Konstruktor] Initialisiert das Entity.
      */
     public Entity(int xPos, int yPos) {
-        this.width = Game.BLOCK_SIZE;
-        this.height = Game.BLOCK_SIZE;
         pos = new Vector2d(xPos, yPos);
     }
 
