@@ -2,8 +2,6 @@ package de.se2projekt.gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -11,8 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * JavaFX controller for the main menu
@@ -33,7 +29,7 @@ public class MainMenuController {
     public Button levelEditorButton;
 
     @FXML
-    public Button optionsButton;
+    public Button highscoreButton;
 
     @FXML
     public Button exitButton;
@@ -59,10 +55,10 @@ public class MainMenuController {
         levelEditorButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/editor.fxml")));
     }
 
-    public void handleOptionsButtonClicked() throws IOException {
-        log.info("options button clicked");
+    public void handleHighscoreButtonClicked() throws IOException {
+        log.info("highscore button clicked");
 
-        optionsButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/options.fxml")));
+        highscoreButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/highscore.fxml")));
     }
 
     public void handleExitButtonClicked() {
