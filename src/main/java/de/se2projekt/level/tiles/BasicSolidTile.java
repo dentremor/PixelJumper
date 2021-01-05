@@ -1,12 +1,14 @@
 package de.se2projekt.level.tiles;
 
-public class BasicSolidTile extends BasicTile {
+import javafx.scene.image.Image;
+
+public class BasicSolidTile extends BasicTile{
 
     /**
      * [Konstruktor] Initialisiert den Block mit den übergebenen Werten
      */
-    public BasicSolidTile(int tileId, int x, int y, String imagePath) {
-        super(tileId, x, y, imagePath);
+    public BasicSolidTile(final int tileId, final int x, final int y, final Image image) {
+        super(tileId, x, y, image);
         setSolid(true);
     }
 

@@ -1,6 +1,5 @@
 package de.se2projekt.level.tiles;
 
-import de.se2projekt.controller.EditorController;
 import javafx.scene.image.Image;
 
 import java.awt.*;
@@ -30,7 +29,8 @@ public abstract class Tile implements Cloneable {
     /**
      * [Konstruktor] Initialisiert das Tile mit den Werten
      */
-    public Tile(final boolean isSolid, final boolean isDeadly, final boolean isClimbable, final int tileId, final int x, final int y, final String imagePath) {
+
+    public Tile(final boolean isSolid, final boolean isDeadly, final boolean isClimbable, final int tileId, final int x, final int y, final Image image) {
         this.isSolid = isSolid;
         this.isDeadly = isDeadly;
         this.isClimbable = isClimbable;
@@ -39,8 +39,7 @@ public abstract class Tile implements Cloneable {
         this.y = y;
         this.width = 50;
         this.height = 50;
-        final String resource = EditorController.class.getResource(imagePath).toString();
-        this.image = new Image(resource);
+        this.image = image;
     }
 
     /*
@@ -117,9 +116,5 @@ public abstract class Tile implements Cloneable {
 
     public int getY() {
         return this.y;
-    }
-
-    public Image getImage() {
-        return this.image;
     }
 }
