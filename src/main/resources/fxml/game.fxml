@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.layout.*?>
+
+<!--   root   -->
+
+<AnchorPane fx:id="rootPane" styleClass="game-screen"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="de.se2projekt.controller.GameController">
+   <stylesheets>
+      <URL value="@../styles/editor.css" />
+   </stylesheets>
+
+</AnchorPane>
