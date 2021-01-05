@@ -1,33 +1,40 @@
 package de.se2projekt.util;
 
-import de.se2projekt.level.tiles.BasicSolidTile;
 import de.se2projekt.level.tiles.Tile;
-
-import java.util.HashMap;
+import javafx.scene.image.Image;
 
 public class TileMap {
 
-    private final HashMap<Integer, Tile> map = new HashMap<>();
+    private final Tile[] mapArray = new Tile[575];
 
-    public HashMap<Integer, Tile> getMap() {
-
-        // Index for all tiles in map
-        int index = 0;
-        int x = 0;
-        int y = 0;
+    public Image[] getEditorMap() {
+        final Image[] imageArray = new Image[575];
 
         // First loop ist for the columns, second one for the rows
         for (int i = 1; i <= 32; i++) {
-            x++;
             for (int c = 1; c <= 18; c++) {
-                y++;
-                final BasicSolidTile dummyTile = new BasicSolidTile(index, x, y, "/images/tiles/dummy_tile.png");
-                this.map.put(index, dummyTile);
-                index++;
+                imageArray[i] = ImageHolder.INSTANCE.DUMMY_IMAGE;
             }
-            y = 0;
         }
-        System.out.println("Tile 300 x " + this.map.get(300).getX() + " y " + this.map.get(300).getY());
-        return this.map;
+        return imageArray;
     }
+
+    //TODO Danny should be completely reworked after adding a Factory for tiles
+//    public Tile get(final int index) {
+//    return map.get(index);
+//    }
+//
+//    public void replace(final int index, final Tile tile) {
+//        map.replace(index, tile);
+//    }
+
+    public int size() {
+        return mapArray.length;
+    }
+
+//    public void extend(int row) {
+//        for (int i = 1; i <= 18 * row; i++) {
+//            map.put(i, dummyTile);
+//        }
+//    }
 }
