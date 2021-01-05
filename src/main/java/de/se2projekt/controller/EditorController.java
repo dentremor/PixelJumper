@@ -56,13 +56,13 @@ public class EditorController {
             // Instance all images from tiles above
             final ImageView imv = new ImageView(selctionImageArray[i]);
 
-            // Stack them in StackPanes, because its not possible to style an ImageView
-            final StackPane imageView = new StackPane(imv);
-            imageView.setId(String.valueOf(i));
-            imageView.getStyleClass().add("image-view");
+            // Stack them into StackPanes, because its not possible to style an ImageView
+            final StackPane canvas = new StackPane(imv);
+            canvas.setId(String.valueOf(i));
+            canvas.getStyleClass().add("image-view");
 
-            imageView.setOnMouseClicked(e -> {
-                final int id = Integer.parseInt(imageView.getId());
+            canvas.setOnMouseClicked(e -> {
+                final int id = Integer.parseInt(canvas.getId());
                 this.selectedImage = Optional.of(selctionImageArray[id]);
                 log.info("Image: " + id +  " was clicked.");
             });
@@ -71,7 +71,7 @@ public class EditorController {
             imv.setFitHeight(46);
             imv.setFitWidth(46);
 
-            itemBox.add(imageView,i%6,i/6);
+            itemBox.add(canvas,i%6,i/6);
         }
     }
 
@@ -83,40 +83,36 @@ public class EditorController {
             // Instance all images from tiles above
             final ImageView imv = new ImageView(editorImageArray[i]);
 
-            // Stack them in StackPanes, because its not possible to style an ImageView
-            final StackPane imageView = new StackPane(imv);
-            imageView.setId(String.valueOf(i));
-            imageView.getStyleClass().add("image-view");
-
+            // Stack them into StackPanes, because its not possible to style an ImageView
+            final StackPane canvas = new StackPane(imv);
+            canvas.setId(String.valueOf(i));
+            canvas.getStyleClass().add("image-view");
 
             // Scale size
             imv.setFitHeight(46);
             imv.setFitWidth(46);
 
+            mapEditor.add(canvas,i/18,i%18);
 
-            mapEditor.add(imageView,i/18,i%18);
-//            System.out.println(imageView.getId() + "  x " + map.get(i).getX() + "  y " + map.get(i).getY());
-
-            imageView.setOnMouseClicked(e -> {
+            canvas.setOnMouseClicked(e -> {
 
                 if (this.selectedImage.isPresent()) {
                     // Store the value or the index
-                    final int id = Integer.parseInt(imageView.getId());
-
-//                    System.out.println("id: " + id);
-
-                    // Set the new position to the selectedItem
-//                    selectedItem.setY(map.get(id).getY());
-//                    System.out.println("y: " + selectedItem.getY());
-
-//                    selectedItem.setX(map.get(id).getX());
-//                    System.out.println("x: " + selectedItem.getX());
+                    final int id = Integer.parseInt(canvas.getId());
 
                     editorImageArray[id] = selectedImage.get();
-//                    map.replace(Integer.valueOf(imageView.getId()), selectedItem);
                     log.info("Item: " + selectedImage + " was replaced in the map.");
 
-                    this.displayEditorPane();
+                    // Fabian
+                    final ImageView imvNew = new ImageView(selectedImage.get());
+
+                    // Scale size
+                    imvNew.setFitHeight(46);
+                    imvNew.setFitWidth(46);
+
+                    // Remove and add
+                    canvas.getChildren().removeAll();
+                    canvas.getChildren().add(imvNew);
                 }
             });
         }
