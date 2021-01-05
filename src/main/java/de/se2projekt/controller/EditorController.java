@@ -1,9 +1,8 @@
 package de.se2projekt.controller;
 
 
-import de.se2projekt.level.tiles.Tile;
+import de.se2projekt.util.ImageHolder;
 import de.se2projekt.util.TileMap;
-import de.se2projekt.util.TileSelectionMap;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,7 +13,6 @@ import javafx.scene.layout.StackPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.HashMap;
 import java.util.Optional;
 
 public class EditorController {
@@ -29,15 +27,17 @@ public class EditorController {
     // private final Boolean errorMessageIsVisible = Boolean.FALSE;
     // private Text errorMessage;
 
-    // custom
-    private Optional<Tile> selectedTile;
-    private final HashMap<Integer, Tile> editorTileMap;
 
-    // dummyTiles
+    // Custom variables
+    private Optional<Image> selectedImage;
+    private final Image[] editorImageArray;
+    private final Image[] selctionImageArray;
 
+    // Constructor for custom variables
     public EditorController() {
-        this.selectedTile = Optional.empty();
-        this.editorTileMap = new TileMap().getMap();
+        this.selectedImage = Optional.empty();
+        this.editorImageArray = new TileMap().getEditorMap();
+        this.selctionImageArray = ImageHolder.INSTANCE.getImagesAsArray();
     }
 
     @FXML
@@ -46,79 +46,75 @@ public class EditorController {
         this.displayEditorPane();
     }
 
+
     @FXML
     public void displayItems() {
 
-        for (int i = 0; i < TileSelectionMap.INSTANCE.size(); i++) {
+        // Get instance of TileMap
+
+        for (int i = 0; i < selctionImageArray.length; i++) {
             // Instance all images from tiles above
-            final ImageView imv;
-            {
-                final Tile tileSelectionItem = TileSelectionMap.INSTANCE.get(i);
-                final Image image = tileSelectionItem.getImage();
-                imv = new ImageView(image);
-            }
+            final ImageView imv = new ImageView(selctionImageArray[i]);
 
             // Stack them in StackPanes, because its not possible to style an ImageView
-            final StackPane stackPane = new StackPane(imv);
-            stackPane.setId(String.valueOf(i));
-            stackPane.setOnMouseClicked(e -> {
-                final int id = Integer.parseInt(stackPane.getId());
-                this.selectedTile = Optional.of(TileSelectionMap.INSTANCE.get(id));
-                log.info("Item: " + this.selectedTile + " was clicked.");
+            final StackPane imageView = new StackPane(imv);
+            imageView.setId(String.valueOf(i));
+            imageView.getStyleClass().add("image-view");
+
+            imageView.setOnMouseClicked(e -> {
+                final int id = Integer.parseInt(imageView.getId());
+                this.selectedImage = Optional.of(selctionImageArray[id]);
+                log.info("Image: " + id +  " was clicked.");
             });
-            stackPane.getStyleClass().add("image-view");
 
             // Scale size
             imv.setFitHeight(46);
             imv.setFitWidth(46);
-            this.itemBox.add(stackPane, i % 5, i / 5);
+
+            itemBox.add(imageView,i%6,i/6);
         }
     }
+
 
     @FXML
     public void displayEditorPane() {
 
-        for (int i = 0; i < this.editorTileMap.size(); i++) {
-            final Tile editorTile = this.editorTileMap.get(i);
-
+        for (int i = 0; i < editorImageArray.length; i++) {
             // Instance all images from tiles above
-            final ImageView imv = new ImageView(editorTile.getImage());
+            final ImageView imv = new ImageView(editorImageArray[i]);
 
             // Stack them in StackPanes, because its not possible to style an ImageView
-            final StackPane stackPane = new StackPane(imv);
-            stackPane.setId(String.valueOf(i));
-            stackPane.getStyleClass().add("image-view");
+            final StackPane imageView = new StackPane(imv);
+            imageView.setId(String.valueOf(i));
+            imageView.getStyleClass().add("image-view");
+
 
             // Scale size
             imv.setFitHeight(46);
             imv.setFitWidth(46);
 
-            this.mapEditor.add(stackPane, editorTile.getX(), editorTile.getY());
-            // TODO Danny remove (used for debugging)
-//            System.out.println(imageView.getId() + "  x " + tile.getX() + "  y " + tile.getY());
 
-            stackPane.setOnMouseClicked(e -> {
-                if (this.selectedTile.isPresent()) {
+            mapEditor.add(imageView,i/18,i%18);
+//            System.out.println(imageView.getId() + "  x " + map.get(i).getX() + "  y " + map.get(i).getY());
+
+            imageView.setOnMouseClicked(e -> {
+
+                if (this.selectedImage.isPresent()) {
                     // Store the value or the index
-                    final Tile tileWithId;
-                    {
-                        final int id = Integer.parseInt(stackPane.getId());
-                        tileWithId = this.editorTileMap.get(id);
-                    }
-                    // TODO Danny remove (used for debugging)
+                    final int id = Integer.parseInt(imageView.getId());
+
 //                    System.out.println("id: " + id);
 
                     // Set the new position to the selectedItem
-                    this.selectedTile.get().setY(tileWithId.getY());
-                    // TODO Danny remove (used for debugging)
+//                    selectedItem.setY(map.get(id).getY());
 //                    System.out.println("y: " + selectedItem.getY());
 
-                    this.selectedTile.get().setX(tileWithId.getX());
-                    // TODO Danny remove (used for debugging)
+//                    selectedItem.setX(map.get(id).getX());
 //                    System.out.println("x: " + selectedItem.getX());
 
-                    this.editorTileMap.replace(Integer.valueOf(stackPane.getId()), this.selectedTile.get());
-                    log.info("Item: " + this.selectedTile + " was replaced in the map.");
+                    editorImageArray[id] = selectedImage.get();
+//                    map.replace(Integer.valueOf(imageView.getId()), selectedItem);
+                    log.info("Item: " + selectedImage + " was replaced in the map.");
 
                     this.displayEditorPane();
                 }
