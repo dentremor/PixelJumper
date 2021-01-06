@@ -52,9 +52,13 @@ public class EditorController {
 
         // Get instance of TileMap
 
-        for (int i = 0; i < selctionImageArray.length; i++) {
+        for (int i = 0; i < this.selctionImageArray.length; i++) {
             // Instance all images from tiles above
-            final ImageView imv = new ImageView(selctionImageArray[i]);
+            final ImageView imv = new ImageView(this.selctionImageArray[i]);
+            
+            // Scale size
+            imv.setFitHeight(Config.EditorTiles.HEIGHT);
+            imv.setFitWidth(Config.EditorTiles.WIDTH);
 
             // Stack them into StackPanes, because its not possible to style an ImageView
             final StackPane canvas = new StackPane(imv);
@@ -63,15 +67,11 @@ public class EditorController {
 
             canvas.setOnMouseClicked(e -> {
                 final int id = Integer.parseInt(canvas.getId());
-                this.selectedImage = Optional.of(selctionImageArray[id]);
-                log.info("Image: " + id +  " was clicked.");
+                this.selectedImage = Optional.of(this.selctionImageArray[id]);
+                log.info("Image: " + id + " was clicked.");
             });
 
-            // Scale size
-            imv.setFitHeight(46);
-            imv.setFitWidth(46);
-
-            itemBox.add(canvas,i%6,i/6);
+            this.itemBox.add(canvas, i % Config.Selection.ROW_SIZE, i / Config.Selection.ROW_SIZE);
         }
     }
 
@@ -79,20 +79,20 @@ public class EditorController {
     @FXML
     public void displayEditorPane() {
 
-        for (int i = 0; i < editorImageArray.length; i++) {
-            // Instance all images from tiles above
-            final ImageView imv = new ImageView(editorImageArray[i]);
+        for (int i = 0; i < this.editorImageArray.length; i++) {
+            // Instance all images
+            final ImageView imv = new ImageView(this.editorImageArray[i]);
+
+            // Scale size
+            imv.setFitHeight(Config.EditorTiles.HEIGHT);
+            imv.setFitWidth(Config.EditorTiles.WIDTH);
 
             // Stack them into StackPanes, because its not possible to style an ImageView
             final StackPane canvas = new StackPane(imv);
             canvas.setId(String.valueOf(i));
             canvas.getStyleClass().add("image-view");
 
-            // Scale size
-            imv.setFitHeight(46);
-            imv.setFitWidth(46);
-
-            mapEditor.add(canvas,i/18,i%18);
+            this.mapEditor.add(canvas, i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE);
 
             canvas.setOnMouseClicked(e -> {
 
@@ -100,18 +100,17 @@ public class EditorController {
                     // Store the value or the index
                     final int id = Integer.parseInt(canvas.getId());
 
-                    editorImageArray[id] = selectedImage.get();
-                    log.info("Item: " + selectedImage + " was replaced in the map.");
+                    this.editorImageArray[id] = this.selectedImage.get();
+                    log.info("Item: " + this.selectedImage + " was replaced in the map.");
 
-                    // Fabian
-                    final ImageView imvNew = new ImageView(selectedImage.get());
+                    final ImageView imvNew = new ImageView(this.selectedImage.get());
 
                     // Scale size
                     imvNew.setFitHeight(46);
                     imvNew.setFitWidth(46);
 
                     // Remove and add
-                    canvas.getChildren().removeAll();
+                    canvas.getChildren().remove(0);
                     canvas.getChildren().add(imvNew);
                 }
             });

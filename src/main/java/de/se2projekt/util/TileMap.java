@@ -1,18 +1,19 @@
 package de.se2projekt.util;
 
+import de.se2projekt.controller.Config;
 import de.se2projekt.level.tiles.Tile;
 import javafx.scene.image.Image;
 
 public class TileMap {
 
-    private final Tile[] mapArray = new Tile[575];
+    private final Tile[] mapArray = new Tile[Config.Map.INDEX_SIZE];
 
     public Image[] getEditorMap() {
-        final Image[] imageArray = new Image[575];
+        final Image[] imageArray = new Image[Config.Map.INDEX_SIZE];
 
         // First loop ist for the columns, second one for the rows
-        for (int i = 1; i <= 32; i++) {
-            for (int c = 1; c <= 18; c++) {
+        for (int i = 1; i <= Config.Map.ROW_SIZE; i++) {
+            for (int c = 1; c <= Config.Map.COLUMN_SIZE; c++) {
                 imageArray[i] = ImageHolder.INSTANCE.DUMMY_IMAGE;
             }
         }
@@ -29,7 +30,7 @@ public class TileMap {
 //    }
 
     public int size() {
-        return mapArray.length;
+        return this.mapArray.length;
     }
 
 //    public void extend(int row) {
