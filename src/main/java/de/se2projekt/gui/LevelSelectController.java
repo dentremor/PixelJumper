@@ -48,7 +48,7 @@ public class LevelSelectController {
     public Button level9;
 
     public void handleReturnButtonClick() throws IOException {
-        log.info("level select button clicked");
+        log.info("return button clicked");
 
         returnButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml")));
     }
