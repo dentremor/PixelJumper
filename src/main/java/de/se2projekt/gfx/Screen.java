@@ -17,9 +17,9 @@ public class Screen {
         return 0;
     }
 
-    public void render(GraphicsContext gc, Tile tile, int xOffset) {
+    /*public void render(GraphicsContext gc, Tile tile, int xOffset) {
         gc.drawImage(new Image(GameController.class.getResource(tile.getImagePath()).toString()),tile.getX(),tile.getY());
-    }
+    }*/
 
     /*
      * Getter & Setter

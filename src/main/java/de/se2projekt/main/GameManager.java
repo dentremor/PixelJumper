@@ -22,11 +22,11 @@ public class GameManager {
     public GameManager() {
         this.screen = new Screen();
 
-        createLevel();
+        //createLevel();
 
     }
 
-    private void createLevel() {
+    /*private void createLevel() {
             try {
                 for(int i = 0; i < 16; i ++) {
                     Tile t = (Tile) TileMap.getInstance().getArray().get(0).clone();
@@ -37,7 +37,7 @@ public class GameManager {
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
             }
-    }
+    }*/
 
     public void update() {
 
@@ -47,7 +47,7 @@ public class GameManager {
         gc.clearRect(0,0,1600,900);
 
         for(Tile t : tiles){
-            screen.render(gc,t,0);
+            //screen.render(gc,t,0);
         }
     }
 }

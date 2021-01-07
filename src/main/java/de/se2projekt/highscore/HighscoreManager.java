@@ -9,21 +9,33 @@ import java.util.Collections;
 
 /**
  * HighscoreManager that holds all methods for displaying the Scores achieved in each level and creating a list of scores
- * @author Niklas Mäckle
+ * Required in a level to display a Highscore
+ * HighscoreManager requires String filename to be created
+ *  @author Niklas Mäckle
  */
 public class HighscoreManager {
     private final Logger log = LogManager.getLogger(HighscoreManager.class);
     private ArrayList<Score> scores;
-
-    private static final String HIGHSCORE_FILE = "scores.dat";
+    private static String HIGHSCORE_FILE;
 
     ObjectOutputStream outputStream = null;
     ObjectInputStream inputStream = null;
 
-    public HighscoreManager(){
+    /**
+     *
+     * Constructor for HighscoreManager that takes a filename to create the .dat file's name in which the Highscores are stored of a level
+     */
+    public HighscoreManager(String filename){
+        log.info("Building .dat file's name out of given filename...");
+        String actualFile = filenameBuilder(filename);
+        HIGHSCORE_FILE = actualFile;
+        log.info("Creating ArrayList scores...");
         scores = new ArrayList<Score>();
     }
 
+    /**
+     * getScores() creates a sorted version of the "scores" ArrayList
+     */
     public ArrayList<Score> getScores(){
         loadScoreFile();
         sort();
@@ -31,7 +43,10 @@ public class HighscoreManager {
         return scores;
     }
 
-    private String nameBuilder(String filename){
+    /**
+     * filenameBuilder() creates the filename for the .dat file in which a level's highscore information is stored
+     */
+    private static String filenameBuilder(String filename){
         StringBuffer buffedName = new StringBuffer(filename);
         buffedName.append(".dat");
         return buffedName.toString();

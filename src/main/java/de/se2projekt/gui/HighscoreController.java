@@ -58,7 +58,9 @@ public class HighscoreController {
     }
 
     public void handleLvl1ButtonClick(){
-        HighscoreManager hmlvl1 = new HighscoreManager();
+
+        //temporary setup for a Highscore in Level 1
+        HighscoreManager hmlvl1 = new HighscoreManager("lvl1");
 
         hmlvl1.addScore("Name 1", 2020);
         hmlvl1.addScore("Name 2", 200);
@@ -71,7 +73,9 @@ public class HighscoreController {
     }
 
     public void handleLvl2ButtonClick(){
-        HighscoreManager hmlvl2 = new HighscoreManager();
+
+        //temporary setup for a Highscore in Level 2
+        HighscoreManager hmlvl2 = new HighscoreManager("lvl2");
 
         hmlvl2.addScore("Name 1", 456);
         hmlvl2.addScore("Name 2", 678);
