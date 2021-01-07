@@ -49,6 +49,7 @@ public class HighscoreManager {
     private static String filenameBuilder(String filename){
         StringBuffer buffedName = new StringBuffer(filename);
         buffedName.append(".dat");
+        buffedName.insert(0, "src/main/resources/highscores/");
         return buffedName.toString();
     }
     /**
@@ -145,7 +146,7 @@ public class HighscoreManager {
         }
         log.info("Building highscore string...");
         while (i < x){
-            highscoreString += (i + 1) + ".\t" + scores.get(i).getName() + "\t\t" + scores.get(i).getPoints() + "\n";
+            highscoreString += (i + 1) + ".\t" + scores.get(i).getName() + "\t  " + scores.get(i).getPoints() + "\n";
             i++;
         }
         log.info("Displaying highscore string...");
