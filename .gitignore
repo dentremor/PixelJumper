@@ -154,7 +154,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Highscore file
-scores.dat
+# Highscore files
+*.dat
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,archlinuxpackages,linux,vscode,intellij+all
