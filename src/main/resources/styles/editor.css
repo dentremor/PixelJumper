@@ -15,7 +15,7 @@
     /*  dummy  */
 }
 
-.item-box .image-view{
+.item-box .image-view {
     /*  Styling of the single elements  */
     -fx-border-style: solid;
     -fx-border-color: white;
@@ -30,7 +30,7 @@
     -fx-background-color: #7bba9f;
 }
 
-.map-editor .image-view{
+.map-editor .image-view {
     /*  Styling of the single elements  */
     -fx-border-style: solid;
     -fx-border-color: white;
@@ -42,4 +42,15 @@
 
 .map-editor .image-view:hover {
     -fx-background-color: #ffffff60;
+}
+
+.export-button {
+    -fx-padding: 0;
+    -fx-cursor: hand;
+    -fx-background-color: #7bba9f;
+    -fx-graphic-text-gap: 30px;
+}
+
+.export-button:hover {
+    -fx-background-color: #537e6c;
 }

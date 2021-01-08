@@ -1,8 +1,9 @@
 package de.se2projekt.level.tiles;
 
 import javafx.scene.image.Image;
+import javafx.scene.shape.Rectangle;
+import org.json.simple.JSONObject;
 
-import java.awt.*;
 
 public abstract class Tile implements Cloneable {
 
@@ -26,6 +27,16 @@ public abstract class Tile implements Cloneable {
     private final Image image;
 
 
+    @Override
+    public String toString() {
+        return "Tile{" +
+                "tileId=" + tileId +
+                ", x=" + x +
+                ", y=" + y +
+                ", image=" + image +
+                '}';
+    }
+
     /**
      * [Konstruktor] Initialisiert das Tile mit den Werten
      */
@@ -40,6 +51,7 @@ public abstract class Tile implements Cloneable {
         this.width = 50;
         this.height = 50;
         this.image = image;
+        //TODO Danny *implement* getter für die Images noch schreiben!
     }
 
     /*
@@ -117,4 +129,16 @@ public abstract class Tile implements Cloneable {
     public int getY() {
         return this.y;
     }
+
+    public JSONObject getAsJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", tileId);
+        jsonObject.put("x", x);
+        jsonObject.put("y", y);
+        // TODO hier muss man was ändern
+        jsonObject.put("image", image.getUrl());
+
+        return jsonObject;
+    }
+
 }

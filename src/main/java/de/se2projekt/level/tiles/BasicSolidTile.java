@@ -2,7 +2,7 @@ package de.se2projekt.level.tiles;
 
 import javafx.scene.image.Image;
 
-public class BasicSolidTile extends BasicTile{
+public class BasicSolidTile extends BasicTile {
 
     /**
      * [Konstruktor] Initialisiert den Block mit den übergebenen Werten

@@ -1,9 +1,15 @@
 package de.se2projekt.controller;
 
 
+import de.se2projekt.level.map.EditorTileMap;
+import de.se2projekt.level.map.MapManager;
+import de.se2projekt.level.tiles.Tile;
+import de.se2projekt.level.tiles.TileFactory;
 import de.se2projekt.util.ImageHolder;
-import de.se2projekt.util.TileMap;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +19,8 @@ import javafx.scene.layout.StackPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class EditorController {
@@ -23,6 +31,7 @@ public class EditorController {
     public HBox rootHBox;
     public GridPane mapEditor;
     public GridPane itemBox;
+    public Button exportButton;
     // TODO Danny remove unused code
     // private final Boolean errorMessageIsVisible = Boolean.FALSE;
     // private Text errorMessage;
@@ -36,7 +45,7 @@ public class EditorController {
     // Constructor for custom variables
     public EditorController() {
         this.selectedImage = Optional.empty();
-        this.editorImageArray = new TileMap().getEditorMap();
+        this.editorImageArray = new EditorTileMap().getEditorMap();
         this.selctionImageArray = ImageHolder.INSTANCE.getImagesAsArray();
     }
 
@@ -44,6 +53,7 @@ public class EditorController {
     public void initialize() {
         this.displayItems();
         this.displayEditorPane();
+        this.displayExportButton();
     }
 
 
@@ -52,26 +62,26 @@ public class EditorController {
 
         // Get instance of TileMap
 
-        for (int i = 0; i < selctionImageArray.length; i++) {
+        for (int i = 0; i < this.selctionImageArray.length; i++) {
             // Instance all images from tiles above
-            final ImageView imv = new ImageView(selctionImageArray[i]);
-
-            // Stack them in StackPanes, because its not possible to style an ImageView
-            final StackPane imageView = new StackPane(imv);
-            imageView.setId(String.valueOf(i));
-            imageView.getStyleClass().add("image-view");
-
-            imageView.setOnMouseClicked(e -> {
-                final int id = Integer.parseInt(imageView.getId());
-                this.selectedImage = Optional.of(selctionImageArray[id]);
-                log.info("Image: " + id +  " was clicked.");
-            });
+            final ImageView imv = new ImageView(this.selctionImageArray[i]);
 
             // Scale size
-            imv.setFitHeight(46);
-            imv.setFitWidth(46);
+            imv.setFitHeight(Config.EditorTiles.HEIGHT);
+            imv.setFitWidth(Config.EditorTiles.WIDTH);
 
-            itemBox.add(imageView,i%6,i/6);
+            // Stack them into StackPanes, because its not possible to style an ImageView
+            final StackPane canvas = new StackPane(imv);
+            canvas.setId(String.valueOf(i));
+            canvas.getStyleClass().add("image-view");
+
+            canvas.setOnMouseClicked(e -> {
+                final int id = Integer.parseInt(canvas.getId());
+                this.selectedImage = Optional.of(this.selctionImageArray[id]);
+                log.info("Image: " + id + " was clicked.");
+            });
+
+            this.itemBox.add(canvas, i % Config.Selection.ROW_SIZE, i / Config.Selection.ROW_SIZE);
         }
     }
 
@@ -79,46 +89,113 @@ public class EditorController {
     @FXML
     public void displayEditorPane() {
 
-        for (int i = 0; i < editorImageArray.length; i++) {
-            // Instance all images from tiles above
-            final ImageView imv = new ImageView(editorImageArray[i]);
-
-            // Stack them in StackPanes, because its not possible to style an ImageView
-            final StackPane imageView = new StackPane(imv);
-            imageView.setId(String.valueOf(i));
-            imageView.getStyleClass().add("image-view");
-
+        for (int i = 0; i < this.editorImageArray.length; i++) {
+            // Instance all images
+            final ImageView imv = new ImageView(this.editorImageArray[i]);
 
             // Scale size
-            imv.setFitHeight(46);
-            imv.setFitWidth(46);
+            imv.setFitHeight(Config.EditorTiles.HEIGHT);
+            imv.setFitWidth(Config.EditorTiles.WIDTH);
 
+            // Stack them into StackPanes, because its not possible to style an ImageView
+            final StackPane canvas = new StackPane(imv);
+            canvas.setId(String.valueOf(i));
+            canvas.getStyleClass().add("image-view");
 
-            mapEditor.add(imageView,i/18,i%18);
-//            System.out.println(imageView.getId() + "  x " + map.get(i).getX() + "  y " + map.get(i).getY());
+            this.mapEditor.add(canvas, i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE);
 
-            imageView.setOnMouseClicked(e -> {
+            canvas.setOnMouseClicked(e -> {
 
                 if (this.selectedImage.isPresent()) {
                     // Store the value or the index
-                    final int id = Integer.parseInt(imageView.getId());
+                    final int id = Integer.parseInt(canvas.getId());
 
-//                    System.out.println("id: " + id);
+                    this.editorImageArray[id] = this.selectedImage.get();
+                    log.info("Item: " + this.selectedImage + " was replaced in the map.");
 
-                    // Set the new position to the selectedItem
-//                    selectedItem.setY(map.get(id).getY());
-//                    System.out.println("y: " + selectedItem.getY());
+                    final ImageView imvNew = new ImageView(this.selectedImage.get());
 
-//                    selectedItem.setX(map.get(id).getX());
-//                    System.out.println("x: " + selectedItem.getX());
+                    // Scale size
+                    imvNew.setFitHeight(46);
+                    imvNew.setFitWidth(46);
 
-                    editorImageArray[id] = selectedImage.get();
-//                    map.replace(Integer.valueOf(imageView.getId()), selectedItem);
-                    log.info("Item: " + selectedImage + " was replaced in the map.");
-
-                    this.displayEditorPane();
+                    // Remove and add
+                    canvas.getChildren().remove(0);
+                    canvas.getChildren().add(imvNew);
                 }
             });
         }
     }
+
+    @FXML
+    public void displayExportButton() {
+        this.exportButton.setOnMouseClicked(e -> {
+            if (mapIsEmpty()) {
+                final Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("This maps does not contain tiles");
+                alert.setContentText("Set tiles to save a map!");
+                alert.showAndWait();
+            } else {
+                actionForExportButton();
+            }
+        });
+    }
+
+    public void actionForExportButton() {
+        final TextInputDialog dialog = new TextInputDialog("mapName");
+        dialog.setTitle("MapName");
+        dialog.setHeaderText("Below you can name the map");
+        dialog.setContentText("Please enter a name:");
+
+        final Optional<String> result = dialog.showAndWait();
+        result.ifPresent(name -> {
+            if (mapExists(name)) {
+                final Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("This name is not available for selection");
+                alert.setContentText("The name " + name + " is already taken!");
+                alert.showAndWait();
+                actionForExportButton();
+            } else {
+                final ArrayList<Tile> mapArray = new ArrayList<>();
+                int index = 0;
+                for (int i = 0; i < this.editorImageArray.length; i++) {
+                    if (ImageHolder.INSTANCE.DUMMY_IMAGE != this.editorImageArray[i]) {
+                        final Tile tile = new TileFactory().makeTile(index, i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE, this.editorImageArray[i]);
+                        System.out.println("MAP_URL: " + this.editorImageArray[i].getUrl());
+                        mapArray.add(tile);
+                        index++;
+                    }
+                }
+                final MapManager mapManager = new MapManager(mapArray);
+                try {
+                    mapManager.exportMap(name);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    public boolean mapIsEmpty() {
+        int index = 0;
+
+        for (int i = 0; i < this.editorImageArray.length; i++) {
+            if (ImageHolder.INSTANCE.DUMMY_IMAGE != this.editorImageArray[i]) {
+                index++;
+            }
+        }
+        if (index == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    // TODO Danny *implement* check map which already exists
+    public boolean mapExists(final String name) {
+        return false;
+    }
+
 }

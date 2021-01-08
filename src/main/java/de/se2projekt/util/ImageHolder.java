@@ -24,8 +24,8 @@ public class ImageHolder {
     }
 
     public Image[] getImagesAsArray() {
-        return new Image[] {
-                IMAGE_4, IMAGE_5, IMAGE_6, IMAGE_16, IMAGE_17, DUMMY_IMAGE
+        return new Image[]{
+                this.IMAGE_4, this.IMAGE_5, this.IMAGE_6, this.IMAGE_16, this.IMAGE_17, this.DUMMY_IMAGE
         };
     }
 
@@ -33,4 +33,16 @@ public class ImageHolder {
         return numberOfImages;
     }
 
+    public String toString(Image image) {
+        return image.getUrl();
+    }
+
+    public Image getImage(String imageURL) {
+        for (int i = 0; i < getImagesAsArray().length; i++) {
+            if (imageURL.equals(getImagesAsArray()[i].getUrl())) {
+                return getImagesAsArray()[i];
+            }
+        }
+        return null;
+    }
 }
