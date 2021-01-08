@@ -19,7 +19,6 @@ public class GameManager {
         //TODO Danny *important* unset comment after adding the missing functionality to TileMap
 //        createLevel();
 
-git
     }
     //TODO Danny *important* unset comment after adding the missing functionality to TileMap
 //    private void createLevel() {
