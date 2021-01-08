@@ -27,8 +27,7 @@ public class HighscoreManager {
      */
     public HighscoreManager(String filename){
         log.info("Building .dat file's name out of given filename...");
-        String actualFile = filenameBuilder(filename);
-        HIGHSCORE_FILE = actualFile;
+        HIGHSCORE_FILE = filenameBuilder(filename);
         log.info("Creating ArrayList scores...");
         scores = new ArrayList<Score>();
     }
