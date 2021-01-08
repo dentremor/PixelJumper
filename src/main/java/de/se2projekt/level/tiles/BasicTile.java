@@ -9,6 +9,7 @@ public class BasicTile extends Tile {
     }
 
     @Override
-    public void collide() {}
+    public void collide() {
+    }
 
 }
