@@ -1,8 +1,11 @@
 package de.se2projekt.entities;
 
 import de.se2projekt.gfx.Screen;
+import de.se2projekt.main.GameManager;
+import de.se2projekt.util.ImageHolder;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
-import java.awt.*;
 
 public class Player extends Entity{
 
@@ -17,7 +20,7 @@ public class Player extends Entity{
     }
 
     @Override
-    public void render(Graphics g, Screen screen) {
-
+    public void render(GraphicsContext gc, Screen screen) {
+        gc.drawImage(ImageHolder.INSTANCE.PLAYER_IMAGE,getPos().x,getPos().y);
     }
 }

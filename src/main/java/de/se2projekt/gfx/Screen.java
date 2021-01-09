@@ -14,8 +14,7 @@ public class Screen {
         return 0;
     }
     public void render(final GraphicsContext gc, final Tile tile, final int xOffset) {
-        //TODO Danny *important* unset comment after adding the missing functionality to TileMap
-//        gc.drawImage(new Image(GameController.class.getResource(tile.getImagePath()).toString()),tile.getX(),tile.getY());
+        gc.drawImage(tile.getImage(),tile.getX(),tile.getY());
     }
 
     /*

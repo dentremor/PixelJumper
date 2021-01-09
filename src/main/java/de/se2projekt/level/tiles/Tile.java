@@ -51,7 +51,6 @@ public abstract class Tile implements Cloneable {
         this.width = 50;
         this.height = 50;
         this.image = image;
-        //TODO Danny *implement* getter für die Images noch schreiben!
     }
 
     /*
@@ -128,6 +127,10 @@ public abstract class Tile implements Cloneable {
 
     public int getY() {
         return this.y;
+    }
+
+    public Image getImage() {
+        return image;
     }
 
     public JSONObject getAsJson() {

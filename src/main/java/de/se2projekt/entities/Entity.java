@@ -2,6 +2,7 @@ package de.se2projekt.entities;
 
 import de.se2projekt.gfx.Screen;
 import de.se2projekt.util.Vector2d;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
@@ -32,7 +33,7 @@ public abstract class Entity {
     /*
      * Abstrakte Methode render() für alle Entities
      */
-    public abstract void render(Graphics g, Screen screen);
+    public abstract void render(GraphicsContext gc, Screen screen);
 
     /*
      * Gibt ein Rechteck für die Collisionsabfrage zurück
