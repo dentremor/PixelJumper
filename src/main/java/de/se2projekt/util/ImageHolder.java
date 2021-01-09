@@ -33,10 +33,6 @@ public class ImageHolder {
         return numberOfImages;
     }
 
-    public String toString(Image image) {
-        return image.getUrl();
-    }
-
     public Image getImage(String imageURL) {
         for (int i = 0; i < getImagesAsArray().length; i++) {
             if (imageURL.equals(getImagesAsArray()[i].getUrl())) {

@@ -25,12 +25,6 @@ public class MapManager {
 
     //TODO Danny TRY WITH GSON
     public void exportMap(final String mapName) throws IOException {
-        // New
-//        System.out.println(mapArray.toString());
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.writeValue(new File("src/main/resources/maps/" + mapName + ".json"), mapArray.toString());
-
-        // Old
 
         JSONArray mapArrayJson = new JSONArray();
 
@@ -42,7 +36,6 @@ public class MapManager {
         //Write JSON file
         try (final FileWriter file = new FileWriter("src/main/resources/maps/" + mapName + ".json")) {
             file.write(mapArrayJson.toString());
-            System.out.println(mapArrayJson.toString());
             file.flush();
         } catch (final IOException e) {
             e.printStackTrace();
@@ -70,18 +63,13 @@ public class MapManager {
             e.printStackTrace();
         }
 
-        System.out.println("dsfjdsafkjhsdakjhlfadsjhdsfalhadsfjhlkjhfdlhkj");
-
         for (int i = 0; i < jsonArray.size(); i++) {
             JSONObject jsonObject = (JSONObject) jsonArray.get(i);
             final Tile tile = new TileFactory().makeTile(i, Math.toIntExact((long) jsonObject.get("x")), Math.toIntExact((long) jsonObject.get("y")), ImageHolder.INSTANCE.getImage((String) jsonObject.get("image")));
-            System.out.println(tile.toString());
             mapArray.add(tile);
         }
         return mapArray;
     }
-
-    //TODO Danny *implement* File method for check all mapFiles
 }
 
 
