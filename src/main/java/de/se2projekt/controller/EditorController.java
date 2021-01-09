@@ -33,8 +33,6 @@ public class EditorController {
     public GridPane itemBox;
     public Button exportButton;
     // TODO Danny remove unused code
-    // private final Boolean errorMessageIsVisible = Boolean.FALSE;
-    // private Text errorMessage;
 
 
     // Custom variables
@@ -104,24 +102,23 @@ public class EditorController {
 
             this.mapEditor.add(canvas, i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE);
 
-            canvas.setOnMouseClicked(e -> {
 
+            this.mapEditor.setOnDragDetected(e -> {
                 if (this.selectedImage.isPresent()) {
-                    // Store the value or the index
-                    final int id = Integer.parseInt(canvas.getId());
+                    this.mapEditor.startFullDrag();
+                }
+            });
 
-                    this.editorImageArray[id] = this.selectedImage.get();
-                    log.info("Item: " + this.selectedImage + " was replaced in the map.");
+            canvas.setOnMouseDragEntered(e -> {
+                if (this.selectedImage.isPresent()) {
+                    e.consume();
+                    updateCanvas(canvas);
+                }
+            });
 
-                    final ImageView imvNew = new ImageView(this.selectedImage.get());
-
-                    // Scale size
-                    imvNew.setFitHeight(46);
-                    imvNew.setFitWidth(46);
-
-                    // Remove and add
-                    canvas.getChildren().remove(0);
-                    canvas.getChildren().add(imvNew);
+            canvas.setOnMousePressed(e -> {
+                if (this.selectedImage.isPresent()) {
+                    updateCanvas(canvas);
                 }
             });
         }
@@ -142,6 +139,8 @@ public class EditorController {
         });
     }
 
+
+    // Functions for displayExportButton()
     public void actionForExportButton() {
         final TextInputDialog dialog = new TextInputDialog("mapName");
         dialog.setTitle("MapName");
@@ -163,7 +162,6 @@ public class EditorController {
                 for (int i = 0; i < this.editorImageArray.length; i++) {
                     if (ImageHolder.INSTANCE.DUMMY_IMAGE != this.editorImageArray[i]) {
                         final Tile tile = new TileFactory().makeTile(index, i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE, this.editorImageArray[i]);
-                        System.out.println("MAP_URL: " + this.editorImageArray[i].getUrl());
                         mapArray.add(tile);
                         index++;
                     }
@@ -176,7 +174,6 @@ public class EditorController {
                 }
             }
         });
-
     }
 
     public boolean mapIsEmpty() {
@@ -198,4 +195,22 @@ public class EditorController {
         return false;
     }
 
+    //Functions for displayEditorPane()
+    public void updateCanvas(StackPane canvas) {
+        // Store the value or the index
+        final int id = Integer.parseInt(canvas.getId());
+
+        this.editorImageArray[id] = this.selectedImage.get();
+        log.info("Item: " + id + " was replaced by" + this.selectedImage + " in the map.");
+
+        final ImageView imvNew = new ImageView(this.selectedImage.get());
+
+        // Scale size
+        imvNew.setFitHeight(46);
+        imvNew.setFitWidth(46);
+
+        // Remove and add
+        canvas.getChildren().remove(0);
+        canvas.getChildren().add(imvNew);
+    }
 }
