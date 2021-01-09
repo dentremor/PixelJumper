@@ -13,6 +13,13 @@ public abstract class Tile implements Cloneable {
     private boolean isDeadly;
     /* Legt fest, ob das Tile erklimmbar ist*/
     private boolean isClimbable;
+
+    private boolean isCollectable;
+
+    private boolean isStart;
+
+    private boolean isFinish;
+
     /* Id des Tiles*/
     private final int tileId;
     /* x Koordinate des Tiles*/
@@ -41,10 +48,23 @@ public abstract class Tile implements Cloneable {
      * [Konstruktor] Initialisiert das Tile mit den Werten
      */
 
-    public Tile(final boolean isSolid, final boolean isDeadly, final boolean isClimbable, final int tileId, final int x, final int y, final Image image) {
+    public Tile(
+            final boolean isSolid,
+            final boolean isDeadly,
+            final boolean isClimbable,
+            final boolean isCollectable,
+            final boolean isStart,
+            final boolean isFinish,
+            final int tileId,
+            final int x,
+            final int y,
+            final Image image) {
         this.isSolid = isSolid;
         this.isDeadly = isDeadly;
         this.isClimbable = isClimbable;
+        this.isCollectable = isCollectable;
+        this.isStart = isStart;
+        this.isFinish = isFinish;
         this.tileId = tileId;
         this.x = x;
         this.y = y;
@@ -72,6 +92,18 @@ public abstract class Tile implements Cloneable {
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    // Returns Tile as JSONObject
+    public JSONObject getAsJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", tileId);
+        jsonObject.put("x", x);
+        jsonObject.put("y", y);
+        // TODO hier muss man was ändern
+        jsonObject.put("image", image.getUrl());
+
+        return jsonObject;
     }
 
 
@@ -130,15 +162,28 @@ public abstract class Tile implements Cloneable {
         return this.y;
     }
 
-    public JSONObject getAsJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", tileId);
-        jsonObject.put("x", x);
-        jsonObject.put("y", y);
-        // TODO hier muss man was ändern
-        jsonObject.put("image", image.getUrl());
+    public boolean isCollectable() {
+        return isCollectable;
+    }
 
-        return jsonObject;
+    public void setCollectable(boolean collectable) {
+        isCollectable = collectable;
+    }
+
+    public boolean isStart() {
+        return isStart;
+    }
+
+    public void setStart(boolean start) {
+        isStart = start;
+    }
+
+    public boolean isFinish() {
+        return isFinish;
+    }
+
+    public void setFinish(boolean finish) {
+        isFinish = finish;
     }
 
 }
