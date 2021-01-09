@@ -1,17 +1,21 @@
 package de.se2projekt.main;
 
+import de.se2projekt.input.Keyboard;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.security.Key;
 
 /**
  * Menu startup class
@@ -39,6 +43,19 @@ public class menuStartup extends Application {
 
             log.info("Creating scene from root");
             Scene scene = new Scene(root);
+            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent keyEvent) {
+                    Keyboard.getInstance().setKeyPressed(keyEvent.getCode().getCode());
+                }
+            });
+
+            scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent keyEvent) {
+                    Keyboard.getInstance().setKeyReleased(keyEvent.getCode().getCode());
+                }
+            });
 
             log.info("Setting stage properties");
             primaryStage.setTitle("Menu");
