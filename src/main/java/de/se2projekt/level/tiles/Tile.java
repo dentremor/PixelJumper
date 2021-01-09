@@ -133,6 +133,11 @@ public abstract class Tile implements Cloneable {
         return image;
     }
 
+    public void setPos(final int x, final int y){
+        this.x = x;
+        this.y = y;
+    }
+
     public JSONObject getAsJson() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id", tileId);

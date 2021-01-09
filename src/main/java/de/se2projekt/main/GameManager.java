@@ -39,23 +39,32 @@ public class GameManager {
             log.log(Level.INFO,"Loading Level");
             try {
                 for(int i = 0; i < 16; i ++) {
-                    Tile t = (Tile) TileHolder.TILE_1.clone();
-                    t.setX(i*100);
-                    t.setY(800);
+                    Tile t = (Tile) TileHolder.TILE_4.clone();
+                    t.setPos(i*100,800);
                     tiles.add(t);
                 }
+                Tile t = (Tile) TileHolder.TILE_4.clone();
+                t.setPos(300,700);
+
+                tiles.add(t);
+
+                t = (Tile) TileHolder.TILE_4.clone();
+                t.setPos(300,500);
+
+
+                tiles.add(t);
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
             }
 
             player.setPos(new Vector2d(10,750));
 
-            log.log(Level.INFO,"Level completed");
+            log.log(Level.INFO,"Level completed - " + tiles.size() + " Tiles loaded");
     }
 
 
     public void update() {
-
+        player.update();
     }
 
     public void render(final GraphicsContext gc){
