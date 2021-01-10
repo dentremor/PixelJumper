@@ -5,6 +5,7 @@ import de.se2projekt.entities.Player;
 import de.se2projekt.gfx.Screen;
 import de.se2projekt.gui.MainMenuController;
 import de.se2projekt.level.tiles.Tile;
+import de.se2projekt.util.CollisionUtil;
 import de.se2projekt.util.TileHolder;
 import de.se2projekt.util.Vector2d;
 import javafx.scene.canvas.GraphicsContext;
@@ -25,31 +26,32 @@ public class GameManager {
     private final List<Tile> tiles = new ArrayList<>();
     private Image background;
     private Player player;
+    private int xOffset;
 
 
 
     public GameManager() {
         this.screen = new Screen();
         this.background = new Image(GameManager.class.getResource("/images/background900x900_loopable.png").toString());
-        this.player = new Player(0,0);
+        this.player = new Player(this,0,0);
         createLevel();
 
     }
     private void createLevel() {
             log.log(Level.INFO,"Loading Level");
             try {
-                for(int i = 0; i < 16; i ++) {
+                for(int i = 0; i < 64; i ++) {
                     Tile t = (Tile) TileHolder.TILE_4.clone();
-                    t.setPos(i*100,800);
+                    t.setPos(i*50,800);
                     tiles.add(t);
                 }
                 Tile t = (Tile) TileHolder.TILE_4.clone();
-                t.setPos(300,700);
+                t.setPos(300,750);
 
                 tiles.add(t);
 
                 t = (Tile) TileHolder.TILE_4.clone();
-                t.setPos(300,500);
+                t.setPos(300,650);
 
 
                 tiles.add(t);
@@ -65,18 +67,42 @@ public class GameManager {
 
     public void update() {
         player.update();
+
+        if (player.getPos().y > 950) {
+            //TODO IMPLEMENT DEATH
+        } else if (CollisionUtil.getInstance().playerCollidedWithEnd(player,this)) {
+            //TODO IMPLEMENT WIN
+        }
+
+        CollisionUtil.getInstance().detectCollisions(player, this);
+
     }
+
 
     public void render(final GraphicsContext gc){
         gc.clearRect(0,0,1600,900);
-        for(int i = 0; i < 10; i ++){
-            gc.drawImage(background,900*i,0);
+        xOffset = screen.moveCamera(player, xOffset);
+        renderBackground(gc);
+        for(Tile tile : tiles) {
+            if(tile.getX() + xOffset > -30 && tile.getX() + xOffset < 1600) {
+                screen.render(gc, tile,xOffset);
+            }
         }
-
-        for(final Tile t : tiles){
-            screen.render(gc,t,0);
-        }
-
         player.render(gc,screen);
+    }
+
+    private void renderBackground(GraphicsContext gc) {
+        int index = (int)player.getPos().x / 900;
+        screen.render(gc, (index-1)*900, 0, background, xOffset);
+        screen.render(gc, index*900, 0, background, xOffset);
+        screen.render(gc, (index+1)*900, 0, background, xOffset);
+    }
+
+    public List<Tile> getTiles() {
+        return tiles;
+    }
+
+    public int getxOffset() {
+        return xOffset;
     }
 }

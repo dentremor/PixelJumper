@@ -3,8 +3,8 @@ package de.se2projekt.entities;
 import de.se2projekt.gfx.Screen;
 import de.se2projekt.util.Vector2d;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Rectangle;
 
-import java.awt.*;
 
 public abstract class Entity {
 
@@ -24,6 +24,8 @@ public abstract class Entity {
      */
     public Entity(int xPos, int yPos) {
         pos = new Vector2d(xPos, yPos);
+        this.width = 50;
+        this.height = 50;
     }
 
     /*

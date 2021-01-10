@@ -16,7 +16,7 @@ public class TileHolder {
     public static BasicSolidTile TILE_1 = new BasicSolidTile(1,-1,-1,ImageHolder.INSTANCE.IMAGE_4);
     public static BasicSolidTile TILE_2 = new BasicSolidTile(2, -1,-1,ImageHolder.INSTANCE.IMAGE_5);
     public static BasicSolidTile TILE_3 = new BasicSolidTile(3,-1,-1,ImageHolder.INSTANCE.IMAGE_6);
-    public static BasicClimbableTile TILE_4 = new BasicClimbableTile(4,-1,-1,ImageHolder.INSTANCE.IMAGE_16);
+    public static BasicSolidTile TILE_4 = new BasicSolidTile(4,-1,-1,ImageHolder.INSTANCE.IMAGE_16);
     public static BasicClimbableTile TILE_5 = new BasicClimbableTile(5,-1,-1,ImageHolder.INSTANCE.IMAGE_17);
     public static BasicTile DUMMY_TILE = new BasicTile(-1, -1, -1, ImageHolder.INSTANCE.DUMMY_IMAGE);
 
