@@ -108,9 +108,9 @@ public class HighscoreManager {
             outputStream = new ObjectOutputStream(new FileOutputStream(HIGHSCORE_FILE));
             outputStream.writeObject(scores);
         } catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         } catch (IOException e){
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         } finally {
             try{
                 if(outputStream != null){
@@ -118,7 +118,7 @@ public class HighscoreManager {
                     outputStream.close();
                 }
             }catch (IOException e) {
-                System.out.println(e.getMessage());
+                log.error(e.getMessage());
             }
         }
     }
