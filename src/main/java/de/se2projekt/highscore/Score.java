@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Score class to create a new Score object containing of an int "points" and a String "name" to add to the HighscoreList of a level
  * @author Niklas Mäckle
  */
-public class Score implements Serializable, Comparable<Score> {
+public class Score implements Serializable{
     private final Logger log = LogManager.getLogger(Score.class);
 
     private int points;
@@ -22,18 +22,13 @@ public class Score implements Serializable, Comparable<Score> {
     }
 
     public int getPoints(){
-        log.info("returning points...");
+        //log.info("returning points...");
         return points;
     }
 
     public String getName(){
-        log.info("returning name...");
+        //log.info("returning name...");
         return name;
-    }
-
-    @Override
-    public int compareTo(Score score1){
-        return((Integer)(score1.getPoints())).compareTo(getPoints());
     }
 
 }

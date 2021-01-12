@@ -52,7 +52,7 @@ public class HighscoreController {
     public Label highscore;
 
     public void handleReturnButtonClick() throws IOException {
-        log.info("return button clicked");
+        log.info("Return button clicked");
 
         returnButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml")));
     }

@@ -6,6 +6,9 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * HighscoreManager that holds all methods for displaying the Scores achieved in each level and creating a list of scores
@@ -37,8 +40,7 @@ public class HighscoreManager {
      */
     public ArrayList<Score> getScores(){
         loadScoreFile();
-        sort();
-        log.info("returning sorted scores ArrayList...");
+        log.info("Returning scores ArrayList...");
         return scores;
     }
 
@@ -51,12 +53,6 @@ public class HighscoreManager {
         buffedName.insert(0, "src/main/resources/highscores/");
         return buffedName.toString();
     }
-    /**
-     * sort() creates a new ScoreComparator with which it then sorts the scores ArrayList
-     */
-    private void sort(){
-        Collections.sort(scores);
-    }
 
     /**
      * addScore() takes a String and an int value and creates a new Score it then adds to the scoreFile
@@ -65,9 +61,9 @@ public class HighscoreManager {
      */
     public void addScore(String name, int points){
         loadScoreFile();
-        log.info("adding new score to the scores ArrayList...");
+        log.info("Adding new score to the scores ArrayList...");
         scores.add(new Score(name, points));
-        log.info("updating score file...");
+        log.info("Updating score file...");
         updateScoreFile();
     }
 
@@ -75,7 +71,7 @@ public class HighscoreManager {
      * loadScoreFile() tries to load the highscore file and checks if it exists
      */
     public void loadScoreFile(){
-        log.info("trying to load highscore file...");
+        log.info("Trying to load highscore file...");
         try{
             inputStream = new ObjectInputStream(new FileInputStream(HIGHSCORE_FILE));
             log.info("Creating ArrayList out of loaded values...");
@@ -90,7 +86,7 @@ public class HighscoreManager {
         finally {
             try{
                 if (outputStream != null){
-                    log.info("closing output stream...");
+                    log.info("Closing output stream...");
                     outputStream.flush();
                     outputStream.close();
                 }
@@ -130,22 +126,24 @@ public class HighscoreManager {
         String highscoreString = "";
 
         //amount of displayed scores
-        final int max = 10;
+        final int maxDisplayed = 10;
 
         ArrayList<Score> scores;
         scores = getScores();
 
+        log.info("Sorting ArrayList scores...");
+        List<Score> sortedList = scores.stream().sorted(Comparator.comparingInt(Score::getPoints).reversed()).collect(Collectors.toList());
+
         int i = 0;
 
-        //amount of scores in a HighscoreManager
-        int x = scores.size();
+        int scoreAmount = scores.size();
 
-        if(x > max){
-            x = max;
+        if(scoreAmount > maxDisplayed){
+            scoreAmount = maxDisplayed;
         }
         log.info("Building highscore string...");
-        while (i < x){
-            highscoreString += (i + 1) + ".\t" + scores.get(i).getName() + "\t  " + scores.get(i).getPoints() + "\n";
+        while(i < scoreAmount){
+            highscoreString += (i + 1) + ".\t" + sortedList.get(i).getName() + "\t  " + sortedList.get(i).getPoints() + "\n";
             i++;
         }
         log.info("Displaying highscore string...");
