@@ -5,7 +5,9 @@ import de.se2projekt.entities.Player;
 import de.se2projekt.gfx.Screen;
 import de.se2projekt.gui.MainMenuController;
 import de.se2projekt.level.tiles.Tile;
+import de.se2projekt.level.tiles.TileFactory;
 import de.se2projekt.util.CollisionUtil;
+import de.se2projekt.util.ImageHolder;
 import de.se2projekt.util.TileHolder;
 import de.se2projekt.util.Vector2d;
 import javafx.scene.canvas.GraphicsContext;
@@ -43,25 +45,17 @@ public class GameManager {
     }
     private void createLevel() {
             log.log(Level.INFO,"Loading Level");
-            try {
-                for(int i = 0; i < 64; i ++) {
-                    Tile t = (Tile) TileHolder.TILE_4.clone();
-                    t.setPos(i*50,800);
-                    tiles.add(t);
-                }
-                Tile t = (Tile) TileHolder.TILE_4.clone();
-                t.setPos(300,750);
-
+            for(int i = 0; i < 64; i ++) {
+                Tile t = new TileFactory().makeTile(1,i*50,800, ImageHolder.INSTANCE.IMAGE_16);
+                t.setPos(i*50,800);
                 tiles.add(t);
-
-                t = (Tile) TileHolder.TILE_4.clone();
-                t.setPos(300,650);
-
-
-                tiles.add(t);
-            } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
             }
+            Tile t = new TileFactory().makeTile(1,300,750, ImageHolder.INSTANCE.IMAGE_16);
+            tiles.add(t);
+
+            t = new TileFactory().makeTile(1,300,650, ImageHolder.INSTANCE.IMAGE_16);
+            tiles.add(t);
+
 
             player.setPos(new Vector2d(10,750));
 

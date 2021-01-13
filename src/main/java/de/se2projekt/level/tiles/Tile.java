@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 import org.json.simple.JSONObject;
 
 
-public abstract class Tile implements Cloneable {
+public class Tile implements ITile {
 
     /* Legt fest, ob das Tile solide ist*/
     private boolean isSolid;
@@ -41,10 +41,7 @@ public abstract class Tile implements Cloneable {
      * [Konstruktor] Initialisiert das Tile mit den Werten
      */
 
-    public Tile(final boolean isSolid, final boolean isDeadly, final boolean isClimbable, final int tileId, final int x, final int y, final Image image) {
-        this.isSolid = isSolid;
-        this.isDeadly = isDeadly;
-        this.isClimbable = isClimbable;
+    public Tile(final int tileId, final int x, final int y, final Image image) {
         this.tileId = tileId;
         this.x = x;
         this.y = y;
@@ -54,29 +51,12 @@ public abstract class Tile implements Cloneable {
     }
 
     /*
-     * Zu überschreibende Methode, falls der Spieler mit diesem Tile collediert
-     */
-    public abstract void collide();
-
-    /*
      * Gibt die Kollisionbox zurueck
      */
     public Rectangle getBounds() {
         return new Rectangle(this.x, this.y, this.width, this.height);
     }
 
-    /*
-     * Clont das Tile
-     */
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-
-    /*
-     * Getter & Setter
-     */
     public boolean isSolid() {
         return this.isSolid;
     }

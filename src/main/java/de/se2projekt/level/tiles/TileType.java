@@ -9,11 +9,11 @@ public enum TileType {
     }),
 
     BASIC_SOLID_TYPE(new Image[]{
-            ImageHolder.INSTANCE.IMAGE_4, ImageHolder.INSTANCE.IMAGE_5, ImageHolder.INSTANCE.IMAGE_6
+            ImageHolder.INSTANCE.IMAGE_4, ImageHolder.INSTANCE.IMAGE_16, ImageHolder.INSTANCE.IMAGE_17
     }),
 
     BASIC_CLIMABLE_TILE(new Image[]{
-            ImageHolder.INSTANCE.IMAGE_16, ImageHolder.INSTANCE.IMAGE_17
+            ImageHolder.INSTANCE.IMAGE_5, ImageHolder.INSTANCE.IMAGE_6
     }),
 
     DUMMY_TILE(new Image[]{
