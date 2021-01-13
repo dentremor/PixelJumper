@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,13 +25,11 @@ public class HighscoreManager {
 
     /**
      *
-     * Constructor for HighscoreManager that takes a filename to create the .dat file's name in which the Highscores are stored of a level
+     * Constructor for HighscoreManager that takes a filename to create the .dat file's name in which the Highscores are saved of a level for when you restart the game
      */
     public HighscoreManager(String filename){
         log.info("Building .dat file's name out of given filename...");
         HIGHSCORE_FILE = filenameBuilder(filename);
-        log.info("Creating ArrayList scores...");
-        scores = new ArrayList<Score>();
     }
 
     /**
@@ -48,10 +45,10 @@ public class HighscoreManager {
      * filenameBuilder() creates the filename for the .dat file in which a level's highscore information is stored
      */
     private static String filenameBuilder(String filename){
-        StringBuffer buffedName = new StringBuffer(filename);
-        buffedName.append(".dat");
-        buffedName.insert(0, "src/main/resources/highscores/");
-        return buffedName.toString();
+        StringBuffer bufferedName = new StringBuffer(filename);
+        bufferedName.append(".dat");
+        bufferedName.insert(0, "src/main/resources/highscores/");
+        return bufferedName.toString();
     }
 
     /**
@@ -136,13 +133,13 @@ public class HighscoreManager {
 
         int i = 0;
 
-        int scoreAmount = scores.size();
+        int amountOfScores = scores.size();
 
-        if(scoreAmount > maxDisplayed){
-            scoreAmount = maxDisplayed;
+        if(amountOfScores > maxDisplayed){
+            amountOfScores = maxDisplayed;
         }
         log.info("Building highscore string...");
-        while(i < scoreAmount){
+        while(i < amountOfScores){
             highscoreString += (i + 1) + ".\t" + sortedList.get(i).getName() + "\t  " + sortedList.get(i).getPoints() + "\n";
             i++;
         }
