@@ -10,6 +10,7 @@ import de.se2projekt.util.TileHolder;
 import de.se2projekt.util.Vector2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,6 +28,8 @@ public class GameManager {
     private Image background;
     private Player player;
     private int xOffset;
+    private long startTime;
+    private int score;
 
 
 
@@ -35,6 +38,7 @@ public class GameManager {
         this.background = new Image(GameManager.class.getResource("/images/background900x900_loopable.png").toString());
         this.player = new Player(this,0,0);
         createLevel();
+        this.startTime = System.currentTimeMillis();
 
     }
     private void createLevel() {
@@ -84,11 +88,13 @@ public class GameManager {
         xOffset = screen.moveCamera(player, xOffset);
         renderBackground(gc);
         for(Tile tile : tiles) {
-            if(tile.getX() + xOffset > -30 && tile.getX() + xOffset < 1600) {
+            if(tile.getX() + xOffset > -100 && tile.getX() + xOffset < 1600) {
                 screen.render(gc, tile,xOffset);
             }
         }
         player.render(gc,screen);
+        gc.fillText("Zeit: " + ((System.currentTimeMillis()-startTime)/1000) + " sec",10,50);
+        gc.fillText("Punkte: " + score + " Münzen",10,70);
     }
 
     private void renderBackground(GraphicsContext gc) {

@@ -7,22 +7,22 @@ import de.se2projekt.main.GameManager;
 import de.se2projekt.util.ImageHolder;
 import de.se2projekt.util.Vector2d;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
 import java.awt.event.KeyEvent;
-import java.security.Key;
 
 
 public class Player extends Entity{
 
     private State state;
     private State lastState;
+    private boolean rightDirection;
     private static final double GRAVITY = 1000;
     private GameManager gameManager;
 
     public Player(GameManager gameManager, int xPos, int yPos) {
         super(xPos, yPos);
         this.gameManager = gameManager;
+        this.rightDirection = true;
         init();
     }
 
@@ -39,7 +39,7 @@ public class Player extends Entity{
 
     @Override
     public void render(GraphicsContext gc, Screen screen) {
-        screen.render(gc,(int) getPos().x,(int) getPos().y,ImageHolder.INSTANCE.PLAYER_IMAGE,gameManager.getxOffset());
+        screen.render(gc,(int) getPos().x,(int) getPos().y,(rightDirection ? ImageHolder.INSTANCE.PLAYER_RIGHT_IMAGE:ImageHolder.INSTANCE.PLAYER_LEFT_IMAGE),gameManager.getxOffset());
     }
 
     @Override
@@ -49,12 +49,21 @@ public class Player extends Entity{
     }
 
     private void move() {
+
+        double lastXPos = getPos().x;
+
         getPos().x += getVel().x;
         getVel().x = 0;
 
         if(getPos().x <= 0) {
             getPos().x = 0;
         }
+
+        if(lastXPos != getPos().x){
+            rightDirection = lastXPos < getPos().x;
+        }
+
+
 
         if ((lastState == State.GROUND && state == State.FALLING)) {
             getVel().y = 0;

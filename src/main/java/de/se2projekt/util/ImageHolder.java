@@ -16,7 +16,8 @@ public class ImageHolder {
     public final Image IMAGE_16 = loadImageFromPath("/images/tiles/image16.png");
     public final Image IMAGE_17 = loadImageFromPath("/images/tiles/image17.png");
     public final Image DUMMY_IMAGE = loadImageFromPath("/images/tiles/dummy_tile.png");
-    public final Image PLAYER_IMAGE = loadImageFromPath("/images/tiles/player.png");
+    public final Image PLAYER_LEFT_IMAGE = loadImageFromPath("/images/player_left.png");
+    public final Image PLAYER_RIGHT_IMAGE = loadImageFromPath("/images/player_right.png");
 
     private static Image loadImageFromPath(final String imagePath) {
         numberOfImages++;
