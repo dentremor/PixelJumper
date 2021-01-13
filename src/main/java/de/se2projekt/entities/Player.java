@@ -28,7 +28,7 @@ public class Player extends Entity{
 
     private void init() {
         setVel(new Vector2d(0, 0));
-        setAcc(new Vector2d(0, 0));
+        setAcc(new Vector2d(0, GRAVITY));
         this.state = State.GROUND;
         this.lastState = State.GROUND;
     }
@@ -125,6 +125,15 @@ public class Player extends Entity{
                 getPos().x = tile.getX() + tile.getWidth();
             }
         }
+    }
+
+    public void respawn(int x, int y){
+        setVel(new Vector2d(0, 0));
+        setAcc(new Vector2d(0, 0));
+        setPos(new Vector2d(x,y));
+        this.state = State.GROUND;
+        this.lastState = State.GROUND;
+        rightDirection = true;
     }
 
     public void setState(State state) {

@@ -39,7 +39,7 @@ public class CollisionUtil {
                     int collisionSide = getCollsionSide(player.getBounds(), t.getBounds());
                     player.collide(collisionSide,t);
                 } else if (t.isDeadly()) {
-                    //TODO IMPLEMENT DEATH
+                    gameManager.respawnPlayer();
                     break;
                 }
             }

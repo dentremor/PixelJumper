@@ -67,7 +67,7 @@ public class GameManager {
         player.update();
 
         if (player.getPos().y > 950) {
-            //TODO IMPLEMENT DEATH
+            respawnPlayer();
         } else if (CollisionUtil.getInstance().playerCollidedWithEnd(player,this)) {
             //TODO IMPLEMENT WIN
         }
@@ -89,6 +89,11 @@ public class GameManager {
         player.render(gc,screen);
         gc.fillText("Zeit: " + ((System.currentTimeMillis()-startTime)/1000) + " sec",10,50);
         gc.fillText("Punkte: " + score + " Münzen",10,70);
+    }
+
+    public void respawnPlayer(){
+        xOffset = 0;
+        player.respawn(10,750);
     }
 
     private void renderBackground(GraphicsContext gc) {
