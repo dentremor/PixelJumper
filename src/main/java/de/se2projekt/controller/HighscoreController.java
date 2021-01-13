@@ -1,4 +1,4 @@
-package de.se2projekt.gui;
+package de.se2projekt.controller;
 
 import de.se2projekt.highscore.HighscoreManager;
 import javafx.fxml.FXML;

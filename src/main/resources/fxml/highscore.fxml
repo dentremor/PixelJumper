@@ -11,7 +11,7 @@
 <AnchorPane
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
-        fx:controller="de.se2projekt.gui.HighscoreController"
+        fx:controller="de.se2projekt.controller.HighscoreController"
         styleClass="menu-screen">
     <stylesheets>
         <URL value="@../styles/styles.css"/>

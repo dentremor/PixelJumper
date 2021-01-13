@@ -1,4 +1,4 @@
-package de.se2projekt.gui;
+package de.se2projekt.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
