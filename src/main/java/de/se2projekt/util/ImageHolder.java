@@ -10,13 +10,14 @@ public class ImageHolder {
 
     private static int numberOfImages = 0;
 
-    public final Image DUMMY_IMAGE = loadImageFromPath("/images/tiles/dummy_tile.png");
     public final Image IMAGE_4 = loadImageFromPath("/images/tiles/image4.png");
     public final Image IMAGE_5 = loadImageFromPath("/images/tiles/image5.png");
     public final Image IMAGE_6 = loadImageFromPath("/images/tiles/image6.png");
     public final Image IMAGE_16 = loadImageFromPath("/images/tiles/image16.png");
     public final Image IMAGE_17 = loadImageFromPath("/images/tiles/image17.png");
-
+    public final Image DUMMY_IMAGE = loadImageFromPath("/images/tiles/dummy_tile.png");
+    public final Image PLAYER_LEFT_IMAGE = loadImageFromPath("/images/player_left.png");
+    public final Image PLAYER_RIGHT_IMAGE = loadImageFromPath("/images/player_right.png");
 
     private static Image loadImageFromPath(final String imagePath) {
         numberOfImages++;
@@ -26,12 +27,16 @@ public class ImageHolder {
 
     public Image[] getImagesAsArray() {
         return new Image[]{
-                this.DUMMY_IMAGE, this.IMAGE_4, this.IMAGE_5, this.IMAGE_6, this.IMAGE_16, this.IMAGE_17
+                this.IMAGE_4, this.IMAGE_5, this.IMAGE_6, this.IMAGE_16, this.IMAGE_17, this.DUMMY_IMAGE
         };
     }
 
     public int getNumberOfImages() {
         return numberOfImages;
+    }
+
+    public String toString(Image image) {
+        return image.getUrl();
     }
 
     public Image getImage(String imageURL) {

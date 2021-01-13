@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <?import java.net.URL?>
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <AnchorPane
@@ -41,10 +37,10 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button styleClass="menu-button" fx:id="optionsButton" onMouseClicked="#handleOptionsButtonClicked">
+                <Button styleClass="menu-button" fx:id="highscoreButton" onMouseClicked="#handleHighscoreButtonClicked">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <Image url="@../images/optionsButton.png"/>
+                            <Image url="@../images/highscoreButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>

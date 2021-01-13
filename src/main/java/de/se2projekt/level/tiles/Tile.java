@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 import org.json.simple.JSONObject;
 
 
-public abstract class Tile implements Cloneable {
+public class Tile implements ITile {
 
     /* Legt fest, ob das Tile solide ist*/
     private boolean isSolid;
@@ -13,13 +13,6 @@ public abstract class Tile implements Cloneable {
     private boolean isDeadly;
     /* Legt fest, ob das Tile erklimmbar ist*/
     private boolean isClimbable;
-
-    private boolean isCollectable;
-
-    private boolean isStart;
-
-    private boolean isFinish;
-
     /* Id des Tiles*/
     private final int tileId;
     /* x Koordinate des Tiles*/
@@ -48,36 +41,14 @@ public abstract class Tile implements Cloneable {
      * [Konstruktor] Initialisiert das Tile mit den Werten
      */
 
-    public Tile(
-            final boolean isSolid,
-            final boolean isDeadly,
-            final boolean isClimbable,
-            final boolean isCollectable,
-            final boolean isStart,
-            final boolean isFinish,
-            final int tileId,
-            final int x,
-            final int y,
-            final Image image) {
-        this.isSolid = isSolid;
-        this.isDeadly = isDeadly;
-        this.isClimbable = isClimbable;
-        this.isCollectable = isCollectable;
-        this.isStart = isStart;
-        this.isFinish = isFinish;
+    public Tile(final int tileId, final int x, final int y, final Image image) {
         this.tileId = tileId;
         this.x = x;
         this.y = y;
         this.width = 50;
         this.height = 50;
         this.image = image;
-        //TODO Danny *implement* getter für die Images noch schreiben!
     }
-
-    /*
-     * Zu überschreibende Methode, falls der Spieler mit diesem Tile collediert
-     */
-    public abstract void collide();
 
     /*
      * Gibt die Kollisionbox zurueck
@@ -86,30 +57,6 @@ public abstract class Tile implements Cloneable {
         return new Rectangle(this.x, this.y, this.width, this.height);
     }
 
-    /*
-     * Clont das Tile
-     */
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-    // Returns Tile as JSONObject
-    public JSONObject getAsJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", tileId);
-        jsonObject.put("x", x);
-        jsonObject.put("y", y);
-        // TODO hier muss man was ändern
-        jsonObject.put("image", image.getUrl());
-
-        return jsonObject;
-    }
-
-
-    /*
-     * Getter & Setter
-     */
     public boolean isSolid() {
         return this.isSolid;
     }
@@ -162,28 +109,24 @@ public abstract class Tile implements Cloneable {
         return this.y;
     }
 
-    public boolean isCollectable() {
-        return isCollectable;
+    public Image getImage() {
+        return image;
     }
 
-    public void setCollectable(boolean collectable) {
-        isCollectable = collectable;
+    public void setPos(final int x, final int y){
+        this.x = x;
+        this.y = y;
     }
 
-    public boolean isStart() {
-        return isStart;
-    }
+    public JSONObject getAsJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", tileId);
+        jsonObject.put("x", x);
+        jsonObject.put("y", y);
+        // TODO hier muss man was ändern
+        jsonObject.put("image", image.getUrl());
 
-    public void setStart(boolean start) {
-        isStart = start;
+        return jsonObject;
     }
-
-    public boolean isFinish() {
-        return isFinish;
-    }
-
-    public void setFinish(boolean finish) {
-        isFinish = finish;
-    }
-
 }
+

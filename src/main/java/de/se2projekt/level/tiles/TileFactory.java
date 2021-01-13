@@ -6,14 +6,17 @@ public class TileFactory {
 
     public Tile makeTile(final int id, final int x, final int y, final Image image) {
 
-        if (TileType.getTyleType(image) == TileType.BASIC_TYPE) {
-            return new BasicTile(id, x, y, image);
-        } else if (TileType.getTyleType(image) == TileType.BASIC_SOLID_TYPE) {
-            return new BasicSolidTile(id, x, y, image);
-        } else if (TileType.getTyleType(image) == TileType.BASIC_CLIMABLE_TILE) {
-            return new BasicClimbableTile(id, x, y, image);
-        } else {
-            return null;
+        Tile t = new Tile(id, x, y, image);
+
+        switch (TileType.getTyleType(image)){
+            case BASIC_SOLID_TYPE:
+                t.setSolid(true);
+                break;
+            case BASIC_CLIMABLE_TILE:
+                t.setClimbable(true);
+                break;
         }
+
+        return t;
     }
 }

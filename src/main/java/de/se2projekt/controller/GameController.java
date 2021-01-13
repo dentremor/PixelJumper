@@ -1,10 +1,13 @@
 package de.se2projekt.controller;
 
+import de.se2projekt.input.Keyboard;
 import de.se2projekt.main.GameManager;
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,6 +28,13 @@ public class GameController {
 
         final Canvas canvas = new Canvas(1600, 900);
         this.rootPane.getChildren().add(canvas);
+
+        canvas.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                System.err.println("TEWSAFR");
+            }
+        });
 
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
