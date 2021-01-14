@@ -8,11 +8,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class MapManager {
 
@@ -40,12 +41,14 @@ public class MapManager {
         } catch (final IOException e) {
             e.printStackTrace();
         }
+
+        getMapsAsArray();
     }
 
-    public ArrayList<Tile> getMap(final String mapName) throws IOException {
+    public ArrayList<Tile> getMap(final String mapPath) throws IOException {
 
         StringBuilder sb = new StringBuilder();
-        BufferedReader rd = new BufferedReader(new FileReader("src/main/resources/maps/" + mapName + ".json"));
+        BufferedReader rd = new BufferedReader(new FileReader(mapPath));
         int cp;
         ArrayList<Tile> mapArray = new ArrayList<>();
 
@@ -69,6 +72,19 @@ public class MapManager {
             mapArray.add(tile);
         }
         return mapArray;
+    }
+
+    public ArrayList<File> getMapsAsArray() {
+        ArrayList<File> mapsAsArray =  new ArrayList<>();
+
+        try (Stream<Path> paths = Files.walk(Paths.get("src/main/java/de/se2projekt/level/map/"))) {
+            paths
+                    .filter(Files::isRegularFile)
+                    .forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return mapsAsArray;
     }
 }
 
