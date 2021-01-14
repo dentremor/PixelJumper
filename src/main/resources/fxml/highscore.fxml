@@ -21,63 +21,63 @@
             <Button styleClass="menu-button" GridPane.columnIndex="0" fx:id="level1" onMouseClicked="#handleLvl1ButtonClick">
                 <graphic>
                     <ImageView fitWidth="50.0" fitHeight="50.0">
-                        <Image url="@../images/levelIcons/level1.png"/>
+                        <Image url="@../images/guiElements/levelIcons/level1.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="menu-button" GridPane.columnIndex="1" fx:id="level2" onMouseClicked="#handleLvl2ButtonClick">
                 <graphic>
                     <ImageView fitWidth="50.0" fitHeight="50.0">
-                        <Image url="@../images/levelIcons/level2.png"/>
+                        <Image url="@../images/guiElements/levelIcons/level2.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="menu-button" GridPane.columnIndex="2" fx:id="level3" onMouseClicked="#handleLvl3ButtonClick">
                 <graphic>
                     <ImageView fitWidth="50.0" fitHeight="50.0">
-                        <Image url="@../images/levelIcons/level3.png"/>
+                        <Image url="@../images/guiElements/levelIcons/level3.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="menu-button" GridPane.columnIndex="3"  fx:id="level4" onMouseClicked="#handleLvl4ButtonClick">
                 <graphic>
                     <ImageView fitWidth="50.0" fitHeight="50.0">
-                        <Image url="@../images/levelIcons/level4.png"/>
+                        <Image url="@../images/guiElements/levelIcons/level4.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="menu-button" GridPane.columnIndex="4" fx:id="level5" onMouseClicked="#handleLvl5ButtonClick">
                 <graphic>
                     <ImageView fitWidth="50.0" fitHeight="50.0">
-                        <Image url="@../images/levelIcons/level5.png"/>
+                        <Image url="@../images/guiElements/levelIcons/level5.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="menu-button" GridPane.columnIndex="5" fx:id="level6" onMouseClicked="#handleLvl6ButtonClick">
                 <graphic>
                     <ImageView fitWidth="50.0" fitHeight="50.0">
-                        <Image url="@../images/levelIcons/level6.png"/>
+                        <Image url="@../images/guiElements/levelIcons/level6.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="menu-button" GridPane.columnIndex="6" fx:id="level7" onMouseClicked="#handleLvl7ButtonClick">
                 <graphic>
                     <ImageView fitWidth="50.0" fitHeight="50.0">
-                        <Image url="@../images/levelIcons/level7.png"/>
+                        <Image url="@../images/guiElements/levelIcons/level7.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="menu-button" GridPane.columnIndex="7" fx:id="level8" onMouseClicked="#handleLvl8ButtonClick">
                 <graphic>
                     <ImageView fitWidth="50.0" fitHeight="50.0">
-                        <Image url="@../images/levelIcons/level8.png"/>
+                        <Image url="@../images/guiElements/levelIcons/level8.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="menu-button" GridPane.columnIndex="8" fx:id="level9" onMouseClicked="#handleLvl9ButtonClick">
                 <graphic>
                     <ImageView fitWidth="50.0" fitHeight="50.0">
-                        <Image url="@../images/levelIcons/level9.png"/>
+                        <Image url="@../images/guiElements/levelIcons/level9.png"/>
                     </ImageView>
                 </graphic>
             </Button>
@@ -91,7 +91,7 @@
             <graphic>
                 <ImageView fitWidth="50.0" fitHeight="50.0">
                     <image>
-                        <Image url="@../images/returnButton.png"/>
+                        <Image url="@../images/guiElements/returnButton.png"/>
                     </image>
                 </ImageView>
             </graphic>

@@ -19,35 +19,35 @@
                 <Button styleClass="menu-button" fx:id="startButton" onMouseClicked="#handleStartButtonClick">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <Image url="@../images/startButton.png"/>
+                            <Image url="@../images/guiElements/startButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="levelSelectButton" onMouseClicked="#handleLevelSelectButtonClick">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <Image url="@../images/levelSelectButton.png"/>
+                            <Image url="@../images/guiElements/levelSelectButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="levelEditorButton" onMouseClicked="#handleLevelEditorButtonClicked">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <Image url="@../images/levelEditorButton.png"/>
+                            <Image url="@../images/guiElements/levelEditorButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="highscoreButton" onMouseClicked="#handleHighscoreButtonClicked">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <Image url="@../images/highscoreButton.png"/>
+                            <Image url="@../images/guiElements/highscoreButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
                 <Button styleClass="menu-button" fx:id="exitButton" onMouseClicked="#handleExitButtonClicked">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <Image url="@../images/exitButton.png"/>
+                            <Image url="@../images/guiElements/exitButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>

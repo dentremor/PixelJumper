@@ -20,6 +20,13 @@ public class Config {
     }
 
     public enum TileType {
-        BASIC_TYPE, SOLID_TYPE, CLIMBABLE_TYPE, DUMMY_TYPE, START_TYPE, FINISH_TYPE, COLLECTABLE_TYPE, DEADLY_TYPE
+        BASIC_TYPE,
+        SOLID_TYPE,
+        CLIMBABLE_TYPE,
+        DUMMY_TYPE,
+        START_TYPE,
+        FINISH_TYPE,
+        COLLECTABLE_TYPE,
+        DEADLY_TYPE
     }
 }

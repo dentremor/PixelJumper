@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -39,13 +38,13 @@ public class EditorController {
     // Custom variables
     private Optional<MyImage> selectedImage;
     private final MyImage[] editorImageArray;
-    private final MyImage[] selctionImageArray;
+    private final MyImage[] selectionImageArray;
 
     // Constructor for custom variables
     public EditorController() {
         this.selectedImage = Optional.empty();
         this.editorImageArray = new de.se2projekt.level.map.EditorTileMap().getEditorMap();
-        this.selctionImageArray = ImageHolder.INSTANCE.getImagesAsArray();
+        this.selectionImageArray = ImageHolder.INSTANCE.getImagesAsArray();
     }
 
     @FXML
@@ -61,9 +60,9 @@ public class EditorController {
 
         // Get instance of EditorTileMap
 
-        for (int i = 0; i < this.selctionImageArray.length; i++) {
+        for (int i = 0; i < this.selectionImageArray.length; i++) {
             // Instance all images from tiles above
-            final ImageView imv = new ImageView(this.selctionImageArray[i]);
+            final ImageView imv = new ImageView(this.selectionImageArray[i]);
 
             // Scale size
             imv.setFitHeight(Config.EditorTiles.HEIGHT);
@@ -76,7 +75,7 @@ public class EditorController {
 
             canvas.setOnMouseClicked(e -> {
                 final int id = Integer.parseInt(canvas.getId());
-                this.selectedImage = Optional.of(this.selctionImageArray[id]);
+                this.selectedImage = Optional.of(this.selectionImageArray[id]);
                 log.info("Image: " + id + " was clicked.");
             });
 

@@ -3,7 +3,6 @@ package de.se2projekt.level.map;
 import de.se2projekt.util.Config;
 import de.se2projekt.util.ImageHolder;
 import de.se2projekt.util.MyImage;
-import javafx.scene.image.Image;
 
 public class EditorTileMap {
 

@@ -33,7 +33,7 @@ public class GameManager {
 
     public GameManager() {
         this.screen = new Screen();
-        this.background = new Image(GameManager.class.getResource("/images/background900x900_loopable.png").toString());
+        this.background = new Image(GameManager.class.getResource("/images/guiElements/background900x900_loopable.png").toString());
         this.player = new Player(this,0,0);
         createLevel();
         this.startTime = System.currentTimeMillis();

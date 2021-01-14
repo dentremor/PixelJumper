@@ -28,7 +28,7 @@
                 <Button styleClass="export-button" fx:id="exportButton" mnemonicParsing="false" layoutX="40">
                     <graphic>
                         <ImageView fitWidth="240" fitHeight="40">
-                            <Image url="@../images/exportButton.png"/>
+                            <Image url="@../images/guiElements/exportButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>

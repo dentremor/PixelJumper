@@ -7,7 +7,7 @@
 
 .level-editor {
     /*  background  */
-    -fx-background-image: url("/images/background900x900_loopable.png");
+    -fx-background-image: url("/images/guiElements/background900x900_loopable.png");
     -fx-background-repeat: repeat;
     -fx-background-size: 900;
     -fx-background-position: left center;

@@ -20,7 +20,7 @@
                 <graphic>
                     <ImageView fitWidth="250.0" fitHeight="50.0">
                         <image>
-                            <Image url="@../images/startButton.png"/>
+                            <Image url="@../images/guiElements/startButton.png"/>
                         </image>
                     </ImageView>
                 </graphic>
@@ -29,7 +29,7 @@
                 <graphic>
                     <ImageView fitWidth="250.0" fitHeight="50.0">
                         <image>
-                            <Image url="@../images/levelSelectButton.png"/>
+                            <Image url="@../images/guiElements/levelSelectButton.png"/>
                         </image>
                     </ImageView>
                 </graphic>
@@ -38,7 +38,7 @@
                 <graphic>
                     <ImageView fitWidth="250.0" fitHeight="50.0">
                         <image>
-                            <Image url="@../images/levelEditorButton.png"/>
+                            <Image url="@../images/guiElements/levelEditorButton.png"/>
                         </image>
                     </ImageView>
                 </graphic>
@@ -47,7 +47,7 @@
                 <graphic>
                     <ImageView fitWidth="250.0" fitHeight="50.0">
                         <image>
-                            <Image url="@../images/optionsButton.png"/>
+                            <Image url="@../images/guiElements/optionsButton.png"/>
                         </image>
                     </ImageView>
                 </graphic>
@@ -56,7 +56,7 @@
                 <graphic>
                     <ImageView fitWidth="250.0" fitHeight="50.0">
                         <image>
-                            <Image url="@../images/exitButton.png"/>
+                            <Image url="@../images/guiElements/exitButton.png"/>
                         </image>
                     </ImageView>
                 </graphic>
