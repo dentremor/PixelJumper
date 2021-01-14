@@ -125,8 +125,7 @@ public class HighscoreManager {
         //amount of displayed scores
         final int maxDisplayed = 10;
 
-        ArrayList<Score> scores;
-        scores = getScores();
+        ArrayList<Score> scores = getScores();
 
         log.info("Sorting ArrayList scores...");
         List<Score> sortedList = scores.stream().sorted(Comparator.comparingInt(Score::getPoints).reversed()).collect(Collectors.toList());
