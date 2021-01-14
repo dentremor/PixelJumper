@@ -20,11 +20,9 @@ public class TileFactory {
                 tile.setClimbable(true);
                 break;
             case START_TYPE:
-                tile.setSolid(true);
                 tile.setStart(true);
                 break;
             case FINISH_TYPE:
-                tile.setSolid(true);
                 tile.setFinish(true);
                 break;
             case COLLECTABLE_TYPE:
