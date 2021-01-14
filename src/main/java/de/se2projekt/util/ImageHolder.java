@@ -10,14 +10,14 @@ public class ImageHolder {
 
     private static int numberOfImages = 0;
 
-    public final Image IMAGE_4 = loadImageFromPath("/images/tiles/image4.png");
-    public final Image IMAGE_5 = loadImageFromPath("/images/tiles/image5.png");
-    public final Image IMAGE_6 = loadImageFromPath("/images/tiles/image6.png");
-    public final Image IMAGE_16 = loadImageFromPath("/images/tiles/image16.png");
-    public final Image IMAGE_17 = loadImageFromPath("/images/tiles/image17.png");
-    public final Image DUMMY_IMAGE = loadImageFromPath("/images/tiles/dummy_tile.png");
-    public final Image PLAYER_LEFT_IMAGE = loadImageFromPath("/images/player_left.png");
-    public final Image PLAYER_RIGHT_IMAGE = loadImageFromPath("/images/player_right.png");
+    public final MyImage IMAGE_4 = new MyImage("/images/tiles/image4.png", Config.TileType.BASIC_TYPE);
+    public final MyImage IMAGE_5 = new MyImage("/images/tiles/image5.png", Config.TileType.BASIC_TYPE);
+    public final MyImage IMAGE_6 = new MyImage("/images/tiles/image6.png", Config.TileType.BASIC_TYPE);
+    public final MyImage IMAGE_16 = new MyImage("/images/tiles/image16.png", Config.TileType.BASIC_TYPE);
+    public final MyImage IMAGE_17 = new MyImage("/images/tiles/image17.png", Config.TileType.BASIC_TYPE);
+    public final MyImage DUMMY_IMAGE = new MyImage("/images/tiles/dummy_tile.png", Config.TileType.DUMMY_TYPE);
+    public final MyImage PLAYER_LEFT_IMAGE = new MyImage("/images/player_left.png", Config.TileType.BASIC_TYPE);
+    public final MyImage PLAYER_RIGHT_IMAGE = new MyImage("/images/player_right.png", Config.TileType.BASIC_TYPE);
 
     private static Image loadImageFromPath(final String imagePath) {
         numberOfImages++;
@@ -25,8 +25,8 @@ public class ImageHolder {
         return new Image(resource);
     }
 
-    public Image[] getImagesAsArray() {
-        return new Image[]{
+    public MyImage[] getImagesAsArray() {
+        return new MyImage[]{
                 this.IMAGE_4, this.IMAGE_5, this.IMAGE_6, this.IMAGE_16, this.IMAGE_17, this.DUMMY_IMAGE
         };
     }
@@ -39,7 +39,7 @@ public class ImageHolder {
         return image.getUrl();
     }
 
-    public Image getImage(String imageURL) {
+    public MyImage getImage(String imageURL) {
         for (int i = 0; i < getImagesAsArray().length; i++) {
             if (imageURL.equals(getImagesAsArray()[i].getUrl())) {
                 return getImagesAsArray()[i];

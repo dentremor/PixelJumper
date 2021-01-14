@@ -1,4 +1,6 @@
-package de.se2projekt.controller;
+package de.se2projekt.util;
+
+import java.util.ArrayList;
 
 public class Config {
 
@@ -15,5 +17,9 @@ public class Config {
     public static class EditorTiles {
         public static final int WIDTH = 46;
         public static final int HEIGHT = 46;
+    }
+
+    public enum TileType {
+        BASIC_TYPE, SOLID_TYPE, CLIMBABLE_TYPE, DUMMY_TYPE, START_TYPE, FINISH_TYPE, COLLECTABLE_TYPE, DEADLY_TYPE
     }
 }

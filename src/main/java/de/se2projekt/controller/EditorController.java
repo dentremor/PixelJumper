@@ -1,11 +1,12 @@
 package de.se2projekt.controller;
 
 
-import de.se2projekt.level.map.EditorTileMap;
 import de.se2projekt.level.map.MapManager;
 import de.se2projekt.level.tiles.Tile;
 import de.se2projekt.level.tiles.TileFactory;
+import de.se2projekt.util.Config;
 import de.se2projekt.util.ImageHolder;
+import de.se2projekt.util.MyImage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -36,14 +37,14 @@ public class EditorController {
 
 
     // Custom variables
-    private Optional<Image> selectedImage;
-    private final Image[] editorImageArray;
-    private final Image[] selctionImageArray;
+    private Optional<MyImage> selectedImage;
+    private final MyImage[] editorImageArray;
+    private final MyImage[] selctionImageArray;
 
     // Constructor for custom variables
     public EditorController() {
         this.selectedImage = Optional.empty();
-        this.editorImageArray = new EditorTileMap().getEditorMap();
+        this.editorImageArray = new de.se2projekt.level.map.EditorTileMap().getEditorMap();
         this.selctionImageArray = ImageHolder.INSTANCE.getImagesAsArray();
     }
 
@@ -58,7 +59,7 @@ public class EditorController {
     @FXML
     public void displayItems() {
 
-        // Get instance of TileMap
+        // Get instance of EditorTileMap
 
         for (int i = 0; i < this.selctionImageArray.length; i++) {
             // Instance all images from tiles above
@@ -161,7 +162,7 @@ public class EditorController {
                 int index = 0;
                 for (int i = 0; i < this.editorImageArray.length; i++) {
                     if (ImageHolder.INSTANCE.DUMMY_IMAGE != this.editorImageArray[i]) {
-                        final Tile tile = new TileFactory().makeTile(index, i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE, this.editorImageArray[i]);
+                        final Tile tile = new TileFactory().makeTile(i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE, this.editorImageArray[i]);
                         mapArray.add(tile);
                         index++;
                     }

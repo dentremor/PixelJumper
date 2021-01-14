@@ -42,14 +42,14 @@ public class GameManager {
     private void createLevel() {
             log.log(Level.INFO,"Loading Level");
             for(int i = 0; i < 64; i ++) {
-                Tile t = new TileFactory().makeTile(1,i*50,800, ImageHolder.INSTANCE.IMAGE_16);
+                Tile t = new TileFactory().makeTile(i*50,800, ImageHolder.INSTANCE.IMAGE_16);
                 t.setPos(i*50,800);
                 tiles.add(t);
             }
-            Tile t = new TileFactory().makeTile(1,300,750, ImageHolder.INSTANCE.IMAGE_16);
+            Tile t = new TileFactory().makeTile(300,750, ImageHolder.INSTANCE.IMAGE_16);
             tiles.add(t);
 
-            t = new TileFactory().makeTile(1,300,650, ImageHolder.INSTANCE.IMAGE_16);
+            t = new TileFactory().makeTile(300,650, ImageHolder.INSTANCE.IMAGE_16);
             tiles.add(t);
 
 

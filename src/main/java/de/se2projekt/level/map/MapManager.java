@@ -65,7 +65,7 @@ public class MapManager {
 
         for (int i = 0; i < jsonArray.size(); i++) {
             JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-            final Tile tile = new TileFactory().makeTile(i, Math.toIntExact((long) jsonObject.get("x")), Math.toIntExact((long) jsonObject.get("y")), ImageHolder.INSTANCE.getImage((String) jsonObject.get("image")));
+            final Tile tile = new TileFactory().makeTile(Math.toIntExact((long) jsonObject.get("x")), Math.toIntExact((long) jsonObject.get("y")), ImageHolder.INSTANCE.getImage((String) jsonObject.get("image")));
             mapArray.add(tile);
         }
         return mapArray;

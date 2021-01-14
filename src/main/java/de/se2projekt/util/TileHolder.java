@@ -10,12 +10,12 @@ public class TileHolder {
     public static TileHolder INSTANCE = new TileHolder();
 
     /* Alle Tiles */
-    public static Tile TILE_1 = new Tile(1,-1,-1,ImageHolder.INSTANCE.IMAGE_4);
-    public static Tile TILE_2 = new Tile(2, -1,-1,ImageHolder.INSTANCE.IMAGE_5);
-    public static Tile TILE_3 = new Tile(3,-1,-1,ImageHolder.INSTANCE.IMAGE_6);
-    public static Tile TILE_4 = new Tile(4,-1,-1,ImageHolder.INSTANCE.IMAGE_16);
-    public static Tile TILE_5 = new Tile(5,-1,-1,ImageHolder.INSTANCE.IMAGE_17);
-    public static Tile DUMMY_TILE = new Tile(-1, -1, -1, ImageHolder.INSTANCE.DUMMY_IMAGE);
+    public static Tile TILE_1 = new Tile(-1,-1,ImageHolder.INSTANCE.IMAGE_4);
+    public static Tile TILE_2 = new Tile( -1,-1,ImageHolder.INSTANCE.IMAGE_5);
+    public static Tile TILE_3 = new Tile(-1,-1,ImageHolder.INSTANCE.IMAGE_6);
+    public static Tile TILE_4 = new Tile(-1,-1,ImageHolder.INSTANCE.IMAGE_16);
+    public static Tile TILE_5 = new Tile(-1,-1,ImageHolder.INSTANCE.IMAGE_17);
+    public static Tile DUMMY_TILE = new Tile( -1, -1, ImageHolder.INSTANCE.DUMMY_IMAGE);
 
     //
     private Tile[] getTilesAsArray(){

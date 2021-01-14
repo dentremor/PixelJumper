@@ -1,5 +1,6 @@
 package de.se2projekt.level.tiles;
 
+import de.se2projekt.util.MyImage;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import org.json.simple.JSONObject;
@@ -12,15 +13,25 @@ public interface ITile {
 
     public void setSolid(final boolean isSolid);
 
+    public boolean isStart();
+
+    public void setStart(final boolean isStart);
+
+    public boolean isFinish();
+
+    public void setFinish(final boolean isFinish);
+
     public boolean isDeadly();
 
     public void setDeadly(final boolean isDeadly);
 
     public boolean isClimbable();
 
-    public void setClimbable(final boolean climbable);
+    public void setClimbable(final boolean isClimbable);
 
-    public int getTileId();
+    public boolean isCollectable();
+
+    public void setCollectable(final boolean isCollectable);
 
     public int getWidth();
 
@@ -34,7 +45,7 @@ public interface ITile {
 
     public int getY();
 
-    public Image getImage();
+    public MyImage getImage();
 
     public void setPos(final int x, final int y);
 
