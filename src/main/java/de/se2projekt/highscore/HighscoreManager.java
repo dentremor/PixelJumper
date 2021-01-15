@@ -69,8 +69,6 @@ public class HighscoreManager {
     /**
      * loadScoreFile() tries to load the highscore file and checks if it exists
      */
-    //TODO
-    //public static void loadScoreFile(String filename)
     public void loadScoreFile(){
         log.info("Trying to load highscore file...");
         try{
@@ -100,8 +98,6 @@ public class HighscoreManager {
     /**
      * updateScoreFile() updates the score file if it exists
      */
-    //TODO
-    //public static void updateScoreFile(filename)
     public void writeScoreFile(){
         try{
             outputStream = new ObjectOutputStream(new FileOutputStream(HIGHSCORE_FILE));
@@ -142,15 +138,21 @@ public class HighscoreManager {
 
         int amountOfScores = scores.size();
 
-        if(amountOfScores > maxDisplayed){
-            amountOfScores = maxDisplayed;
+        if(amountOfScores == 0){
+            highscoreString = "Nobody has played this level yet";
+            return highscoreString;
         }
-        log.info("Building highscore string...");
-        while(i < amountOfScores){
-            highscoreString += (i + 1) + ".\t" + sortedList.get(i).getName() + "\t  " + sortedList.get(i).getPoints() + "\n";
-            i++;
+        else {
+            if (amountOfScores > maxDisplayed) {
+                amountOfScores = maxDisplayed;
+            }
+            log.info("Building highscore string...");
+            while (i < amountOfScores) {
+                highscoreString += (i + 1) + ".\t" + sortedList.get(i).getName() + "\t  " + sortedList.get(i).getPoints() + "\n";
+                i++;
+            }
+            log.info("Displaying highscore string...");
+            return highscoreString;
         }
-        log.info("Displaying highscore string...");
-        return highscoreString;
     }
 }

@@ -48,7 +48,7 @@
 .button-list {
     -fx-spacing: 10px;
     -fx-alignment: center;
-    -fx-padding: 10;
+    -fx-padding: 10px;
 }
 
 .menu-button{
@@ -63,8 +63,45 @@
     -fx-background-color: #537e6c;
 }
 
+/* list view styling */
+.list-view{
+    -fx-font-size: 20px;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-graphic-text-gap: 30px;
+    -fx-background-color: transparent;
+}
+
+.list-view .list-cell {
+    -fx-alignment: center;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: #7bba9f;
+}
+
+.list-cell:filled:odd{
+    -fx-background-color: #83c5a9;
+}
+
+.list-cell:filled:selected{
+    -fx-background-color: #5f907b;
+}
+
+.list-cell{
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+}
+
 .highscore-table{
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
 
+}
+
+.highscore-grid{
+    -fx-padding: 10;
+    -fx-background-color: rgba(0, 100, 100, 0.5);
 }
 
