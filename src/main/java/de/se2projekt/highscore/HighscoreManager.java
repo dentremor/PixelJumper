@@ -134,7 +134,9 @@ public class HighscoreManager {
         ArrayList<Score> scores = getScores();
 
         log.info("Sorting ArrayList scores...");
-        List<Score> sortedList = scores.stream().sorted(Comparator.comparingInt(Score::getPoints).reversed()).collect(Collectors.toList());
+        List<Score> sortedList = scores.stream()
+                .sorted(Comparator.comparingInt(Score::getPoints)
+                .reversed()).collect(Collectors.toList());
 
         int i = 0;
 

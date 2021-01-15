@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 /**
  * JavaFX controller for the Highscore menu
  * @author Niklas Mäckle
@@ -76,7 +75,6 @@ public class HighscoreController {
 
     public void handleReturnButtonClick() throws IOException {
         log.info("Return button clicked");
-
         returnButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml")));
     }
 

@@ -29,13 +29,9 @@ public class CollisionUtil {
     }
 
     private void betweenPlayerAndTiles(Player player, GameManager gameManager) {
-        System.out.println(1);
         for (Tile t : gameManager.getTiles()) {
-            System.out.println(2);
             if (intersects(player.getBounds(),t.getBounds())) {
-                System.out.println(3);
                 if (t.isSolid() && !t.isDeadly()) {
-                    System.out.println(4);
                     int collisionSide = getCollsionSide(player.getBounds(), t.getBounds());
                     player.collide(collisionSide,t);
                 } else if (t.isDeadly()) {

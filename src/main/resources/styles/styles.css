@@ -33,12 +33,12 @@
 
 /* main panel background */
 .main-panel {
-    -fx-background-image: url("../images/background1600x900.png");
+    -fx-background-image: url("../images/guiElements/background1600x900.png");
 }
 
 /* menu background image properties */
 .main-screen {
-    -fx-background-image: url("../images/background1600x900.png");
+    -fx-background-image: url("../images/guiElements/background1600x900.png");
     -fx-background-repeat: stretch;
     -fx-background-position: center;
     -fx-background-size: cover;

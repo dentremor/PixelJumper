@@ -1,6 +1,6 @@
 package de.se2projekt.level.tiles;
 
-import javafx.scene.image.Image;
+import de.se2projekt.util.MyImage;
 import javafx.scene.shape.Rectangle;
 import org.json.simple.JSONObject;
 
@@ -11,10 +11,13 @@ public class Tile implements ITile {
     private boolean isSolid;
     /* Legt fest, ob das Tile toetlich ist*/
     private boolean isDeadly;
+
+    private boolean isCollectable;
+    private boolean isStart;
+    private boolean isFinish;
+
     /* Legt fest, ob das Tile erklimmbar ist*/
     private boolean isClimbable;
-    /* Id des Tiles*/
-    private final int tileId;
     /* x Koordinate des Tiles*/
     private int x;
     /* y Koordinate des Tiles*/
@@ -24,13 +27,12 @@ public class Tile implements ITile {
     /* Hoehe des Tiles*/
     private final int height;
     /* Pfad der Imagedatei*/
-    private final Image image;
+    private final MyImage image;
 
 
     @Override
     public String toString() {
         return "Tile{" +
-                "tileId=" + tileId +
                 ", x=" + x +
                 ", y=" + y +
                 ", image=" + image +
@@ -41,8 +43,7 @@ public class Tile implements ITile {
      * [Konstruktor] Initialisiert das Tile mit den Werten
      */
 
-    public Tile(final int tileId, final int x, final int y, final Image image) {
-        this.tileId = tileId;
+    public Tile(final int x, final int y, final MyImage image) {
         this.x = x;
         this.y = y;
         this.width = 50;
@@ -53,74 +54,115 @@ public class Tile implements ITile {
     /*
      * Gibt die Kollisionbox zurueck
      */
+    @Override
     public Rectangle getBounds() {
         return new Rectangle(this.x, this.y, this.width, this.height);
     }
 
+    @Override
     public boolean isSolid() {
         return this.isSolid;
     }
 
+    @Override
     public void setSolid(final boolean isSolid) {
         this.isSolid = isSolid;
     }
 
+    @Override
     public boolean isDeadly() {
         return this.isDeadly;
     }
 
+    @Override
     public void setDeadly(final boolean isDeadly) {
         this.isDeadly = isDeadly;
     }
 
+    @Override
     public boolean isClimbable() {
         return this.isClimbable;
     }
 
+    @Override
     public void setClimbable(final boolean climbable) {
         this.isClimbable = climbable;
     }
 
-    public int getTileId() {
-        return this.tileId;
+    @Override
+    public boolean isCollectable() {
+        return isCollectable;
     }
 
+    @Override
+    public void setCollectable(boolean collectable) {
+        isCollectable = collectable;
+    }
+
+    @Override
+    public boolean isStart() {
+        return isStart;
+    }
+
+    @Override
+    public void setStart(boolean start) {
+        isStart = start;
+    }
+
+    @Override
+    public boolean isFinish() {
+        return isFinish;
+    }
+
+    @Override
+    public void setFinish(boolean finish) {
+        isFinish = finish;
+    }
+
+    @Override
     public int getWidth() {
         return this.width;
     }
 
+    @Override
     public int getHeight() {
         return this.height;
     }
 
+    @Override
     public void setX(final int x) {
         this.x = x;
     }
 
+    @Override
     public void setY(final int y) {
         this.y = y;
     }
 
+    @Override
     public int getX() {
         return this.x;
     }
 
+    @Override
     public int getY() {
         return this.y;
     }
 
-    public Image getImage() {
+    @Override
+    public MyImage getImage() {
         return image;
     }
 
+    @Override
     public void setPos(final int x, final int y){
         this.x = x;
         this.y = y;
     }
 
+    @Override
     public JSONObject getAsJson() {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", tileId);
         jsonObject.put("x", x);
         jsonObject.put("y", y);
         // TODO hier muss man was ändern

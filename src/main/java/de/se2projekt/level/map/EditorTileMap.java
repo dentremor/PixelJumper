@@ -1,23 +1,30 @@
 package de.se2projekt.level.map;
 
-import de.se2projekt.controller.Config;
+import de.se2projekt.util.Config;
 import de.se2projekt.util.ImageHolder;
-import javafx.scene.image.Image;
+import de.se2projekt.util.MyImage;
+
+/**
+ * A class for generating an Array full of dummyImages for the EditorController.
+ * @author Daniel Hiller
+ * @version 0.1.0
+ */
+
 
 public class EditorTileMap {
 
-    public Image[] getEditorMap() {
-        final Image[] imageArray = new Image[Config.Map.INDEX_SIZE];
+    public MyImage[] getEditorMap() {
+        final MyImage[] myImageArray = new MyImage[Config.Map.INDEX_SIZE];
 
         int index = 0;
 
         // First loop is for the columns, second one for the rows
         for (int i = 0; i < Config.Map.ROW_SIZE; i++) {
             for (int c = 0; c < Config.Map.COLUMN_SIZE; c++) {
-                imageArray[index] = ImageHolder.INSTANCE.DUMMY_IMAGE;
+                myImageArray[index] = ImageHolder.INSTANCE.DUMMY_IMAGE;
                 index++;
             }
         }
-        return imageArray;
+        return myImageArray;
     }
 }
