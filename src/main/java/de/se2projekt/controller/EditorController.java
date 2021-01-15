@@ -1,7 +1,7 @@
 package de.se2projekt.controller;
 
 
-import de.se2projekt.level.map.MapManager;
+import de.se2projekt.level.map.Map;
 import de.se2projekt.level.tiles.Tile;
 import de.se2projekt.level.tiles.TileFactory;
 import de.se2projekt.util.Config;
@@ -149,29 +149,33 @@ public class EditorController {
 
         final Optional<String> result = dialog.showAndWait();
         result.ifPresent(name -> {
-            if (mapExists(name)) {
-                final Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("This name is not available for selection");
-                alert.setContentText("The name " + name + " is already taken!");
-                alert.showAndWait();
-                actionForExportButton();
-            } else {
-                final ArrayList<Tile> mapArray = new ArrayList<>();
-                int index = 0;
-                for (int i = 0; i < this.editorImageArray.length; i++) {
-                    if (ImageHolder.INSTANCE.DUMMY_IMAGE != this.editorImageArray[i]) {
-                        final Tile tile = new TileFactory().makeTile(i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE, this.editorImageArray[i]);
-                        mapArray.add(tile);
-                        index++;
+            try {
+                if (mapExists(name)) {
+                    final Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("This name is not available for selection");
+                    alert.setContentText("The name " + name + " is already taken!");
+                    alert.showAndWait();
+                    actionForExportButton();
+                } else {
+                    final ArrayList<Tile> mapArray = new ArrayList<>();
+                    int index = 0;
+                    for (int i = 0; i < this.editorImageArray.length; i++) {
+                        if (ImageHolder.INSTANCE.DUMMY_IMAGE != this.editorImageArray[i]) {
+                            final Tile tile = new TileFactory().makeTile(i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE, this.editorImageArray[i]);
+                            mapArray.add(tile);
+                            index++;
+                        }
+                    }
+                    final Map map = new Map(mapArray);
+                    try {
+                        map.exportMap(name);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
-                final MapManager mapManager = new MapManager(mapArray);
-                try {
-                    mapManager.exportMap(name);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -190,8 +194,13 @@ public class EditorController {
         return false;
     }
 
-    // TODO Danny *implement* check map which already exists
-    public boolean mapExists(final String name) {
+    public boolean mapExists(final String name) throws IOException {
+        String[] mapNamesAsArray = Map.MapManager.getMapNamesAsArray();
+        for (String mapName: mapNamesAsArray) {
+            if (mapName.equals(name)) {
+                return true;
+            }
+        }
         return false;
     }
 
