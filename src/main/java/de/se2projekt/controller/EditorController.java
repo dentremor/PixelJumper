@@ -1,6 +1,7 @@
 package de.se2projekt.controller;
 
 
+import de.se2projekt.highscore.HighscoreManager;
 import de.se2projekt.level.map.Map;
 import de.se2projekt.level.tiles.Tile;
 import de.se2projekt.level.tiles.TileFactory;
@@ -23,16 +24,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * JavaFX Controller for the MapEditor.
+ * @author Daniel Hiller
+ * @version 0.1.0
+ */
+
 public class EditorController {
     private static final Logger log = LogManager.getLogger(EditorController.class);
 
-    // Variablen aus der GUI
+    // Variables from the .fxml-file
     public AnchorPane rootPane;
     public HBox rootHBox;
     public GridPane mapEditor;
     public GridPane itemBox;
     public Button exportButton;
-    // TODO Danny remove unused code
 
 
     // Custom variables
@@ -59,8 +65,8 @@ public class EditorController {
     public void displayItems() {
 
         // Get instance of EditorTileMap
-
         for (int i = 0; i < this.selectionImageArray.length; i++) {
+
             // Instance all images from tiles above
             final ImageView imv = new ImageView(this.selectionImageArray[i]);
 
@@ -83,7 +89,6 @@ public class EditorController {
             this.itemBox.add(canvas, i % Config.Selection.ROW_SIZE, i / Config.Selection.ROW_SIZE);
         }
     }
-
 
     @FXML
     public void displayEditorPane() {
@@ -155,7 +160,7 @@ public class EditorController {
     }
 
 
-    // Functions for displayExportButton() which instance the images to tiles and export them after into a .json-file
+    // Function for displayExportButton() which instance the images to tiles and export them after into a .json-file
     public void actionForExportButton() {
         final TextInputDialog dialog = new TextInputDialog("mapName");
         dialog.setTitle("MapName");
@@ -183,6 +188,8 @@ public class EditorController {
                         }
                     }
                     final Map map = new Map(mapArray);
+                    final HighscoreManager highscoreManager = new HighscoreManager(name);
+                    highscoreManager.writeScoreFile();
                     try {
                         map.exportMap(name);
                     } catch (IOException e) {
@@ -195,7 +202,7 @@ public class EditorController {
         });
     }
 
-    // Functions for displayExportButton() which checks if the map is empty
+    // Function for displayExportButton() which checks if the map is empty
     public boolean mapIsEmpty() {
         int index = 0;
 
@@ -210,7 +217,7 @@ public class EditorController {
         return false;
     }
 
-    // Functions for displayExportButton() which checks if a map with this name already exists
+    // Function for displayExportButton() which checks if a map with this name already exists
     public boolean mapExists(final String name) throws IOException {
         String[] mapNamesAsArray = Map.MapManager.getMapNamesAsArray();
         for (String mapName: mapNamesAsArray) {
@@ -221,7 +228,7 @@ public class EditorController {
         return false;
     }
 
-    // Functions for displayExportButton() which checks if the map contains exact one start and finish-tile
+    // Function for displayExportButton() which checks if the map contains exact one start and finish-tile
     public boolean hasOneStartAndFinish() {
         int start = 0;
         int finish = 0;
@@ -236,7 +243,7 @@ public class EditorController {
         return start != 1 && finish != 1;
     }
 
-    // Functions for displayEditorPane() which updates the StackPane
+    // Function for displayEditorPane() which updates the StackPane
     public void updateCanvas(StackPane canvas) {
         // Store the value or the index
         final int id = Integer.parseInt(canvas.getId());

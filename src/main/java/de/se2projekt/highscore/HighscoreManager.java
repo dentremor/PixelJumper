@@ -30,6 +30,7 @@ public class HighscoreManager {
     public HighscoreManager(String filename){
         log.info("Building .dat file's name out of given filename...");
         HIGHSCORE_FILE = filenameBuilder(filename);
+        scores = new ArrayList<>();
     }
 
     /**
@@ -61,7 +62,7 @@ public class HighscoreManager {
         log.info("Adding new score to the scores ArrayList...");
         scores.add(new Score(name, points));
         log.info("Updating score file...");
-        updateScoreFile();
+        writeScoreFile();
     }
 
     /**
@@ -96,7 +97,7 @@ public class HighscoreManager {
     /**
      * updateScoreFile() updates the score file if it exists
      */
-    public void updateScoreFile(){
+    public void writeScoreFile(){
         try{
             outputStream = new ObjectOutputStream(new FileOutputStream(HIGHSCORE_FILE));
             outputStream.writeObject(scores);
@@ -129,7 +130,9 @@ public class HighscoreManager {
         scores = getScores();
 
         log.info("Sorting ArrayList scores...");
-        List<Score> sortedList = scores.stream().sorted(Comparator.comparingInt(Score::getPoints).reversed()).collect(Collectors.toList());
+        List<Score> sortedList = scores.stream()
+                .sorted(Comparator.comparingInt(Score::getPoints)
+                .reversed()).collect(Collectors.toList());
 
         int i = 0;
 

@@ -1,6 +1,5 @@
 package de.se2projekt.util;
 
-import de.se2projekt.controller.EditorController;
 import javafx.scene.image.Image;
 
 public class MyImage extends Image {

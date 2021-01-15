@@ -1,6 +1,5 @@
 package de.se2projekt.util;
 
-import de.se2projekt.controller.EditorController;
 import javafx.scene.image.Image;
 
 public class ImageHolder {
@@ -8,8 +7,7 @@ public class ImageHolder {
     // Variables
     public static final ImageHolder INSTANCE = new ImageHolder();
 
-    private static int numberOfImages = 0;
-
+    // Images for the Game and Editor
     public final MyImage IMAGE_1 = new MyImage("/images/tile_1.png", Config.TileType.BASIC_TYPE);
     public final MyImage IMAGE_2 = new MyImage("/images/tile_2.png", Config.TileType.BASIC_TYPE);
     public final MyImage IMAGE_3 = new MyImage("/images/tile_3.png", Config.TileType.BASIC_TYPE);
@@ -53,18 +51,13 @@ public class ImageHolder {
     public final MyImage IMAGE_46 = new MyImage("/images/tile_46.png", Config.TileType.DEADLY_TYPE);
     public final MyImage IMAGE_47 = new MyImage("/images/tile_47.png", Config.TileType.DEADLY_TYPE);
     public final MyImage IMAGE_48 = new MyImage("/images/tile_48.png", Config.TileType.DEADLY_TYPE);
-
     public final MyImage DUMMY_IMAGE = new MyImage("/images/dummy_tile.png", Config.TileType.DUMMY_TYPE);
 
+    // Images for the Game
     public final MyImage PLAYER_LEFT_IMAGE = new MyImage("/images/guiElements/player_left.png", Config.TileType.BASIC_TYPE);
     public final MyImage PLAYER_RIGHT_IMAGE = new MyImage("/images/guiElements/player_right.png", Config.TileType.BASIC_TYPE);
 
-    private static Image loadImageFromPath(final String imagePath) {
-        numberOfImages++;
-        final String resource = EditorController.class.getResource(imagePath).toString();
-        return new Image(resource);
-    }
-
+    // Returns the TilesSet for the ItemBox in EditorController
     public MyImage[] getImagesAsArray() {
         return new MyImage[]{
                 IMAGE_1, IMAGE_2, IMAGE_3, IMAGE_4, IMAGE_5, DUMMY_IMAGE, IMAGE_7, IMAGE_8, IMAGE_9, IMAGE_10,
@@ -73,10 +66,6 @@ public class ImageHolder {
                 IMAGE_31, IMAGE_32, IMAGE_33, IMAGE_34, IMAGE_35, IMAGE_36, DUMMY_IMAGE, IMAGE_38, DUMMY_IMAGE, IMAGE_40,
                 IMAGE_41, IMAGE_42, DUMMY_IMAGE, IMAGE_44, DUMMY_IMAGE, IMAGE_46, IMAGE_47,IMAGE_48,
         };
-    }
-
-    public int getNumberOfImages() {
-        return numberOfImages;
     }
 
     public String toString(Image image) {

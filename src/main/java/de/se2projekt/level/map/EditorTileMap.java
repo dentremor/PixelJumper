@@ -4,6 +4,13 @@ import de.se2projekt.util.Config;
 import de.se2projekt.util.ImageHolder;
 import de.se2projekt.util.MyImage;
 
+/**
+ * A class for generating an Array full of dummyImages for the EditorController.
+ * @author Daniel Hiller
+ * @version 0.1.0
+ */
+
+
 public class EditorTileMap {
 
     public MyImage[] getEditorMap() {

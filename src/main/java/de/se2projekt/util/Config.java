@@ -1,7 +1,5 @@
 package de.se2projekt.util;
 
-import java.util.ArrayList;
-
 public class Config {
 
     public static class Map {
