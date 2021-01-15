@@ -25,8 +25,8 @@ public class ImageHolder {
     public final MyImage IMAGE_14 = new MyImage("/images/tile_14.png", Config.TileType.BASIC_TYPE);
     public final MyImage IMAGE_15 = new MyImage("/images/tile_15.png", Config.TileType.BASIC_TYPE);
     public final MyImage IMAGE_16 = new MyImage("/images/tile_16.png", Config.TileType.BASIC_TYPE);
-    public final MyImage IMAGE_17 = new MyImage("/images/tile_17.png", Config.TileType.START_TYPE);
-    public final MyImage IMAGE_18 = new MyImage("/images/tile_18.png", Config.TileType.FINISH_TYPE);
+    public final MyImage START_IMAGE = new MyImage("/images/tile_17.png", Config.TileType.START_TYPE);
+    public final MyImage FINISH_IMAGE = new MyImage("/images/tile_18.png", Config.TileType.FINISH_TYPE);
     public final MyImage IMAGE_19 = new MyImage("/images/tile_19.png", Config.TileType.SOLID_TYPE);
     public final MyImage IMAGE_20 = new MyImage("/images/tile_20.png", Config.TileType.SOLID_TYPE);
     public final MyImage IMAGE_21 = new MyImage("/images/tile_21.png", Config.TileType.BASIC_TYPE);
@@ -68,7 +68,7 @@ public class ImageHolder {
     public MyImage[] getImagesAsArray() {
         return new MyImage[]{
                 IMAGE_1, IMAGE_2, IMAGE_3, IMAGE_4, IMAGE_5, DUMMY_IMAGE, IMAGE_7, IMAGE_8, IMAGE_9, IMAGE_10,
-                IMAGE_11, IMAGE_12, IMAGE_13, IMAGE_14, IMAGE_15, IMAGE_16, IMAGE_17, IMAGE_18, IMAGE_19, IMAGE_20,
+                IMAGE_11, IMAGE_12, IMAGE_13, IMAGE_14, IMAGE_15, IMAGE_16, START_IMAGE, FINISH_IMAGE, IMAGE_19, IMAGE_20,
                 IMAGE_21, IMAGE_22, IMAGE_23, IMAGE_24, IMAGE_25, IMAGE_26, IMAGE_27, IMAGE_28, IMAGE_29, IMAGE_30,
                 IMAGE_31, IMAGE_32, IMAGE_33, IMAGE_34, IMAGE_35, IMAGE_36, DUMMY_IMAGE, IMAGE_38, DUMMY_IMAGE, IMAGE_40,
                 IMAGE_41, IMAGE_42, DUMMY_IMAGE, IMAGE_44, DUMMY_IMAGE, IMAGE_46, IMAGE_47,IMAGE_48,

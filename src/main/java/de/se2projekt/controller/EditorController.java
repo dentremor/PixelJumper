@@ -73,12 +73,13 @@ public class EditorController {
             canvas.setId(String.valueOf(i));
             canvas.getStyleClass().add("image-view");
 
+            // ActionListener which set the selectedImage
             canvas.setOnMouseClicked(e -> {
                 final int id = Integer.parseInt(canvas.getId());
                 this.selectedImage = Optional.of(this.selectionImageArray[id]);
                 log.info("Image: " + id + " was clicked.");
             });
-
+            // Add the StackPane to the itemSection GridPane
             this.itemBox.add(canvas, i % Config.Selection.ROW_SIZE, i / Config.Selection.ROW_SIZE);
         }
     }
@@ -100,15 +101,17 @@ public class EditorController {
             canvas.setId(String.valueOf(i));
             canvas.getStyleClass().add("image-view");
 
+            // Add the StackPane to the mapEditor GridPane
             this.mapEditor.add(canvas, i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE);
 
-
+            // Make the StackPanes draggable
             this.mapEditor.setOnDragDetected(e -> {
                 if (this.selectedImage.isPresent()) {
                     this.mapEditor.startFullDrag();
                 }
             });
 
+            // ActionListener for drag
             canvas.setOnMouseDragEntered(e -> {
                 if (this.selectedImage.isPresent()) {
                     e.consume();
@@ -116,6 +119,7 @@ public class EditorController {
                 }
             });
 
+            // ActionListener for click
             canvas.setOnMousePressed(e -> {
                 if (this.selectedImage.isPresent()) {
                     updateCanvas(canvas);
@@ -126,21 +130,32 @@ public class EditorController {
 
     @FXML
     public void displayExportButton() {
+
+        // Add ActionListener for the export Button
         this.exportButton.setOnMouseClicked(e -> {
+
+            // Call an AlertScreen if the Map isn't Empty
             if (mapIsEmpty()) {
                 final Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("This maps does not contain tiles");
                 alert.setContentText("Set tiles to save a map!");
                 alert.showAndWait();
-            } else {
+            } else if (hasOneStartAndFinish()){
+                final Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("This maps does not contain all necessary tiles");
+                alert.setContentText("Set exact one start and finish!");
+                alert.showAndWait();
+            }
+            else {
                 actionForExportButton();
             }
         });
     }
 
 
-    // Functions for displayExportButton()
+    // Functions for displayExportButton() which instance the images to tiles and export them after into a .json-file
     public void actionForExportButton() {
         final TextInputDialog dialog = new TextInputDialog("mapName");
         dialog.setTitle("MapName");
@@ -180,6 +195,7 @@ public class EditorController {
         });
     }
 
+    // Functions for displayExportButton() which checks if the map is empty
     public boolean mapIsEmpty() {
         int index = 0;
 
@@ -194,6 +210,7 @@ public class EditorController {
         return false;
     }
 
+    // Functions for displayExportButton() which checks if a map with this name already exists
     public boolean mapExists(final String name) throws IOException {
         String[] mapNamesAsArray = Map.MapManager.getMapNamesAsArray();
         for (String mapName: mapNamesAsArray) {
@@ -204,7 +221,22 @@ public class EditorController {
         return false;
     }
 
-    //Functions for displayEditorPane()
+    // Functions for displayExportButton() which checks if the map contains exact one start and finish-tile
+    public boolean hasOneStartAndFinish() {
+        int start = 0;
+        int finish = 0;
+
+        for (int i = 0; i < this.editorImageArray.length; i++) {
+            if (ImageHolder.INSTANCE.START_IMAGE == this.editorImageArray[i]) {
+                start++;
+            } else if (ImageHolder.INSTANCE.FINISH_IMAGE == this.editorImageArray[i]){
+                finish++;
+            }
+        }
+        return start != 1 && finish != 1;
+    }
+
+    // Functions for displayEditorPane() which updates the StackPane
     public void updateCanvas(StackPane canvas) {
         // Store the value or the index
         final int id = Integer.parseInt(canvas.getId());
