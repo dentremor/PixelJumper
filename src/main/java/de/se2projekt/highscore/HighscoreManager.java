@@ -30,6 +30,8 @@ public class HighscoreManager {
     public HighscoreManager(String filename){
         log.info("Building .dat file's name out of given filename...");
         HIGHSCORE_FILE = filenameBuilder(filename);
+        scores = new ArrayList<>();
+        //TODO Button für LevelSelect und Highscore hier initialisieren
     }
 
     /**
@@ -61,12 +63,14 @@ public class HighscoreManager {
         log.info("Adding new score to the scores ArrayList...");
         scores.add(new Score(name, points));
         log.info("Updating score file...");
-        updateScoreFile();
+        writeScoreFile();
     }
 
     /**
      * loadScoreFile() tries to load the highscore file and checks if it exists
      */
+    //TODO
+    //public static void loadScoreFile(String filename)
     public void loadScoreFile(){
         log.info("Trying to load highscore file...");
         try{
@@ -96,7 +100,9 @@ public class HighscoreManager {
     /**
      * updateScoreFile() updates the score file if it exists
      */
-    public void updateScoreFile(){
+    //TODO
+    //public static void updateScoreFile(filename)
+    public void writeScoreFile(){
         try{
             outputStream = new ObjectOutputStream(new FileOutputStream(HIGHSCORE_FILE));
             outputStream.writeObject(scores);

@@ -56,6 +56,7 @@
     -fx-cursor: hand;
     -fx-background-color: #7bba9f;
     -fx-graphic-text-gap: 30px;
+    -fx-font-size: 30px;
 }
 
 .menu-button:hover{

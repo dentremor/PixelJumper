@@ -17,8 +17,8 @@
         <URL value="@../styles/styles.css"/>
     </stylesheets>
     <VBox styleClass="main-screen" prefHeight="900" prefWidth="1600" alignment="TOP_CENTER">
-        <GridPane prefHeight="200" prefWidth="300" alignment="CENTER" hgap="20" vgap="20">
-            <Button styleClass="menu-button" GridPane.columnIndex="0" fx:id="level1" onMouseClicked="#handleLvl1ButtonClick">
+        <GridPane fx:id="grid" prefHeight="200" prefWidth="300" alignment="CENTER" hgap="20" vgap="20">
+            <!--<Button styleClass="menu-button" GridPane.columnIndex="0" fx:id="level1" onMouseClicked="#handleLvl1ButtonClick">
                 <graphic>
                     <ImageView fitWidth="50.0" fitHeight="50.0">
                         <Image url="@../images/levelIcons/level1.png"/>
@@ -80,7 +80,7 @@
                         <Image url="@../images/levelIcons/level9.png"/>
                     </ImageView>
                 </graphic>
-            </Button>
+            </Button>-->
         </GridPane>
         <VBox alignment="BOTTOM_CENTER" styleClass="highscore-table">
             <Label fx:id ="highscore"></Label>
