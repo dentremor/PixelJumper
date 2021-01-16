@@ -31,6 +31,8 @@ import java.util.Optional;
  */
 
 public class EditorController {
+
+    // Logger
     private static final Logger log = LogManager.getLogger(EditorController.class);
 
     // Variables from the .fxml-file
@@ -170,6 +172,8 @@ public class EditorController {
         final Optional<String> result = dialog.showAndWait();
         result.ifPresent(name -> {
             try {
+
+                // Checks if the mapName already exists
                 if (mapExists(name)) {
                     final Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -177,6 +181,7 @@ public class EditorController {
                     alert.setContentText("The name " + name + " is already taken!");
                     alert.showAndWait();
                     actionForExportButton();
+
                 } else {
                     final ArrayList<Tile> mapArray = new ArrayList<>();
                     int index = 0;
@@ -193,10 +198,13 @@ public class EditorController {
                     try {
                         map.exportMap(name);
                     } catch (IOException e) {
+                        log.fatal(e.getMessage());
                         e.printStackTrace();
                     }
                 }
+
             } catch (IOException e) {
+                log.fatal(e.getMessage());
                 e.printStackTrace();
             }
         });
@@ -212,6 +220,7 @@ public class EditorController {
             }
         }
         if (index == 0) {
+            log.info("The Map is empty.");
             return true;
         }
         return false;
@@ -222,6 +231,7 @@ public class EditorController {
         String[] mapNamesAsArray = Map.MapManager.getMapNamesAsArray();
         for (String mapName: mapNamesAsArray) {
             if (mapName.equals(name)) {
+                log.info("The mapName " + name + " already exists");
                 return true;
             }
         }
@@ -249,7 +259,7 @@ public class EditorController {
         final int id = Integer.parseInt(canvas.getId());
 
         this.editorImageArray[id] = this.selectedImage.get();
-        log.info("Item: " + id + " was replaced by" + this.selectedImage + " in the map.");
+        log.info("Item: " + id + " was replaced by" + this.selectedImage.toString() + " in the map.");
 
         final ImageView imvNew = new ImageView(this.selectedImage.get());
 

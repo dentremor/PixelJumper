@@ -1,5 +1,11 @@
 package de.se2projekt.util;
 
+/**
+ * A class for spacing the magic numbers.
+ * @author Daniel Hiller
+ * @version 0.1.0
+ */
+
 public class Config {
 
     public static class Map {
