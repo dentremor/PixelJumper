@@ -34,7 +34,7 @@ public class Player extends Entity{
     }
 
     public enum State {
-        FALLING, JUMPING, GROUND
+        FALLING, JUMPING, GROUND, CLIMBING
     }
 
     @Override

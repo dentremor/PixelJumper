@@ -3,6 +3,8 @@ package de.hdm_stuttgart.mi.se2.game.util;
 import de.hdm_stuttgart.mi.se2.game.entities.Player;
 import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
 import de.hdm_stuttgart.mi.se2.game.main.GameManager;
+import javafx.scene.image.PixelReader;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class CollisionUtil {
@@ -79,6 +81,16 @@ public class CollisionUtil {
     private boolean intersects(Rectangle r1, Rectangle r2){
         return r1.getX() < r2.getX() + r2.getWidth() && r1.getX() + r1.getWidth() > r2.getX() && r1.getY() < r2.getY() + r2.getHeight() && r1.getY() + r1.getHeight() > r2.getY();
     }
+
+    private boolean intersectsPrecise(int x, int y, PixelReader pr1, PixelReader pr2){
+        boolean intersects = false;
+        Color color1 = pr1.getColor(x,y);
+        Color color2 = pr2.getColor(x,y);
+
+
+        return color1.isOpaque() || color2.isOpaque();
+    }
+
 
 
 }

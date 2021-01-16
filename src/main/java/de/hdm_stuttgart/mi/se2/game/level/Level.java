@@ -6,6 +6,7 @@ import de.hdm_stuttgart.mi.se2.game.main.GameManager;
 import de.hdm_stuttgart.mi.se2.game.util.Config;
 import de.hdm_stuttgart.mi.se2.game.util.Vector2d;
 import javafx.scene.image.Image;
+import javafx.scene.image.PixelReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,13 +40,12 @@ public class Level {
                     gameManager.getPlayer().setPos(new Vector2d(t.getX(),t.getY()));
                 }else if(t.getImage().getTileType().equals(Config.TileType.FINISH_TYPE)){
                     finishTile = t;
+
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public Image getBackground() {
