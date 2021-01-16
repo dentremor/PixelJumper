@@ -2,11 +2,9 @@ package de.hdm_stuttgart.mi.se2.game.controller;
 
 import de.hdm_stuttgart.mi.se2.game.main.GameManager;
 import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,17 +21,10 @@ public class GameController {
     @FXML
     public void initialize() {
 
-        this.gameManager = new GameManager();
+        this.gameManager = new GameManager(this);
 
         final Canvas canvas = new Canvas(1600, 900);
         this.rootPane.getChildren().add(canvas);
-
-        canvas.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                System.err.println("TEWSAFR");
-            }
-        });
 
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -81,5 +72,10 @@ public class GameController {
 
         this.timer.start();
     }
+
+    public void stopGameLoop(){
+        timer.stop();
+    }
+
 
 }

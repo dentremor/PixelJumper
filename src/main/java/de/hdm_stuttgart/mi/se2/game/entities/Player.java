@@ -39,7 +39,7 @@ public class Player extends Entity{
 
     @Override
     public void render(GraphicsContext gc, Screen screen) {
-        screen.render(gc,(int) getPos().x,(int) getPos().y,(rightDirection ? ImageHolder.INSTANCE.PLAYER_RIGHT_IMAGE:ImageHolder.INSTANCE.PLAYER_LEFT_IMAGE),gameManager.getxOffset());
+        screen.render(gc,(int) getPos().x,(int) getPos().y,(rightDirection ? ImageHolder.INSTANCE.PLAYER_RIGHT_IMAGE:ImageHolder.INSTANCE.PLAYER_LEFT_IMAGE),gameManager.getLevel().getxOffset());
     }
 
     @Override
@@ -127,10 +127,10 @@ public class Player extends Entity{
         }
     }
 
-    public void respawn(int x, int y){
+    public void respawn(Vector2d pos){
         setVel(new Vector2d(0, 0));
         setAcc(new Vector2d(0, 0));
-        setPos(new Vector2d(x,y));
+        setPos(pos);
         this.state = State.GROUND;
         this.lastState = State.GROUND;
         rightDirection = true;

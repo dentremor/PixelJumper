@@ -20,7 +20,7 @@ public class CollisionUtil {
 
     private Tile getTileUnderPlayer(Player player, GameManager gameManager) {
         Rectangle defaultRectangle = player.getBounds();
-        for(Tile tile : gameManager.getTiles()) {
+        for(Tile tile : gameManager.getLevel().getTiles()) {
             if(intersects(new Rectangle(defaultRectangle.getX(),defaultRectangle.getY(),defaultRectangle.getWidth(),defaultRectangle.getHeight()+1),tile.getBounds())) {
                 return tile;
             }
@@ -29,7 +29,8 @@ public class CollisionUtil {
     }
 
     private void betweenPlayerAndTiles(Player player, GameManager gameManager) {
-        for (Tile t : gameManager.getTiles()) {
+        Tile scoreTile = null;
+        for (Tile t : gameManager.getLevel().getTiles()) {
             if (intersects(player.getBounds(),t.getBounds())) {
                 if (t.isSolid() && !t.isDeadly()) {
                     int collisionSide = getCollsionSide(player.getBounds(), t.getBounds());
@@ -37,16 +38,30 @@ public class CollisionUtil {
                 } else if (t.isDeadly()) {
                     gameManager.respawnPlayer();
                     break;
+                }else if(t.isCollectable()){
+                    gameManager.getLevel().addScore();
+                    scoreTile = t;
+                    break;
                 }
             }
 
         }
+
+        if(scoreTile != null){
+            gameManager.getLevel().getTiles().remove(scoreTile);
+            scoreTile = null;
+        }
+
         player.collide(-1,null);
     }
 
     public boolean playerCollidedWithEnd(Player player, GameManager gameManager) {
-        for (Tile t : gameManager.getTiles()) {
-            //TODO IMPLEMENT END
+        for (Tile t : gameManager.getLevel().getTiles()) {
+            if(t.getImage().getTileType().equals(Config.TileType.FINISH_TYPE)){
+                if(intersects(player.getBounds(),t.getBounds())){
+                    return true;
+                }
+            }
         }
         return false;
     }

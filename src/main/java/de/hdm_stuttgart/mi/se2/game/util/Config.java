@@ -8,6 +8,12 @@ package de.hdm_stuttgart.mi.se2.game.util;
 
 public class Config {
 
+    public static class Global{
+        public static final int GAME_WIDTH = 1600;
+        public static final int GAME_HEIGHT = 900;
+        public static final int TILE_SIZE = 50;
+    }
+
     public static class Map {
         public static final int COLUMN_SIZE = 18;
         public static final int ROW_SIZE = 32;
