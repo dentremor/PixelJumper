@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.layout.GridPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,9 +36,6 @@ public class HighscoreController {
 
     @FXML
     public Label highscore;
-
-    @FXML
-    public GridPane gridPane;
 
     /**
      * initialize() is called when the Highscore screen is opened to get all needed information to display the available levels you can then click on
