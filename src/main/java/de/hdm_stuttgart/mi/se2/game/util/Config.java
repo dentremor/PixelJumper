@@ -12,6 +12,7 @@ public class Config {
         public static final int GAME_WIDTH = 1600;
         public static final int GAME_HEIGHT = 900;
         public static final int TILE_SIZE = 50;
+        public static final double GRAVITY = 1000;
     }
 
     public static class Map {

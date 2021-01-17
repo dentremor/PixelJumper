@@ -9,15 +9,25 @@ import javafx.scene.layout.AnchorPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * JavaFX Controller for the Game.
+ * @author Cazim Ukela
+ */
 public class GameController {
+
+    //Logger
     private static final Logger log = LogManager.getLogger(GameController.class);
 
+    // Custom Variables
     private GameManager gameManager;
     private AnimationTimer timer;
 
-    //Variablen aus der GUI
+    // Variables from the .fxml-file
     public AnchorPane rootPane;
 
+    /**
+     * Runs when the GameController is launched
+     */
     @FXML
     public void initialize() {
 
@@ -31,7 +41,15 @@ public class GameController {
         startGameLoop(gc);
     }
 
+    /**
+     * Starts the Animationtimer for the gameloop
+     *
+     * @param gc | GraphicsContext to draw Images
+     */
     private void startGameLoop(final GraphicsContext gc) {
+
+        log.info("Start GameLoop");
+
         this.timer = new AnimationTimer() {
 
             long lastTime = System.nanoTime();
@@ -73,7 +91,11 @@ public class GameController {
         this.timer.start();
     }
 
+    /**
+     * Stopps the gameloop
+     */
     public void stopGameLoop(){
+        log.info("Stop GameLoop");
         timer.stop();
     }
 

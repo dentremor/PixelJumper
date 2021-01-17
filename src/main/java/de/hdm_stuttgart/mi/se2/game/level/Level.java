@@ -7,21 +7,47 @@ import de.hdm_stuttgart.mi.se2.game.util.Config;
 import de.hdm_stuttgart.mi.se2.game.util.Vector2d;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class that handles a single Level
+ * @author Cazim Ukela
+ */
 public class Level {
 
+    // Logger
+    private final static Logger log = LogManager.getLogger(GameManager.class);
+
+    // GameManager instance
     private GameManager gameManager;
 
+    // All Tiles in the Level
     private ArrayList<Tile> tiles;
+
+    // Starttile of the Level
     private Tile startTile;
+
+    // Finishtile of the Level
     private Tile finishTile;
+
+    // Score of the Player
     private int score;
+
+    // Background image of the Level
     private Image background;
+
+    // X-Offset od the Level
     private int xOffset;
 
+    /**
+     * Constructor
+     *
+     * @param gameManager | Gamemanger instance
+     */
     public Level(GameManager gameManager){
         this.gameManager = gameManager;
         this.score = 0;
@@ -29,9 +55,17 @@ public class Level {
         this.xOffset = 0;
     }
 
-    public void createLevel() {
+    /**
+     * Loads the Level
+     *
+     * @param mapName | Name of the Map
+     */
+    public void loadLevel(String mapName) {
+
+        log.info("Loading Level");
+
         try {
-            tiles = Map.MapManager.getMap("cazim");
+            tiles = Map.MapManager.getMap(mapName);
             for(Tile t : tiles){
                 t.setX(t.getX() * Config.Global.TILE_SIZE);
                 t.setY(t.getY() * Config.Global.TILE_SIZE);
@@ -43,11 +77,14 @@ public class Level {
 
                 }
             }
+
+            log.info(tiles.size() + " Tiles loaded");
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e);
         }
     }
 
+    // Getter & Setter
     public Image getBackground() {
         return background;
     }
