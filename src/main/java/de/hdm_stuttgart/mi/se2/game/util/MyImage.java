@@ -12,14 +12,20 @@ public class MyImage extends Image {
 
     Config.TileType tileType;
     Image image;
+    String subUrl;
 
-    public MyImage(String url, Config.TileType tileType) {
+    public MyImage(final String url, final Config.TileType tileType) {
         super(url);
+        subUrl = url;
         this.tileType = tileType;
     }
 
     public Config.TileType getTileType() {
         return tileType;
+    }
+
+    public String getSubUrl() {
+        return subUrl;
     }
 
     public Image getImage() {

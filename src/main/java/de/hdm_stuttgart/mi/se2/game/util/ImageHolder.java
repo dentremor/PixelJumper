@@ -81,13 +81,13 @@ public class ImageHolder {
         };
     }
 
-    public String toString(Image image) {
+    public String toString(final Image image) {
         return image.getUrl();
     }
 
-    public MyImage getImage(String imageURL) {
+    public MyImage getImage(final String imageURL) {
         for (int i = 0; i < getImagesAsArray().length; i++) {
-            if (imageURL.equals(getImagesAsArray()[i].getUrl())) {
+            if (imageURL.equals(getImagesAsArray()[i].getSubUrl())) {
                 return getImagesAsArray()[i];
             }
         }

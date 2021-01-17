@@ -48,7 +48,7 @@ public class GameManager {
         this.player = new Player(this,0,0);
         log.info("Create Level");
         this.level = new Level(this);
-        this.level.loadLevel("cazim");
+        this.level.loadLevel("test");
         this.startTime = System.currentTimeMillis();
     }
 

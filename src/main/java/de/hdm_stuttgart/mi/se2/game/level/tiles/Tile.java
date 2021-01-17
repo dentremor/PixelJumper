@@ -95,7 +95,7 @@ public class Tile implements ITile {
     }
 
     @Override
-    public void setCollectable(boolean collectable) {
+    public void setCollectable(final boolean collectable) {
         isCollectable = collectable;
     }
 
@@ -105,7 +105,7 @@ public class Tile implements ITile {
     }
 
     @Override
-    public void setStart(boolean start) {
+    public void setStart(final boolean start) {
         isStart = start;
     }
 
@@ -115,7 +115,7 @@ public class Tile implements ITile {
     }
 
     @Override
-    public void setFinish(boolean finish) {
+    public void setFinish(final boolean finish) {
         isFinish = finish;
     }
 
@@ -162,11 +162,13 @@ public class Tile implements ITile {
 
     @Override
     public JSONObject getAsJson() {
-        JSONObject jsonObject = new JSONObject();
+        final JSONObject jsonObject = new JSONObject();
         jsonObject.put("x", x);
         jsonObject.put("y", y);
         // TODO hier muss man was ändern
-        jsonObject.put("image", image.getUrl());
+        final String url = image.getUrl();
+        final String[] urlArray = url.split("/images/");
+        jsonObject.put("image", "/images/"+urlArray[1]);
 
         return jsonObject;
     }
