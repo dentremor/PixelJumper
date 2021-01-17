@@ -10,7 +10,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -36,11 +39,11 @@ public class Map {
 
     public void exportMap(final String mapName) throws IOException {
 
-        JSONArray mapArrayJson = new JSONArray();
+        final JSONArray mapArrayJson = new JSONArray();
 
         // Get objects for Json file
         for (int i = 0; i < this.mapArray.size(); i++) {
-            JSONObject jsonObject = this.mapArray.get(i).getAsJson();
+            final JSONObject jsonObject = this.mapArray.get(i).getAsJson();
             mapArrayJson.add(jsonObject);
         }
         //Write JSON file
@@ -61,10 +64,10 @@ public class Map {
         public static ArrayList<Tile> getMap(final String mapName) throws IOException {
 
             // StringBuilder for storing the whole file and get each char
-            StringBuilder sb = new StringBuilder();
-            BufferedReader rd = new BufferedReader(new FileReader("src/main/resources/maps/" + mapName + ".json"));
+            final StringBuilder sb = new StringBuilder();
+            final BufferedReader rd = new BufferedReader(new FileReader("src/main/resources/maps/" + mapName + ".json"));
             int cp;
-            ArrayList<Tile> mapArray = new ArrayList<>();
+            final ArrayList<Tile> mapArray = new ArrayList<>();
 
             while ((cp = rd.read()) != -1) {
                 sb.append((char) cp);
@@ -72,19 +75,19 @@ public class Map {
             rd.close();
 
             // Converts the strings into a JSONArray
-            JSONParser jsonParser = new JSONParser();
+            final JSONParser jsonParser = new JSONParser();
             JSONArray jsonArray = new JSONArray();
 
             try {
                 jsonArray = (JSONArray) jsonParser.parse(sb.toString());
-            } catch (ParseException e) {
+            } catch (final ParseException e) {
                 log.fatal(e.getMessage());
                 e.printStackTrace();
             }
 
             // Converts the JSONArray in single JSONObjects
             for (int i = 0; i < jsonArray.size(); i++) {
-                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                final JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                 final Tile tile = new TileFactory().makeTile(Math.toIntExact((long) jsonObject.get("x")), Math.toIntExact((long) jsonObject.get("y")), ImageHolder.INSTANCE.getImage((String) jsonObject.get("image")));
                 mapArray.add(tile);
             }
@@ -102,7 +105,7 @@ public class Map {
                         .map(p -> p.getFileName().toString().replaceFirst("[.][^.]+$", ""))
                         .collect(Collectors.toList());
                 log.info("Read all mapNames from following destination: " + "src/main/resources/maps/");
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 log.fatal(e.getMessage());
                 e.printStackTrace();
             }

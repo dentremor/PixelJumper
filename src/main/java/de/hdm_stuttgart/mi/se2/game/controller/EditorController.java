@@ -1,10 +1,10 @@
 package de.hdm_stuttgart.mi.se2.game.controller;
 
 
-import de.hdm_stuttgart.mi.se2.game.level.map.EditorTileMap;
-import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
 import de.hdm_stuttgart.mi.se2.game.highscore.HighscoreManager;
+import de.hdm_stuttgart.mi.se2.game.level.map.EditorTileMap;
 import de.hdm_stuttgart.mi.se2.game.level.map.Map;
+import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
 import de.hdm_stuttgart.mi.se2.game.level.tiles.TileFactory;
 import de.hdm_stuttgart.mi.se2.game.util.Config;
 import de.hdm_stuttgart.mi.se2.game.util.ImageHolder;
@@ -198,13 +198,13 @@ public class EditorController {
                     highscoreManager.writeScoreFile();
                     try {
                         map.exportMap(name);
-                    } catch (IOException e) {
+                    } catch (final IOException e) {
                         log.fatal(e.getMessage());
                         e.printStackTrace();
                     }
                 }
 
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 log.fatal(e.getMessage());
                 e.printStackTrace();
             }
@@ -229,8 +229,8 @@ public class EditorController {
 
     // Function for displayExportButton() which checks if a map with this name already exists
     public boolean mapExists(final String name) throws IOException {
-        String[] mapNamesAsArray = Map.MapManager.getMapNamesAsArray();
-        for (String mapName: mapNamesAsArray) {
+        final String[] mapNamesAsArray = Map.MapManager.getMapNamesAsArray();
+        for (final String mapName: mapNamesAsArray) {
             if (mapName.equals(name)) {
                 log.info("The mapName " + name + " already exists");
                 return true;
@@ -255,7 +255,7 @@ public class EditorController {
     }
 
     // Function for displayEditorPane() which updates the StackPane
-    public void updateCanvas(StackPane canvas) {
+    public void updateCanvas(final StackPane canvas) {
         // Store the value or the index
         final int id = Integer.parseInt(canvas.getId());
 

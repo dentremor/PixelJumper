@@ -1,12 +1,5 @@
 package de.hdm_stuttgart.mi.se2.game;
 
-import de.hdm_stuttgart.mi.se2.game.level.map.EditorTileMap;
-import de.hdm_stuttgart.mi.se2.game.util.Config;
-import de.hdm_stuttgart.mi.se2.game.util.ImageHolder;
-import de.hdm_stuttgart.mi.se2.game.util.MyImage;
-import org.junit.Assert;
-import org.junit.Test;
-
 public class EditorTest {
 
 //    @Test

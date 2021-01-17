@@ -1,8 +1,8 @@
 package de.hdm_stuttgart.mi.se2.game.entities;
 
-import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
 import de.hdm_stuttgart.mi.se2.game.gfx.Screen;
 import de.hdm_stuttgart.mi.se2.game.input.Keyboard;
+import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
 import de.hdm_stuttgart.mi.se2.game.main.GameManager;
 import de.hdm_stuttgart.mi.se2.game.util.Config;
 import de.hdm_stuttgart.mi.se2.game.util.ImageHolder;
@@ -27,7 +27,7 @@ public class Player extends Entity{
     private boolean rightDirection;
 
     // GameManager instance
-    private GameManager gameManager;
+    private final GameManager gameManager;
 
     /**
      * Constructor
@@ -36,7 +36,7 @@ public class Player extends Entity{
      * @param xPos | X - Position of the Entity
      * @param yPos | Y - Postiion of the Entity
      */
-    public Player(GameManager gameManager, int xPos, int yPos) {
+    public Player(final GameManager gameManager, final int xPos, final int yPos) {
         super(xPos, yPos);
         this.gameManager = gameManager;
         this.rightDirection = true;
@@ -68,7 +68,7 @@ public class Player extends Entity{
      * @param screen | Helper Class to draw everything right
      */
     @Override
-    public void render(GraphicsContext gc, Screen screen) {
+    public void render(final GraphicsContext gc, final Screen screen) {
         screen.render(gc,(int) getPos().x,(int) getPos().y,(rightDirection ? ImageHolder.INSTANCE.PLAYER_RIGHT_IMAGE:ImageHolder.INSTANCE.PLAYER_LEFT_IMAGE),gameManager.getLevel().getxOffset());
     }
 
@@ -86,7 +86,7 @@ public class Player extends Entity{
      */
     private void move() {
 
-        double lastXPos = getPos().x;
+        final double lastXPos = getPos().x;
 
         getPos().x += getVel().x;
         getVel().x = 0;
@@ -117,7 +117,7 @@ public class Player extends Entity{
      *
      * @param tile
      */
-    public void defineJumpingOrFalling(Tile tile) {
+    public void defineJumpingOrFalling(final Tile tile) {
         if (state == State.FALLING || state == State.JUMPING) {
             setState((getVel().y > 0) ? State.FALLING : State.JUMPING);
         }else if(tile == null) {
@@ -151,7 +151,7 @@ public class Player extends Entity{
      * @param side | The Collisionside between the Player and the Tile
      * @param tile | Tile which the Player has collided with
      */
-    public void collide(int side, Tile tile) {
+    public void collide(final int side, final Tile tile) {
         if(side == 0 && state != State.GROUND && state != State.JUMPING) {
             getVel().y = 0;
             getAcc().y = 0;
@@ -181,7 +181,7 @@ public class Player extends Entity{
      *
      * @param pos | Respawnposition
      */
-    public void respawn(Vector2d pos){
+    public void respawn(final Vector2d pos){
         setVel(new Vector2d(0, 0));
         setAcc(new Vector2d(0, 0));
         setPos(pos);
@@ -195,7 +195,7 @@ public class Player extends Entity{
      *
      * @param state | Playerstate
      */
-    public void setState(State state) {
+    public void setState(final State state) {
         this.lastState = this.state;
         this.state = state;
     }

@@ -2,23 +2,14 @@ package de.hdm_stuttgart.mi.se2.game.main;
 
 import de.hdm_stuttgart.mi.se2.game.controller.GameController;
 import de.hdm_stuttgart.mi.se2.game.entities.Player;
-import de.hdm_stuttgart.mi.se2.game.level.Level;
-import de.hdm_stuttgart.mi.se2.game.level.map.Map;
-import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
-import de.hdm_stuttgart.mi.se2.game.level.tiles.TileFactory;
-import de.hdm_stuttgart.mi.se2.game.util.Config;
-import de.hdm_stuttgart.mi.se2.game.util.Vector2d;
 import de.hdm_stuttgart.mi.se2.game.gfx.Screen;
+import de.hdm_stuttgart.mi.se2.game.level.Level;
+import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
 import de.hdm_stuttgart.mi.se2.game.util.CollisionUtil;
-import de.hdm_stuttgart.mi.se2.game.util.ImageHolder;
+import de.hdm_stuttgart.mi.se2.game.util.Vector2d;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class that handles the whole Game
@@ -30,19 +21,19 @@ public class GameManager {
     private final static Logger log = LogManager.getLogger(GameManager.class);
 
     // GameController instance
-    private GameController gameController;
+    private final GameController gameController;
 
     // Screen instance
     private final Screen screen;
 
     // Player instance
-    private Player player;
+    private final Player player;
 
     // Level instance
-    private Level level;
+    private final Level level;
 
     // Starttime of playing
-    private long startTime;
+    private final long startTime;
 
 
     /**
@@ -50,7 +41,7 @@ public class GameManager {
      *
      * @param gameController | GameController instance
      */
-    public GameManager(GameController gameController) {
+    public GameManager(final GameController gameController) {
         this.gameController = gameController;
         this.screen = new Screen();
         log.info("Create Player");
@@ -87,7 +78,7 @@ public class GameManager {
         gc.clearRect(0,0,1600,900);
         level.setxOffset(screen.moveCamera(player, level.getxOffset()));
         renderBackground(gc);
-        for(Tile tile : level.getTiles()) {
+        for(final Tile tile : level.getTiles()) {
             if(tile.getX() + level.getxOffset() > -100 && tile.getX() + level.getxOffset() < 1600) {
                 screen.render(gc, tile,level.getxOffset());
             }
@@ -111,7 +102,7 @@ public class GameManager {
      *
      * @param gc | Needed to draw Images
      */
-    private void renderBackground(GraphicsContext gc) {
+    private void renderBackground(final GraphicsContext gc) {
         for(int i = 0; i < 4; i ++) {
             screen.render(gc, (i) * 900, 0, level.getBackground(), level.getxOffset());
         }

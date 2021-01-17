@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class HighscoreManager {
     private final Logger log = LogManager.getLogger(HighscoreManager.class);
     private ArrayList<Score> scores;
-    private static String HIGHSCORE_FILE;
+    private final String HIGHSCORE_FILE;
 
     ObjectOutputStream outputStream = null;
     ObjectInputStream inputStream = null;
@@ -27,7 +27,7 @@ public class HighscoreManager {
      *
      * Constructor for HighscoreManager that takes a filename to create the .dat file's name in which the Highscores are saved of a level for when you restart the game
      */
-    public HighscoreManager(String filename){
+    public HighscoreManager(final String filename){
         log.info("Building .dat file's name out of given filename...");
         HIGHSCORE_FILE = filenameBuilder(filename);
         scores = new ArrayList<>();
@@ -45,8 +45,8 @@ public class HighscoreManager {
     /**
      * filenameBuilder() creates the filename for the .dat file in which a level's highscore information is stored
      */
-    private static String filenameBuilder(String filename){
-        StringBuffer bufferedName = new StringBuffer(filename);
+    private static String filenameBuilder(final String filename){
+        final StringBuffer bufferedName = new StringBuffer(filename);
         bufferedName.append(".dat");
         bufferedName.insert(0, "src/main/resources/highscores/");
         return bufferedName.toString();
@@ -57,7 +57,7 @@ public class HighscoreManager {
      * @param name name of the player
      * @param points amount of points the player achieved
      */
-    public void addScore(String name, int points){
+    public void addScore(final String name, final int points){
         loadScoreFile();
         log.info("Adding new score to the scores ArrayList...");
         scores.add(new Score(name, points));
@@ -74,11 +74,11 @@ public class HighscoreManager {
             inputStream = new ObjectInputStream(new FileInputStream(HIGHSCORE_FILE));
             log.info("Creating ArrayList out of loaded values...");
             scores = (ArrayList<Score>) inputStream.readObject();
-        } catch (FileNotFoundException e){
+        } catch (final FileNotFoundException e){
             log.error("FileNotFoundException occured: " + e.getMessage());
-        } catch (IOException e) {
+        } catch (final IOException e) {
             log.error("IOException occured: " + e.getMessage());
-        } catch (ClassNotFoundException e){
+        } catch (final ClassNotFoundException e){
             log.error("ClassNotFoundException occured: " + e.getMessage());
         }
         finally {
@@ -88,7 +88,7 @@ public class HighscoreManager {
                     outputStream.flush();
                     outputStream.close();
                 }
-            } catch (IOException e){
+            } catch (final IOException e){
                 log.error("IOException occured: " + e.getMessage());
             }
         }
@@ -101,9 +101,9 @@ public class HighscoreManager {
         try{
             outputStream = new ObjectOutputStream(new FileOutputStream(HIGHSCORE_FILE));
             outputStream.writeObject(scores);
-        } catch (FileNotFoundException e){
+        } catch (final FileNotFoundException e){
             log.error(e.getMessage());
-        } catch (IOException e){
+        } catch (final IOException e){
             log.error(e.getMessage());
         } finally {
             try{
@@ -111,7 +111,7 @@ public class HighscoreManager {
                     outputStream.flush();
                     outputStream.close();
                 }
-            }catch (IOException e) {
+            }catch (final IOException e) {
                 log.error(e.getMessage());
             }
         }
@@ -126,10 +126,10 @@ public class HighscoreManager {
         //amount of displayed scores
         final int maxDisplayed = 10;
 
-        ArrayList<Score> scores = getScores();
+        final ArrayList<Score> scores = getScores();
 
         log.info("Sorting ArrayList scores...");
-        List<Score> sortedList = scores.stream()
+        final List<Score> sortedList = scores.stream()
                 .sorted(Comparator.comparingInt(Score::getPoints)
                 .reversed()).collect(Collectors.toList());
 

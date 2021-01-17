@@ -6,9 +6,6 @@ import de.hdm_stuttgart.mi.se2.game.util.Config;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * Helperclass to draw every Tile and Entity
  * @author Cazim Ukela
@@ -22,7 +19,7 @@ public class Screen {
      * @param xOffset | Current xOffset
      * @return | The new xOffset
      */
-    public int moveCamera(Player player, int xOffset) {
+    public int moveCamera(final Player player, int xOffset) {
         if(player.getPos().x + xOffset > (Config.Global.GAME_WIDTH /2)) {
             xOffset -= player.getPos().x + xOffset - (Config.Global.GAME_WIDTH/2);
         }

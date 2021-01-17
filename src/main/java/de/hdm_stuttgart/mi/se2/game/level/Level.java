@@ -6,7 +6,6 @@ import de.hdm_stuttgart.mi.se2.game.main.GameManager;
 import de.hdm_stuttgart.mi.se2.game.util.Config;
 import de.hdm_stuttgart.mi.se2.game.util.Vector2d;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +22,7 @@ public class Level {
     private final static Logger log = LogManager.getLogger(GameManager.class);
 
     // GameManager instance
-    private GameManager gameManager;
+    private final GameManager gameManager;
 
     // All Tiles in the Level
     private ArrayList<Tile> tiles;
@@ -38,7 +37,7 @@ public class Level {
     private int score;
 
     // Background image of the Level
-    private Image background;
+    private final Image background;
 
     // X-Offset od the Level
     private int xOffset;
@@ -48,7 +47,7 @@ public class Level {
      *
      * @param gameManager | Gamemanger instance
      */
-    public Level(GameManager gameManager){
+    public Level(final GameManager gameManager){
         this.gameManager = gameManager;
         this.score = 0;
         this.background = new Image(GameManager.class.getResource("/images/guiElements/background900x900_loopable.png").toString());
@@ -60,13 +59,13 @@ public class Level {
      *
      * @param mapName | Name of the Map
      */
-    public void loadLevel(String mapName) {
+    public void loadLevel(final String mapName) {
 
         log.info("Loading Level");
 
         try {
             tiles = Map.MapManager.getMap(mapName);
-            for(Tile t : tiles){
+            for(final Tile t : tiles){
                 t.setX(t.getX() * Config.Global.TILE_SIZE);
                 t.setY(t.getY() * Config.Global.TILE_SIZE);
                 if(t.getImage().getTileType().equals(Config.TileType.START_TYPE)){
@@ -79,7 +78,7 @@ public class Level {
             }
 
             log.info(tiles.size() + " Tiles loaded");
-        } catch (IOException e) {
+        } catch (final IOException e) {
             log.error(e);
         }
     }
@@ -105,7 +104,7 @@ public class Level {
         return xOffset;
     }
 
-    public void setxOffset(int xOffset) {
+    public void setxOffset(final int xOffset) {
         this.xOffset = xOffset;
     }
 

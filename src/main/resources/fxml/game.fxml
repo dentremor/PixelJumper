@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.scene.layout.*?>
-
 <!--   root   -->
 
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.net.URL?>
 <AnchorPane fx:id="rootPane" styleClass="game-screen"
             xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
