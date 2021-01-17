@@ -1,7 +1,6 @@
 package de.hdm_stuttgart.mi.se2.game.util;
 
 import de.hdm_stuttgart.mi.se2.game.controller.EditorController;
-import javafx.scene.image.Image;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -79,10 +78,6 @@ public class ImageHolder {
                 IMAGE_31, IMAGE_32, IMAGE_33, IMAGE_34, IMAGE_35, IMAGE_36, DUMMY_IMAGE, IMAGE_38, DUMMY_IMAGE, IMAGE_40,
                 IMAGE_41, IMAGE_42, DUMMY_IMAGE, IMAGE_44, DUMMY_IMAGE, IMAGE_46, IMAGE_47,IMAGE_48,
         };
-    }
-
-    public String toString(final Image image) {
-        return image.getUrl();
     }
 
     public MyImage getImage(final String imageURL) {
