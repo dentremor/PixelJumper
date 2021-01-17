@@ -31,7 +31,6 @@ public class HighscoreManager {
         log.info("Building .dat file's name out of given filename...");
         HIGHSCORE_FILE = filenameBuilder(filename);
         scores = new ArrayList<>();
-        //TODO Button für LevelSelect und Highscore hier initialisieren
     }
 
     /**

@@ -19,22 +19,10 @@
     <VBox styleClass="main-screen" prefHeight="900" prefWidth="1600" alignment="CENTER">
 
         <ListView fx:id="listView" prefWidth="300" prefHeight="800" style = "-fx-padding: 100"></ListView>
-        <VBox alignment="TOP_LEFT" styleClass="button-list">
 
-        <Button styleClass="menu-button" fx:id="returnButton" onMouseClicked="#handleReturnButtonClicked">
-            <graphic>
-                <ImageView fitWidth="50.0" fitHeight="50.0">
-                    <image>
-                        <Image url="@../images/guiElements/returnButton.png"/>
-                    </image>
-                </ImageView>
-            </graphic>
-        </Button>
-
-        </VBox>
-
-    <VBox alignment="TOP_LEFT" styleClass="button-list">
-        <Button styleClass="menu-button" fx:id="playButton" onMouseClicked="#handleStartButtonClicked">
+        <GridPane style = "-fx-padding: 10" hgap="10" vgap="10">
+        <Button styleClass="menu-button" fx:id="playButton" onMouseClicked="#handleStartButtonClicked"
+                GridPane.columnIndex="1" GridPane.rowIndex="0">
             <graphic>
                 <ImageView fitWidth="300.0" fitHeight="50.0">
                     <image>
@@ -43,8 +31,18 @@
                 </ImageView>
             </graphic>
         </Button>
-    </VBox>
 
+            <Button styleClass="menu-button" fx:id="returnButton" onMouseClicked="#handleReturnButtonClicked"
+                    GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <graphic>
+                    <ImageView fitWidth="50.0" fitHeight="50.0">
+                        <image>
+                            <Image url="@../images/guiElements/returnButton.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </GridPane>
     </VBox>
 
 </AnchorPane>

@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,25 +41,33 @@ public class HighscoreController {
     @FXML
     public GridPane gridPane;
 
+    /**
+     * initialize() is called when the Highscore screen is opened to get all needed information to display the available levels you can then click on
+     * to get information about their highscores
+     */
     @FXML
     public void initialize(){
         int fileAmount = getLevelAmount();
         ArrayList<String> filenames = getFileNames();
-        ColumnConstraints cc = new ColumnConstraints();
-        cc.setPercentWidth(50);
-        gridPane.getColumnConstraints().add(cc);
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         for(int i = 0; i < fileAmount; i++){
             listView.getItems().add(filenames.get(i));
         }
     }
 
+    /**
+     * handleReturnButton() is called when you click the button to get back into the main menu
+     * @throws IOException
+     */
     @FXML
     public void handleReturnButtonClicked() throws IOException {
         log.info("Return button clicked");
         returnButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml")));
     }
 
+    /**
+     * if a level got selected in the list and you click the show button then handleShowButtonClicked() is called to display all highscores of that level
+     */
     @FXML
     public void handleShowButtonClicked(){
         if(levelSelected == true) {
@@ -76,15 +83,24 @@ public class HighscoreController {
         }
     }
 
+    /**
+     * handleMouseClick() sets the boolean levelSelected to true, if a level in the ListView got selected
+     */
     @FXML
     public void handleMouseClick(){
         levelSelected = true;
     }
 
+    /**
+     * getLevelAmount() returns an integer of the amount of levels there are
+     * @return either the amount of levels there are or 0 if a NullPointerException occurs
+     */
     private int getLevelAmount() {
+        log.info("Trying to get the amount of levels there are...");
         try {
             File directory = new File("src/main/resources/highscores/");
             int amount = directory.list().length;
+            log.info("Returning the amount of levels as an int value");
             return amount;
         } catch (NullPointerException e) {
             log.error("NullPointerException occured: " + e.getMessage());
@@ -92,7 +108,13 @@ public class HighscoreController {
         }
     }
 
+
+    /**
+     * getFileNames() returns an ArrayList with the names of all levels there are
+     * @return ArrayList names consisting out of strings
+     */
     private ArrayList<String> getFileNames(){
+        log.info("Creating an ArrayList out of the names of all levels...");
         File directory = new File("src/main/resources/highscores");
         ArrayList<String> names = new ArrayList<>(Arrays.asList(directory.list()));
         for(int i = 0; i < names.size(); i++){
@@ -102,12 +124,5 @@ public class HighscoreController {
         }
         return names;
     }
-
-    private void openScoreFile(){
-        highscore.setText("Test");
-    }
-
-//        hmlvl1.addScore("Name 5", 220);
-
 
 }
