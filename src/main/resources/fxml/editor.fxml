@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <AnchorPane fx:id="rootPane" styleClass="editor-screen" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.se2projekt.controller.EditorController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hdm_stuttgart.mi.se2.game.controller.EditorController">
     <stylesheets>
         <URL value="@../styles/editor.css"/>
     </stylesheets>
