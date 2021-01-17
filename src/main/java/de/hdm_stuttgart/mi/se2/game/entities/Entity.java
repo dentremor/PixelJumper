@@ -5,22 +5,32 @@ import de.hdm_stuttgart.mi.se2.game.util.Vector2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.shape.Rectangle;
 
-
+/**
+ * Abstract Class which hold all Entity attributes
+ * @author Cazim Ukela
+ */
 public abstract class Entity {
 
-    /* Position des Entity*/
+    // Position of the Entity
     private Vector2d pos;
-    /* Geschwindigkeit des Entity*/
+
+    // Velocity of the Entity
     private Vector2d vel;
-    /* Beschleunigung des Entity*/
+
+    // Acceleration of the Entity
     private Vector2d acc;
-    /* Breite des Entity*/
+
+    // Width of the Entity
     private int width;
-    /* Hoehe des Entity*/
+
+    // Height of the Entity
     private int height;
 
     /**
-     * [Konstruktor] Initialisiert das Entity.
+     * Constructor
+     *
+     * @param xPos | X - Position of the Entity
+     * @param yPos | Y - Position of the Entitiy
      */
     public Entity(int xPos, int yPos) {
         pos = new Vector2d(xPos, yPos);
@@ -28,26 +38,31 @@ public abstract class Entity {
         this.height = 50;
     }
 
-    /*
-     * Abstrakte Methode update() für alle Entities
+    /**
+     * Updates the Entity. Has to be implemented by every childclass
+     *
      */
     public abstract void update();
-    /*
-     * Abstrakte Methode render() für alle Entities
+
+    /**
+     * Draws the Entity to the Screen. Has to be implemented by every childclass
+     *
+     * @param gc | Needed to draw the images
+     * @param screen | Helper Class to draw everything right
      */
     public abstract void render(GraphicsContext gc, Screen screen);
 
-    /*
-     * Gibt ein Rechteck für die Collisionsabfrage zurück
+    /**
+     * Needed for Collisiondetection
+     *
+     * @return rectangle
      */
     public Rectangle getBounds() {
         return new Rectangle((int) pos.x, (int) pos.y, width, height);
     }
 
 
-    /*
-     * Getter & Setter
-     */
+    //Getter & Setter
     public Vector2d getPos() {
         return pos;
     }

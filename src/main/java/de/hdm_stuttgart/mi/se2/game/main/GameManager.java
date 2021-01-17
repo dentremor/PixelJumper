@@ -20,30 +20,51 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Class that handles the whole Game
+ * @author Cazim Ukela
+ */
 public class GameManager {
 
+    // Logger
     private final static Logger log = LogManager.getLogger(GameManager.class);
 
+    // GameController instance
     private GameController gameController;
+
+    // Screen instance
     private final Screen screen;
+
+    // Player instance
     private Player player;
-    private long startTime;
+
+    // Level instance
     private Level level;
 
+    // Starttime of playing
+    private long startTime;
 
 
+    /**
+     * Constructor
+     *
+     * @param gameController | GameController instance
+     */
     public GameManager(GameController gameController) {
         this.gameController = gameController;
         this.screen = new Screen();
+        log.info("Create Player");
         this.player = new Player(this,0,0);
+        log.info("Create Level");
         this.level = new Level(this);
-        this.level.createLevel();
+        this.level.loadLevel("cazim");
         this.startTime = System.currentTimeMillis();
     }
 
 
-
+    /**
+     * Upadtes the Player and calls the detection of collisions
+     */
     public void update() {
         player.update();
 
@@ -57,7 +78,11 @@ public class GameManager {
 
     }
 
-
+    /**
+     * Draws the Player, Level and Stats
+     *
+     * @param gc | Needed to draw Images
+     */
     public void render(final GraphicsContext gc){
         gc.clearRect(0,0,1600,900);
         level.setxOffset(screen.moveCamera(player, level.getxOffset()));
@@ -72,19 +97,27 @@ public class GameManager {
         gc.fillText("Punkte: " + level.getScore() + " Münzen",10,70);
     }
 
+    /**
+     * Respaws the Player and set the xOffset to 0
+     */
     public void respawnPlayer(){
+        log.info("Respawn Player");
         level.setxOffset(0);
         player.respawn(new Vector2d(level.getStartTile().getX(),level.getStartTile().getY()));
     }
 
+    /**
+     * Draws the Background
+     *
+     * @param gc | Needed to draw Images
+     */
     private void renderBackground(GraphicsContext gc) {
-        int index = (int)player.getPos().x / 900;
-        screen.render(gc, (index-1)*900, 0, level.getBackground(), level.getxOffset());
-        screen.render(gc, index*900, 0, level.getBackground(), level.getxOffset());
-        screen.render(gc, (index+1)*900, 0, level.getBackground(), level.getxOffset());
+        for(int i = 0; i < 4; i ++) {
+            screen.render(gc, (i) * 900, 0, level.getBackground(), level.getxOffset());
+        }
     }
 
-
+    // Getter
     public Player getPlayer() {
         return player;
     }

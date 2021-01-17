@@ -4,21 +4,38 @@ import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
 import de.hdm_stuttgart.mi.se2.game.gfx.Screen;
 import de.hdm_stuttgart.mi.se2.game.input.Keyboard;
 import de.hdm_stuttgart.mi.se2.game.main.GameManager;
+import de.hdm_stuttgart.mi.se2.game.util.Config;
 import de.hdm_stuttgart.mi.se2.game.util.ImageHolder;
 import de.hdm_stuttgart.mi.se2.game.util.Vector2d;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.event.KeyEvent;
 
-
+/**
+ * Class which represents the Player in the Game
+ * @author Cazim Ukela
+ */
 public class Player extends Entity{
 
+    // Enum which holds the state of the Player
     private State state;
+
+    // Enum which holds the last state of the Player
     private State lastState;
+
+    // Walkdirection od the Player
     private boolean rightDirection;
-    private static final double GRAVITY = 1000;
+
+    // GameManager instance
     private GameManager gameManager;
 
+    /**
+     * Constructor
+     *
+     * @param gameManager | Instance of the GameManager
+     * @param xPos | X - Position of the Entity
+     * @param yPos | Y - Postiion of the Entity
+     */
     public Player(GameManager gameManager, int xPos, int yPos) {
         super(xPos, yPos);
         this.gameManager = gameManager;
@@ -26,28 +43,47 @@ public class Player extends Entity{
         init();
     }
 
+    /**
+     * Enum which represents the State of the Player
+     */
+    public enum State {
+        FALLING, JUMPING, GROUND
+    }
+
+
+    /**
+     * Set start values of the Player
+     */
     private void init() {
         setVel(new Vector2d(0, 0));
-        setAcc(new Vector2d(0, GRAVITY));
+        setAcc(new Vector2d(0, Config.Global.GRAVITY));
         this.state = State.GROUND;
         this.lastState = State.GROUND;
     }
 
-    public enum State {
-        FALLING, JUMPING, GROUND, CLIMBING
-    }
-
+    /**
+     * Draws the Player to the Screen
+     *
+     * @param gc | Needed to draw the images
+     * @param screen | Helper Class to draw everything right
+     */
     @Override
     public void render(GraphicsContext gc, Screen screen) {
         screen.render(gc,(int) getPos().x,(int) getPos().y,(rightDirection ? ImageHolder.INSTANCE.PLAYER_RIGHT_IMAGE:ImageHolder.INSTANCE.PLAYER_LEFT_IMAGE),gameManager.getLevel().getxOffset());
     }
 
+    /**
+     * Updates the Player values
+     */
     @Override
     public void update() {
         checkInput();
         move();
     }
 
+    /**
+     * Moves the Player depending on the State and Velocity
+     */
     private void move() {
 
         double lastXPos = getPos().x;
@@ -68,7 +104,7 @@ public class Player extends Entity{
         if ((lastState == State.GROUND && state == State.FALLING)) {
             getVel().y = 0;
         }else if (state == State.FALLING || state == State.JUMPING) {
-            getAcc().y = GRAVITY;
+            getAcc().y = Config.Global.GRAVITY;
             getPos().y = getPos().y + getVel().y * (1 / 60D) + (0.5 * getAcc().y * (1 / 60D) * (1 / 60D));
             if (getVel().y < 500) {
                 getVel().y += getAcc().y * (1 / 60D);
@@ -76,8 +112,13 @@ public class Player extends Entity{
         }
     }
 
+    /**
+     * Controls weather the Player is falling or jumping
+     *
+     * @param tile
+     */
     public void defineJumpingOrFalling(Tile tile) {
-        if (state != State.GROUND) {
+        if (state == State.FALLING || state == State.JUMPING) {
             setState((getVel().y > 0) ? State.FALLING : State.JUMPING);
         }else if(tile == null) {
             getVel().y = 0;
@@ -87,7 +128,9 @@ public class Player extends Entity{
     }
 
 
-
+    /**
+     * Reads the inputs of the Keyboard and set the Velocity depending on the inputs
+     */
     private void checkInput(){
 
             if (Keyboard.getInstance().isKeyDown(KeyEvent.VK_W) && state == State.GROUND) {
@@ -102,6 +145,12 @@ public class Player extends Entity{
             }
     }
 
+    /**
+     * Calculates the Position, Velocity and Acceleration depending on the Collisionside with the Tile
+     *
+     * @param side | The Collisionside between the Player and the Tile
+     * @param tile | Tile which the Player has collided with
+     */
     public void collide(int side, Tile tile) {
         if(side == 0 && state != State.GROUND && state != State.JUMPING) {
             getVel().y = 0;
@@ -127,6 +176,11 @@ public class Player extends Entity{
         }
     }
 
+    /**
+     * Respawns the Player if he dies.
+     *
+     * @param pos | Respawnposition
+     */
     public void respawn(Vector2d pos){
         setVel(new Vector2d(0, 0));
         setAcc(new Vector2d(0, 0));
@@ -136,6 +190,11 @@ public class Player extends Entity{
         rightDirection = true;
     }
 
+    /**
+     * Sets the new state and saves the old state in lastState
+     *
+     * @param state | Playerstate
+     */
     public void setState(State state) {
         this.lastState = this.state;
         this.state = state;
