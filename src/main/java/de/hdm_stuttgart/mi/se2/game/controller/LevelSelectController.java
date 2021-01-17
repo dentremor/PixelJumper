@@ -31,8 +31,6 @@ public class LevelSelectController {
     @FXML
     public ListView listView;
 
-    //TODO Button Anordnung anpassen
-
     /**
      * initialize() is called when the Level Select screen is opened to get all needed information to display the available levels
      */

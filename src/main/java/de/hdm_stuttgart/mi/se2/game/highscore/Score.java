@@ -22,12 +22,10 @@ public class Score implements Serializable{
     }
 
     public int getPoints(){
-        //log.info("returning points...");
         return points;
     }
 
     public String getName(){
-        //log.info("returning name...");
         return name;
     }
 
