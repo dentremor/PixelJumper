@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * A singleton class for spacing the whole tileSet.
+ * A singleton class for storing the whole tileSet.
  * @author Daniel Hiller
  * @version 0.1.0
  */
@@ -70,7 +70,6 @@ public class ImageHolder {
 
     // Returns the TilesSet for the ItemBox in EditorController
     public MyImage[] getImagesAsArray() {
-        log.info("TileSet was successfully load");
         return new MyImage[]{
                 IMAGE_1, IMAGE_2, IMAGE_3, IMAGE_4, IMAGE_5, DUMMY_IMAGE, IMAGE_7, IMAGE_8, IMAGE_9, IMAGE_10,
                 IMAGE_11, IMAGE_12, IMAGE_13, IMAGE_14, IMAGE_15, IMAGE_16, START_IMAGE, FINISH_IMAGE, IMAGE_19, IMAGE_20,

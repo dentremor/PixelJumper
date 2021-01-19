@@ -49,7 +49,7 @@ public class MainMenuController {
         log.info("level editor button clicked");
 
         // Get the currently used stage
-        Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        final Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
         owner.setWidth(1900);
         levelEditorButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/editor.fxml")));
     }
@@ -63,7 +63,7 @@ public class MainMenuController {
         log.info("Exit button clicked");
 
         log.info("Closing current stage");
-        Stage stage = (Stage) exitButton.getScene().getWindow();
+        final Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
 }
