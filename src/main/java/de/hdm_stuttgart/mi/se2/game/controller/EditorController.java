@@ -66,6 +66,10 @@ public class EditorController {
         this.displayEditorPane();
         this.displayExportButton();
         this.displayReturnButton();
+
+        // Center the Screen
+        final Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        owner.centerOnScreen();
     }
 
     @FXML
