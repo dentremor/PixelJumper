@@ -60,6 +60,7 @@ pkg/
 # CMake
 cmake-build-*/
 
+
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
 

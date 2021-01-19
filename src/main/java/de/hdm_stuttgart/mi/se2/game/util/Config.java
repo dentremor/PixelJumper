@@ -26,8 +26,8 @@ public class Config {
     }
 
     public static class EditorTiles {
-        public static final int WIDTH = 46;
-        public static final int HEIGHT = 46;
+        public static final int WIDTH = 47;
+        public static final int HEIGHT = 47;
     }
 
     public enum TileType {
