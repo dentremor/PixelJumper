@@ -33,25 +33,27 @@ public class menuStartup extends Application {
     private final static Logger log = LogManager.getLogger(menuStartup.class);
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(final Stage primaryStage) {
         log.info("trying to create menu stage");
         try {
             log.info("Creating parent root from mainMenu.fxml");
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml"));
+            final Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml"));
 
             log.info("Creating scene from root");
-            Scene scene = new Scene(root);
+            final Scene scene = new Scene(root);
+            primaryStage.setResizable(false);
+            primaryStage.centerOnScreen();
 
             log.info("Set Keylistener");
             scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
-                public void handle(KeyEvent keyEvent) {
+                public void handle(final KeyEvent keyEvent) {
                     Keyboard.getInstance().setKeyPressed(keyEvent.getCode().getCode());
                 }
             });
             scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
                 @Override
-                public void handle(KeyEvent keyEvent) {
+                public void handle(final KeyEvent keyEvent) {
                     Keyboard.getInstance().setKeyReleased(keyEvent.getCode().getCode());
                 }
             });
@@ -63,95 +65,20 @@ public class menuStartup extends Application {
             // Log the width and height of the different scenes
             scene.widthProperty().addListener(new ChangeListener<Number>() {
                 @Override
-                public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
+                public void changed(final ObservableValue<? extends Number> observableValue, final Number oldSceneWidth, final Number newSceneWidth) {
                     log.info("The width of the scene was changed from " + oldSceneWidth + " to " + newSceneWidth);
                 }});
             scene.heightProperty().addListener(new ChangeListener<Number>() {
-                @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
+                @Override public void changed(final ObservableValue<? extends Number> observableValue, final Number oldSceneHeight, final Number newSceneHeight) {
                     log.info("The width of the scene was changed from " + oldSceneHeight + " to " + newSceneHeight);
                 }});
 
             log.info("Showing stage");
             primaryStage.show();
-        } catch (IOException e){
+        } catch (final IOException e){
             log.error("An Error occurred while trying to create menu stage", e);
         }
     }
-
-    /*private void startGameLoop(GraphicsContext gc,Stage gameStage) {
-        new AnimationTimer(){
-
-            long lastTime = System.nanoTime();
-            double nsPerUpdate = 1000000000D / UPS;
-
-            int updates = 0;
-            int frames = 0;
-
-            long lastTimer = System.currentTimeMillis();
-            double delta = 0;
-
-            @Override
-            public void handle(long nowTime) {
-                delta += (nowTime - lastTime) / nsPerUpdate;
-
-                lastTime = nowTime;
-                boolean shouldRender = false;
-
-                while (delta >= 1) {
-                    updates++;
-                    update();
-                    delta -= 1;
-                    shouldRender = true;
-                }
-
-                if (shouldRender) {
-                    render(gc);
-                    frames++;
-                }
-
-                if (System.currentTimeMillis() - lastTimer >= 1000) {
-                    lastTimer += 1000;
-                    frames = 0;
-                    updates = 0;
-                }
-            }
-        }.start();
-
-
-        gameStage.show();
-
-    }*/
-
-    /**
-     *
-     * Methode die gecallt wird wenn man den Startbutton im Menü anklickt
-     */
-    /*private void startup(Stage stage){
-        gameManager = new GameManager();
-            screen = new Screen();
-
-
-            stage.setTitle("Hello World");
-
-            Group root = new Group();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-
-            Canvas canvas = new Canvas(WIDTH,HEIGHT);
-            root.getChildren().add(canvas);
-
-            GraphicsContext gc = canvas.getGraphicsContext2D();
-
-            startGameLoop(gc, stage);
-    }*/
-
-    /*private void render(GraphicsContext gc) {
-        gameManager.render(gc,screen);
-    }
-
-    private void update() {
-    }
-         */
 
     public void load(){
         launch();

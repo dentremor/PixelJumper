@@ -10,6 +10,7 @@ import de.hdm_stuttgart.mi.se2.game.util.Config;
 import de.hdm_stuttgart.mi.se2.game.util.ImageHolder;
 import de.hdm_stuttgart.mi.se2.game.util.MyImage;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
@@ -18,6 +19,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,6 +45,7 @@ public class EditorController {
     public GridPane mapEditor;
     public GridPane itemBox;
     public Button exportButton;
+    public Button returnButton;
 
 
     // Custom variables
@@ -61,8 +65,8 @@ public class EditorController {
         this.displayItems();
         this.displayEditorPane();
         this.displayExportButton();
+        this.displayReturnButton();
     }
-
 
     @FXML
     public void displayItems() {
@@ -162,6 +166,19 @@ public class EditorController {
         });
     }
 
+    @FXML
+    public void displayReturnButton() {
+        returnButton.setOnMouseClicked(e -> {
+            returnButtonAction();
+            try {
+                returnButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml")));
+            } catch (final IOException ioException) {
+                log.fatal(ioException.getMessage());
+                ioException.printStackTrace();
+            }
+        });
+    }
+
 
     // Function for displayExportButton() which instance the images to tiles and export them after into a .json-file
     public void actionForExportButton() {
@@ -184,6 +201,7 @@ public class EditorController {
                     actionForExportButton();
 
                 } else {
+                    // Add all set tiles to an ArrayList
                     final ArrayList<Tile> mapArray = new ArrayList<>();
                     int index = 0;
                     for (int i = 0; i < this.editorImageArray.length; i++) {
@@ -197,7 +215,19 @@ public class EditorController {
                     final HighscoreManager highscoreManager = new HighscoreManager(name);
                     highscoreManager.writeScoreFile();
                     try {
+                        // Calls the function for .json export
                         map.exportMap(name);
+
+                        // Shows the user that the map was successfully exported
+                        final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Map Exported");
+                        alert.setHeaderText(null);
+                        alert.setContentText("The map was successfully exported!");
+                        alert.showAndWait();
+
+                        // Return to the MainMenu
+                        returnButtonAction();
+                        exportButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml")));
                     } catch (final IOException e) {
                         log.fatal(e.getMessage());
                         e.printStackTrace();
@@ -209,6 +239,12 @@ public class EditorController {
                 e.printStackTrace();
             }
         });
+    }
+
+    // Function for returning to the MainMenu
+    public void returnButtonAction() {
+        final Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        owner.setWidth(1600);
     }
 
     // Function for displayExportButton() which checks if the map is empty

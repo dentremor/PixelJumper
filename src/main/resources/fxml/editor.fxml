@@ -25,7 +25,16 @@
             <GridPane fx:id="itemBox" accessibleRole="SCROLL_BAR" styleClass="item-box">
             </GridPane>
             <Pane prefHeight="40" prefWidth="240" layoutY="850">
-                <Button styleClass="export-button" fx:id="exportButton" mnemonicParsing="false" layoutX="40">
+                <Button styleClass="button" fx:id="returnButton" GridPane.valignment="CENTER" layoutX="5">
+                    <graphic>
+                        <ImageView fitWidth="40" fitHeight="40">
+                            <image>
+                                <Image url="@../images/guiElements/returnButton.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button styleClass="button" fx:id="exportButton" mnemonicParsing="false" layoutX="52">
                     <graphic>
                         <ImageView fitWidth="240" fitHeight="40">
                             <Image url="@../images/guiElements/exportButton.png"/>

@@ -42,13 +42,13 @@
     -fx-background-color: #ffffff60;
 }
 
-.export-button {
+.button {
     -fx-padding: 0;
     -fx-cursor: hand;
     -fx-background-color: #7bba9f;
     -fx-graphic-text-gap: 30px;
 }
 
-.export-button:hover {
+.button:hover {
     -fx-background-color: #537e6c;
 }
