@@ -244,7 +244,7 @@ public class EditorController {
     // Function for returning to the MainMenu
     public void returnButtonAction() {
         final Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
-        owner.setWidth(1600);
+        owner.setWidth(Config.Global.GAME_WIDTH);
     }
 
     // Function for displayExportButton() which checks if the map is empty
@@ -301,8 +301,8 @@ public class EditorController {
         final ImageView imvNew = new ImageView(this.selectedImage.get());
 
         // Scale size
-        imvNew.setFitHeight(46);
-        imvNew.setFitWidth(46);
+        imvNew.setFitHeight(Config.EditorTiles.HEIGHT);
+        imvNew.setFitWidth(Config.EditorTiles.WIDTH);
 
         // Remove and add
         canvas.getChildren().remove(0);

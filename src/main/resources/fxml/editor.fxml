@@ -21,7 +21,7 @@
         </AnchorPane>
 
         <!--   itemSelection   -->
-        <AnchorPane fx:id="rootItemPane" layoutX="1600" prefHeight="900" prefWidth="300" styleClass="item-selection">
+        <AnchorPane fx:id="rootItemPane" layoutX="1600" prefHeight="900" prefWidth="300">
             <GridPane fx:id="itemBox" accessibleRole="SCROLL_BAR" styleClass="item-box">
             </GridPane>
             <Pane prefHeight="40" prefWidth="240" layoutY="850">

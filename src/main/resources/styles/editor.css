@@ -1,9 +1,6 @@
 /* Application wide styles */
 
 /*  layout  */
-.header {
-    -fx-background-color: green;
-}
 
 .level-editor {
     /*  background  */
@@ -17,7 +14,7 @@
     /*  Styling of the single elements  */
     -fx-border-style: solid;
     -fx-border-color: white;
-    -fx-border-width: 2px;
+    -fx-border-width: 1.5px;
 
     /*  Give the elements "button-behaviour"  */
     -fx-cursor: hand;
@@ -32,7 +29,7 @@
     /*  Styling of the single elements  */
     -fx-border-style: solid;
     -fx-border-color: white;
-    -fx-border-width: 2px;
+    -fx-border-width: 1.5px;
 
     /*  Give the elements "button-behaviour"  */
     -fx-cursor: hand;

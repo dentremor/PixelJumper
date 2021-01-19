@@ -60,6 +60,7 @@ pkg/
 # CMake
 cmake-build-*/
 
+
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
 
@@ -153,8 +154,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-# Highscore files
-*.dat
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,archlinuxpackages,linux,vscode,intellij+all
