@@ -165,7 +165,6 @@ public class Tile implements ITile {
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("x", x);
         jsonObject.put("y", y);
-        // TODO hier muss man was ändern
         final String url = image.getUrl();
         final String[] urlArray = url.split("/images/");
         jsonObject.put("image", "/images/"+urlArray[1]);
