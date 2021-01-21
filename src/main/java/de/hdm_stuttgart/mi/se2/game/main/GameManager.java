@@ -65,7 +65,7 @@ public class GameManager {
 
         if (player.getPos().y > 950) {
             respawnPlayer();
-        } else if (!CollisionUtil.getInstance().playerCollidedWithEnd(player,this)) {
+        } else if (CollisionUtil.getInstance().playerCollidedWithEnd(player,this)) {
 
             gameController.stopGameLoop();
 
