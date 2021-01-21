@@ -15,17 +15,10 @@
     </stylesheets>
     <VBox styleClass="main-screen" prefHeight="900" prefWidth="1600" alignment="CENTER">
             <VBox alignment="CENTER" styleClass="button-list">
-                <Button styleClass="menu-button" fx:id="startButton" onMouseClicked="#handleStartButtonClick">
-                    <graphic>
-                        <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <Image url="@../images/guiElements/startButton.png"/>
-                        </ImageView>
-                    </graphic>
-                </Button>
                 <Button styleClass="menu-button" fx:id="levelSelectButton" onMouseClicked="#handleLevelSelectButtonClick">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
-                            <Image url="@../images/guiElements/levelSelectButton.png"/>
+                            <Image url="@../images/guiElements/startButton.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
