@@ -66,4 +66,5 @@ public class MainMenuController {
         final Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
+
 }

@@ -26,6 +26,9 @@ public class Player extends Entity{
     // Walkdirection od the Player
     private boolean rightDirection;
 
+    // Name of the player
+    private String name;
+
     // GameManager instance
     private final GameManager gameManager;
 
@@ -36,10 +39,11 @@ public class Player extends Entity{
      * @param xPos | X - Position of the Entity
      * @param yPos | Y - Postiion of the Entity
      */
-    public Player(final GameManager gameManager, final int xPos, final int yPos) {
+    public Player(final GameManager gameManager, final int xPos, final int yPos,String playerName) {
         super(xPos, yPos);
         this.gameManager = gameManager;
         this.rightDirection = true;
+        this.name = playerName;
         init();
     }
 
@@ -198,5 +202,10 @@ public class Player extends Entity{
     public void setState(final State state) {
         this.lastState = this.state;
         this.state = state;
+    }
+
+    // Getter
+    public String getName() {
+        return name;
     }
 }

@@ -1,13 +1,26 @@
 package de.hdm_stuttgart.mi.se2.game.controller;
 
+import de.hdm_stuttgart.mi.se2.game.highscore.HighscoreManager;
+import de.hdm_stuttgart.mi.se2.game.level.map.Map;
+import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
+import de.hdm_stuttgart.mi.se2.game.level.tiles.TileFactory;
 import de.hdm_stuttgart.mi.se2.game.main.GameManager;
+import de.hdm_stuttgart.mi.se2.game.util.Config;
+import de.hdm_stuttgart.mi.se2.game.util.ImageHolder;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * JavaFX Controller for the Game.
@@ -31,14 +44,7 @@ public class GameController {
     @FXML
     public void initialize() {
 
-        this.gameManager = new GameManager(this);
 
-        final Canvas canvas = new Canvas(1600, 900);
-        this.rootPane.getChildren().add(canvas);
-
-        final GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        startGameLoop(gc);
     }
 
     /**
@@ -70,13 +76,13 @@ public class GameController {
 
                 while (this.delta >= 1) {
                     this.updates++;
-                    GameController.this.gameManager.update();
+                    gameManager.update();
                     this.delta -= 1;
                     shouldRender = true;
                 }
 
                 if (shouldRender) {
-                    GameController.this.gameManager.render(gc);
+                    gameManager.render(gc);
                     this.frames++;
                 }
 
@@ -97,7 +103,37 @@ public class GameController {
     public void stopGameLoop(){
         log.info("Stop GameLoop");
         timer.stop();
+
     }
 
+    /**
+     * Starts the Game with the levelName and the playerName
+     *
+     * @param levelName | Name of the Level
+     * @param playerName | Name of the Player
+     */
+    public void startGame(String levelName,String playerName) {
 
+        this.gameManager = new GameManager(this,levelName,playerName);
+
+        final Canvas canvas = new Canvas(1600, 900);
+        this.rootPane.getChildren().add(canvas);
+
+        final GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        startGameLoop(gc);
+
+
+    }
+
+    /**
+     * Goes to the start screen
+     */
+    public void goToStart() {
+        try {
+            rootPane.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml")));
+        } catch (IOException e) {
+            log.error(e);
+        }
+    }
 }

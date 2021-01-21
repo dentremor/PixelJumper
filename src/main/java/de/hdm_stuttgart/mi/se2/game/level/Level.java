@@ -42,6 +42,9 @@ public class Level {
     // X-Offset od the Level
     private int xOffset;
 
+    // Name of the Map
+    private String mapName;
+
     /**
      * Constructor
      *
@@ -60,6 +63,8 @@ public class Level {
      * @param mapName | Name of the Map
      */
     public void loadLevel(final String mapName) {
+
+        this.mapName = mapName;
 
         log.info("Loading Level");
 
@@ -114,5 +119,9 @@ public class Level {
 
     public Tile getFinishTile() {
         return finishTile;
+    }
+
+    public String getMapName() {
+        return mapName;
     }
 }

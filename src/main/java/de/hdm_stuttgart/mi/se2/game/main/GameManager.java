@@ -3,13 +3,17 @@ package de.hdm_stuttgart.mi.se2.game.main;
 import de.hdm_stuttgart.mi.se2.game.controller.GameController;
 import de.hdm_stuttgart.mi.se2.game.entities.Player;
 import de.hdm_stuttgart.mi.se2.game.gfx.Screen;
+import de.hdm_stuttgart.mi.se2.game.highscore.HighscoreManager;
 import de.hdm_stuttgart.mi.se2.game.level.Level;
 import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
 import de.hdm_stuttgart.mi.se2.game.util.CollisionUtil;
 import de.hdm_stuttgart.mi.se2.game.util.Vector2d;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.TextInputDialog;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Optional;
 
 /**
  * Class that handles the whole Game
@@ -41,14 +45,14 @@ public class GameManager {
      *
      * @param gameController | GameController instance
      */
-    public GameManager(final GameController gameController) {
+    public GameManager(final GameController gameController,String levelName, String playerName) {
         this.gameController = gameController;
         this.screen = new Screen();
         log.info("Create Player");
-        this.player = new Player(this,0,0);
+        this.player = new Player(this,0,0,playerName);
         log.info("Create Level");
         this.level = new Level(this);
-        this.level.loadLevel("test");
+        this.level.loadLevel(levelName);
         this.startTime = System.currentTimeMillis();
     }
 
@@ -61,8 +65,15 @@ public class GameManager {
 
         if (player.getPos().y > 950) {
             respawnPlayer();
-        } else if (CollisionUtil.getInstance().playerCollidedWithEnd(player,this)) {
+        } else if (!CollisionUtil.getInstance().playerCollidedWithEnd(player,this)) {
+
             gameController.stopGameLoop();
+
+            HighscoreManager highscoreManager = new HighscoreManager(level.getMapName());
+            highscoreManager.addScore(player.getName(),level.getScore() + Math.max(0,(int)(20-((System.currentTimeMillis()-startTime)/1000))));
+
+            gameController.goToStart();
+
         }
 
         CollisionUtil.getInstance().detectCollisions(player, this);
