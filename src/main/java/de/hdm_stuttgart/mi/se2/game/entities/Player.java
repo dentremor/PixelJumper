@@ -116,20 +116,7 @@ public class Player extends Entity{
         }
     }
 
-    /**
-     * Controls weather the Player is falling or jumping
-     *
-     * @param tile
-     */
-    public void defineJumpingOrFalling(final Tile tile) {
-        if (state == State.FALLING || state == State.JUMPING) {
-            setState((getVel().y > 0) ? State.FALLING : State.JUMPING);
-        }else if(tile == null) {
-            getVel().y = 0;
-            setState(State.FALLING);
-        }
 
-    }
 
 
     /**
@@ -207,5 +194,9 @@ public class Player extends Entity{
     // Getter
     public String getName() {
         return name;
+    }
+
+    public State getState() {
+        return state;
     }
 }

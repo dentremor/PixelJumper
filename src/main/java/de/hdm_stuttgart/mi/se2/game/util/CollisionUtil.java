@@ -22,7 +22,32 @@ public class CollisionUtil {
      */
     public void detectCollisions(Player player, GameManager gameManager) {
         betweenPlayerAndTiles(player, gameManager);
-        player.defineJumpingOrFalling(getTileUnderPlayer(player,gameManager));
+        defineJumpingOrFalling(player,gameManager);
+    }
+
+    /**
+     * Controls weather the Player is falling or jumping
+     *
+     * @param player | Player
+     * @param gameManager | GameManager
+     */
+    public void defineJumpingOrFalling(final Player player, final GameManager gameManager) {
+
+        Tile tile = getTileUnderPlayer(player,gameManager);
+
+        if (player.getState() == Player.State.FALLING || player.getState() == Player.State.JUMPING) {
+            player.setState((player.getVel().y > 0) ? Player.State.FALLING : Player.State.JUMPING);
+        }else if(tile == null) {
+            player.getVel().y = 0;
+            player.setState(Player.State.FALLING);
+        }else if(player.getState() == Player.State.GROUND){
+            if(tile.isDeadly()) {
+                gameManager.respawnPlayer();
+            }else if(!tile.isSolid()){
+                player.setState(Player.State.FALLING);
+            }
+        }
+
     }
 
     /**

@@ -176,6 +176,7 @@ public class GameController {
             }
         };
         musicThread.setName("Music Thread");
+        musicThread.setDaemon(true);
         musicThread.start();
 
     }
