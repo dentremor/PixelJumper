@@ -78,7 +78,7 @@ public class CollisionUtil {
         for (Tile t : gameManager.getLevel().getTiles()) {
             if (intersects(player.getBounds(),t.getBounds())) {
                 if (t.isSolid() && !t.isDeadly()) {
-                    int collisionSide = getCollsionSide(player.getBounds(), t.getBounds());
+                    int collisionSide = getCollisionSide(player.getBounds(), t.getBounds());
                     player.collide(collisionSide,t);
                 } else if (t.isDeadly()) {
                     gameManager.respawnPlayer();
@@ -118,7 +118,7 @@ public class CollisionUtil {
      * @param r2 | Rectangle
      * @return | The collisionside of the two Rectangles
      */
-    private int getCollsionSide(Rectangle r1, Rectangle r2) {
+    public int getCollisionSide(Rectangle r1, Rectangle r2) {
         int right = Math.abs(Math.abs((int) r1.getX() + (int) r1.getWidth()) - Math.abs( (int) r2.getX()));
         int top = Math.abs((int) r1.getY() - (int) r2.getY() - (int) r2.getHeight());
         int bottom = Math.abs(Math.abs((int) r1.getY() + (int) r1.getHeight()) - Math.abs((int) r2.getY()));
@@ -135,7 +135,7 @@ public class CollisionUtil {
      * @param r2 | Rectangle
      * @return | If the tow Rectangles intersects
      */
-    private boolean intersects(Rectangle r1, Rectangle r2){
+    public boolean intersects(Rectangle r1, Rectangle r2){
         return r1.getX() < r2.getX() + r2.getWidth() && r1.getX() + r1.getWidth() > r2.getX() && r1.getY() < r2.getY() + r2.getHeight() && r1.getY() + r1.getHeight() > r2.getY();
     }
 
