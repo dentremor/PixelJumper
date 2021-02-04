@@ -19,6 +19,7 @@ public class Config {
         public static final int COLUMN_SIZE = 18;
         public static final int ROW_SIZE = 32;
         public static final int INDEX_SIZE = 576;
+        public static final String MAP_PATH = "src/main/resources/maps/";
     }
 
     public static class Selection {

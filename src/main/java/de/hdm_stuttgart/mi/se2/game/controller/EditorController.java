@@ -193,55 +193,50 @@ public class EditorController {
 
         final Optional<String> result = dialog.showAndWait();
         result.ifPresent(name -> {
-            try {
 
-                // Checks if the mapName already exists
-                if (mapExists(name)) {
-                    final Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("This name is not available for selection");
-                    alert.setContentText("The name " + name + " is already taken!");
-                    alert.showAndWait();
-                    actionForExportButton();
+            // Checks if the mapName already exists
+            if (mapExists(name)) {
+                final Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("This name is not available for selection");
+                alert.setContentText("The name " + name + " is already taken!");
+                alert.showAndWait();
+                actionForExportButton();
 
-                } else {
-                    // Add all set tiles to an ArrayList
-                    final ArrayList<Tile> mapArray = new ArrayList<>();
-                    int index = 0;
-                    for (int i = 0; i < this.editorImageArray.length; i++) {
-                        if (ImageHolder.INSTANCE.DUMMY_IMAGE != this.editorImageArray[i]) {
-                            final Tile tile = new TileFactory().makeTile(i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE, this.editorImageArray[i]);
-                            mapArray.add(tile);
-                            index++;
-                        }
-                    }
-                    final Map map = new Map(mapArray);
-                    final HighscoreManager highscoreManager = new HighscoreManager(name);
-                    highscoreManager.writeScoreFile();
-                    try {
-                        // Calls the function for .json export
-                        map.exportMap(name);
-
-                        // Shows the user that the map was successfully exported
-                        final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Map Exported");
-                        alert.setHeaderText(null);
-                        alert.setContentText("The map was successfully exported!");
-                        alert.showAndWait();
-
-                        // Return to the MainMenu
-                        returnButtonAction();
-                        exportButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml")));
-                    } catch (final IOException e) {
-                        log.fatal(e.getMessage());
-                        e.printStackTrace();
+            } else {
+                // Add all set tiles to an ArrayList
+                final ArrayList<Tile> mapArray = new ArrayList<>();
+                int index = 0;
+                for (int i = 0; i < this.editorImageArray.length; i++) {
+                    if (ImageHolder.INSTANCE.DUMMY_IMAGE != this.editorImageArray[i]) {
+                        final Tile tile = new TileFactory().makeTile(i / Config.Map.COLUMN_SIZE, i % Config.Map.COLUMN_SIZE, this.editorImageArray[i]);
+                        mapArray.add(tile);
+                        index++;
                     }
                 }
+                final Map map = new Map(mapArray);
+                final HighscoreManager highscoreManager = new HighscoreManager(name);
+                highscoreManager.writeScoreFile();
+                try {
+                    // Calls the function for .json export
+                    map.exportMap(name);
 
-            } catch (final IOException e) {
-                log.fatal(e.getMessage());
-                e.printStackTrace();
+                    // Shows the user that the map was successfully exported
+                    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Map Exported");
+                    alert.setHeaderText(null);
+                    alert.setContentText("The map was successfully exported!");
+                    alert.showAndWait();
+
+                    // Return to the MainMenu
+                    returnButtonAction();
+                    exportButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/mainMenu.fxml")));
+                } catch (final IOException e) {
+                    log.fatal(e.getMessage());
+                    e.printStackTrace();
+                }
             }
+
         });
     }
 
@@ -268,14 +263,21 @@ public class EditorController {
     }
 
     // Function for displayExportButton() which checks if a map with this name already exists
-    public boolean mapExists(final String name) throws IOException {
-        final String[] mapNamesAsArray = Map.MapManager.getMapNamesAsArray();
-        for (final String mapName: mapNamesAsArray) {
-            if (mapName.equals(name)) {
-                log.info("The mapName " + name + " already exists");
-                return true;
+    public boolean mapExists(final String name) {
+        final String[] mapNamesAsArray;
+        try {
+            mapNamesAsArray = Map.MapManager.getMapNamesAsArray();
+            for (final String mapName: mapNamesAsArray) {
+                if (mapName.equals(name)) {
+                    log.info("The mapName " + name + " already exists");
+                    return true;
+                }
             }
+        } catch (IOException e) {
+            log.fatal(e.getMessage());
+            e.printStackTrace();
         }
+
         return false;
     }
 

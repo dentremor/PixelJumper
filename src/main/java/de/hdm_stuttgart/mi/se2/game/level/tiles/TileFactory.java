@@ -6,7 +6,7 @@ public class TileFactory {
 
     public Tile makeTile(final int x, final int y, final MyImage image) {
 
-        Tile tile = new Tile(x, y, image);
+        ITile tile = new Tile(x, y, image);
 
         switch (tile.getImage().getTileType()){
             case BASIC_TYPE:
@@ -32,6 +32,6 @@ public class TileFactory {
             default:
                 return null;
         }
-        return tile;
+        return (Tile) tile;
     }
 }

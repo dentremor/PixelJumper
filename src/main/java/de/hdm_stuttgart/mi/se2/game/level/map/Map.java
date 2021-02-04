@@ -2,6 +2,7 @@ package de.hdm_stuttgart.mi.se2.game.level.map;
 
 import de.hdm_stuttgart.mi.se2.game.level.tiles.Tile;
 import de.hdm_stuttgart.mi.se2.game.level.tiles.TileFactory;
+import de.hdm_stuttgart.mi.se2.game.util.Config;
 import de.hdm_stuttgart.mi.se2.game.util.ImageHolder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,10 +48,10 @@ public class Map {
             mapArrayJson.add(jsonObject);
         }
         //Write JSON file
-        try (final FileWriter file = new FileWriter("src/main/resources/maps/" + mapName + ".json")) {
+        try (final FileWriter file = new FileWriter(Config.Map.MAP_PATH + mapName + ".json")) {
             file.write(mapArrayJson.toString());
             file.flush();
-            log.info("The Map was exported as followed: " + "src/main/resources/maps/" + mapName + ".json");
+            log.info("The Map was exported as followed: " + Config.Map.MAP_PATH + mapName + ".json");
         } catch (final IOException e) {
             log.fatal(e.getMessage());
             e.printStackTrace();
@@ -95,20 +96,16 @@ public class Map {
             return mapArray;
         }
 
-        public static String[] getMapNamesAsArray() {
+        public static String[] getMapNamesAsArray() throws IOException{
             List<String> filenames = null;
 
             // Stream which returns all the FileNames as String without the fileTag
-            try {
-                filenames = Files.list(Paths.get("src/main/resources/maps/"))
+                filenames = Files.list(Paths.get(Config.Map.MAP_PATH))
                         .parallel()
                         .map(p -> p.getFileName().toString().replaceFirst("[.][^.]+$", ""))
                         .collect(Collectors.toList());
                 log.info("Read all mapNames from following destination: " + "src/main/resources/maps/");
-            } catch (final IOException e) {
-                log.fatal(e.getMessage());
-                e.printStackTrace();
-            }
+
             return filenames.toArray(String[]::new);
         }
     }
