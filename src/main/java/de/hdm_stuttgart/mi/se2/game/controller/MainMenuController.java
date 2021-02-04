@@ -23,9 +23,6 @@ public class MainMenuController {
     public Button startButton;
 
     @FXML
-    public Button levelSelectButton;
-
-    @FXML
     public Button levelEditorButton;
 
     @FXML
@@ -34,15 +31,10 @@ public class MainMenuController {
     @FXML
     public Button exitButton;
 
-    public void handleStartButtonClick() throws IOException {
-        log.info("start button clicked");
-        startButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/game.fxml")));
-    }
-
-    public void handleLevelSelectButtonClick() throws IOException {
+    public void handleStartButton() throws IOException {
         log.info("level select button clicked");
 
-        levelSelectButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/levelSelect.fxml")));
+        startButton.getScene().setRoot(FXMLLoader.load(getClass().getResource("/fxml/levelSelect.fxml")));
     }
 
     public void handleLevelEditorButtonClicked() throws IOException{
