@@ -15,7 +15,7 @@
     </stylesheets>
     <VBox styleClass="main-screen" prefHeight="900" prefWidth="1600" alignment="CENTER">
             <VBox alignment="CENTER" styleClass="button-list">
-                <Button styleClass="menu-button" fx:id="levelSelectButton" onMouseClicked="#handleLevelSelectButtonClick">
+                <Button styleClass="menu-button" fx:id="startButton" onMouseClicked="#handleStartButton">
                     <graphic>
                         <ImageView fitWidth="250.0" fitHeight="50.0">
                             <Image url="@../images/guiElements/startButton.png"/>
