@@ -43,7 +43,11 @@ public class LevelSelectController {
         ArrayList<String> filenames = getFileNames();
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         for(int i = 0; i < fileAmount; i++){
-            listView.getItems().add(filenames.get(i));
+            String filename = filenames.get(i);
+            //if statement needed because these two names are used in the tests
+            if(!filename.equals("levelname1") && !filename.equals("levelname2")) {
+                listView.getItems().add(filename);
+            }
         }
     }
 

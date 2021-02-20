@@ -27,8 +27,5 @@ public class HighscoreTest {
         String testString = highscoreManager.getHighscoreString();
 
         Assert.assertEquals(testString, "1.\tplayername\t  15\n");
-
-
-
     }
 }

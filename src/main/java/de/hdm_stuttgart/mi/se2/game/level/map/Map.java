@@ -32,7 +32,7 @@ public class Map {
     private static final Logger log = LogManager.getLogger(Map.class);
 
     // Variables
-    ArrayList<Tile> mapArray;
+    private ArrayList<Tile> mapArray;
 
     public Map(final ArrayList<Tile> mapArray) {
         this.mapArray = mapArray;
